@@ -18,20 +18,98 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a:hover {
-  color: #535bf2;
-}
-
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@font-face {
+  font-family: 'Noto-Sans-JP';
+  font-weight: 100;
+  font-display: swap;
+  src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Thin.ttf') format('woff2');
+}
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 200;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-ExtraLight.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 300;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Light.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 400;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Regular.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 500;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Medium.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 600;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-SemiBold.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 700;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Bold.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 800;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-ExtraBold.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 900;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Black.ttf') format('woff2');
+}  
+
+body {
+  font-family: 'Noto-Sans-JP';
+  height: 100%;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d9d9d9;
+    border-radius: 10px;
   }
 }

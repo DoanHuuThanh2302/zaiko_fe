@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import {
-  IconsChevronsLeft,
+  IconsMenu,
   IconsChevronsRight,
   IconsUser,
 } from '../../assets/icons/icons'
@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setShow } from '../sidebar/sidebar-slice'
 
-const Header = () => {
+const Header = ({ category = '' }: { category?: string }) => {
   const [t] = useTranslation()
   const dispatch = useDispatch()
   const [showSideBar, setShowSideBar] = useState(true)
@@ -20,20 +20,16 @@ const Header = () => {
 
   return (
     <>
-      <div
-        className={`${
-          showSideBar ? 'ml-4' : 'ml-0'
-        } h-14 bg-[#F9FBFD] mt-0 flex fixed w-full z-[9] border-b`}
-      >
+      <div className={`h-14 bg-white mt-0 flex w-full z-[9]`}>
         <div
-          className='ml-3 flex items-center cursor-pointer'
+          className='ml-6 flex items-center cursor-pointer'
           onClick={() => handleShowSidebar()}
         >
-          {showSideBar ? <IconsChevronsLeft /> : <IconsChevronsRight />}
+          {showSideBar ? <IconsMenu /> : <IconsChevronsRight />}
         </div>
         <div className='flex justify-between items-center h-full ml-10 w-full'>
-          <p>見積伝票入力</p>
-          <div className={`${showSideBar ? ' mr-[300px]' : 'mr-[43px]'}`}>
+          <p>{category}</p>
+          <div className={`mr-[50px]`}>
             <IconsUser />
           </div>
         </div>
