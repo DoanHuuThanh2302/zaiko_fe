@@ -1,4 +1,5 @@
 import React from 'react'
+import PaginatedItems from '../pagination/paging'
 
 interface DataTableProps {
   data: any[]
@@ -6,6 +7,9 @@ interface DataTableProps {
   title?: string
   className?: string
   handleChange?: any
+  totalPage: number
+  forcePage?: number
+  paginate?: (pageNumber?: number) => void
 }
 
 const DataTable: React.FC<DataTableProps> = ({
@@ -13,6 +17,9 @@ const DataTable: React.FC<DataTableProps> = ({
   columns,
   title,
   className,
+  totalPage,
+  forcePage,
+  paginate,
 }: DataTableProps) => {
   return (
     <div
@@ -86,6 +93,13 @@ const DataTable: React.FC<DataTableProps> = ({
             ))}
           </tbody>
         </table>
+        <div className={'w-full'}>
+          <PaginatedItems
+            //setCurrentPage={paginate}
+            totalPages={totalPage}
+            current_page={forcePage}
+          />
+        </div>
       </div>
     </div>
   )

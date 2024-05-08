@@ -4,19 +4,19 @@ import { IconsPrev, IconsNexts } from '../../assets/icons/icons'
 
 interface PageProps {
   totalPages: number
-  setCurrentPage: (page: number) => void
+  //setCurrentPage: (page: number) => void
   current_page?: number
 }
 const PaginatedItems: React.FC<PageProps> = ({
   totalPages,
-  setCurrentPage,
+  //setCurrentPage,
   current_page,
 }) => {
   const [t] = useTranslation()
 
-  const handlePageClick = ({ selected }: { selected: any }) => {
-    setCurrentPage(selected + 1)
-  }
+  // const handlePageClick = ({ selected }: { selected: any }) => {
+  //   setCurrentPage(selected + 1)
+  // }
 
   return (
     <>
@@ -26,7 +26,7 @@ const PaginatedItems: React.FC<PageProps> = ({
           <>
             <div className='flex items-center'>
               <p className='mr-[14px] text-[8px] md:text-[12px] font-normal leading-4 text-nowrap'>
-                {t('pagination:Pagination.Next')}
+                {t('common:Common.Next')}
               </p>
               <IconsNexts
                 color={current_page == totalPages - 1 ? '#BDC9D3' : '#687C97'}
@@ -34,7 +34,7 @@ const PaginatedItems: React.FC<PageProps> = ({
             </div>
           </>
         }
-        onPageChange={handlePageClick}
+        //onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={totalPages}
         previousLabel={
@@ -42,7 +42,7 @@ const PaginatedItems: React.FC<PageProps> = ({
             <div className='flex items-center'>
               <IconsPrev color={current_page == 0 ? '#BDC9D3' : '#687C97'} />
               <p className='ml-[14px] text-[8px] md:text-[12px] font-normal leading-4 text-nowrap'>
-                {t('pagination:Pagination.Return')}
+                {t('common:Common.Prev')}
               </p>
             </div>
           </>

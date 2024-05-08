@@ -183,7 +183,7 @@ export default function Quotation() {
               {t('quotation:Quoation.CustomerCode')}
               <p className='text-red-600'>※</p>
             </p>
-            <Input className='text-[10px] w-[420px] h-[24px] !py-0 !rounded-[3px]' />
+            <Input className='text-[10px] !w-[420px] h-[24px] !py-0 !rounded-[3px]' />
             <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center'>
               <IconsSearch />
             </div>
@@ -205,7 +205,7 @@ export default function Quotation() {
             <p className='w-[130px] text-nowrap'>
               {t('quotation:Quoation.DeliveryCode')}
             </p>
-            <Buttom className='text-[10px] w-[420px] h-[24px] border border-blue-200 bg-gray-200 !py-0 !rounded-[3px]' />
+            <Buttom className='text-[10px] !w-[420px] h-[24px] border border-blue-200 bg-gray-200 !py-0 !rounded-[3px]' />
             <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center'>
               <IconsSearch />
             </div>
@@ -223,8 +223,8 @@ export default function Quotation() {
             <Buttom className='text-[10px] h-[24px] border border-blue-200 bg-gray-200 text-[10px] !py-0 !rounded-[3px] !w-[150px]' />
           </div>
 
-          <div className='flex items-center'>
-            <Input type='checkbox' className='!w-[30px] h-[10px]' />
+          <div className='flex items-center ml-4'>
+            <Input type='checkbox' className='!w-[10px] h-[10px]' />
             <p className='mr-[30px] text-nowrap'>
               {t('quotation:Quoation.SameAsBusinessPartner')}
             </p>
@@ -237,7 +237,7 @@ export default function Quotation() {
               {t('quotation:Quoation.BillingCode')}
               <p className='text-red-600'>※</p>
             </p>
-            <Input className='text-[10px] w-[420px] h-[24px] !py-0 !rounded-[3px]' />
+            <Input className='text-[10px] !w-[420px] h-[24px] !py-0 !rounded-[3px]' />
             <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center'>
               <IconsSearch />
             </div>
@@ -255,8 +255,8 @@ export default function Quotation() {
             <Buttom className='text-[10px] h-[24px] border border-blue-200 bg-gray-200 text-[10px] !py-0 !rounded-[3px] !w-[150px]' />
           </div>
 
-          <div className='flex items-center '>
-            <Input type='checkbox' className='!w-[30px] h-[10px]' />
+          <div className='flex items-center ml-4'>
+            <Input type='checkbox' className='!w-[10px] h-[10px]' />
             <p className='mr-[30px] text-nowrap'>
               {t('quotation:Quoation.SameAsBusinessPartner')}
             </p>
@@ -294,7 +294,12 @@ export default function Quotation() {
         </div>
         <div className='ml-[25px] mt-3'>
           <p>{t('quotation:Quoation.ItemDetails')}</p>
-          <DataTable columns={columns} data={data} className='mr-[40px]' />
+          <DataTable
+            totalPage={0}
+            columns={columns}
+            data={data}
+            className='mr-[40px]'
+          />
         </div>
         <div className='flex justify-between ml-[25px] mt-6'>
           <Buttom
