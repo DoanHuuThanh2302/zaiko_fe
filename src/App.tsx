@@ -1,6 +1,7 @@
 import { Routes, Route, Outlet } from 'react-router-dom'
 import EstimateList from './pages/sale-management/estimate-list'
 import Sidebar from './components/sidebar/sidebar'
+import Quotation from './pages/sale-management/quotation-slip-input'
 import { useSelector } from 'react-redux'
 
 const SidebarLayout = () => {
@@ -9,8 +10,8 @@ const SidebarLayout = () => {
     <>
       <Sidebar />
       <div
-        className={`lg:w-[calc(100%-241px)] ${
-          show ? 'ml-0' : 'ml-[241px]'
+        className={`${
+          show ? 'ml-0' : 'ml-[241px] lw-[calc(100%-241px)]'
         }  z-[100]`}
       >
         <Outlet />
@@ -22,10 +23,14 @@ const SidebarLayout = () => {
 function App() {
   return (
     <>
-      <main className={`bg-[#F9FBFD]`}>
+      <main>
         <Routes>
           <Route element={<SidebarLayout />}>
             <Route path='/estimate-list' element={<EstimateList />} />
+            <Route
+              path='/sale-management/quotation-slip-input'
+              element={<Quotation />}
+            />
           </Route>
         </Routes>
       </main>
