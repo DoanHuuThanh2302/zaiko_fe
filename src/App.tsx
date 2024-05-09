@@ -5,6 +5,7 @@ import Quotation from './pages/sale-management/quotation-slip-input'
 import SaleSlipEntry from './pages/sale-management/sale-slip-entry'
 import { useSelector } from 'react-redux'
 import OrderSlipEntry from './pages/sale-management/form-order'
+import OrderList from './pages/sale-management/order-list'
 
 const SidebarLayout = () => {
   const show = useSelector((state: any) => state.sidebarData.sidebar)
@@ -41,6 +42,7 @@ function App() {
               path='/sale-management/order-form'
               element={<OrderSlipEntry />}
             />
+            <Route path='/sale-management/order-list' element={<OrderList />} />
           </Route>
         </Routes>
       </main>

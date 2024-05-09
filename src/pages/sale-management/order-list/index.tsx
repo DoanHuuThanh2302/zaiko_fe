@@ -10,7 +10,7 @@ import record from '../../../../data/estimate-list.json'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function EstimateList() {
+export default function OrderList() {
   const navigate = useNavigate()
   const data = record.records
   const today = new Date()
@@ -19,7 +19,7 @@ export default function EstimateList() {
   const [t] = useTranslation()
   const columns = [
     {
-      name: t('estimatelist:EstimateList.SlipNumber'),
+      name: t('orderlist:OrderList.SlipNumber'),
       key: 'invoiceNumber',
       format: (record: any) => (
         <div
@@ -31,42 +31,37 @@ export default function EstimateList() {
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.Subject'),
+      name: t('orderlist:OrderList.Subject'),
       key: 'subject',
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.SaleDate'),
+      name: t('orderlist:OrderList.OrderDate'),
       key: 'saleDate',
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.CustomerCode'),
+      name: t('orderlist:OrderList.CustomerCode'),
       key: 'customerCode',
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.CustomerName'),
+      name: t('orderlist:OrderList.CustomerName'),
       key: 'customerName',
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.TotalExcludingTax'),
+      name: t('orderlist:OrderList.TotalExcludingTax'),
       key: 'totalExcludingTax',
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.TotalConsumptionTax'),
-      key: 'totalTax',
-      className: 'text-center text-nowrap',
-    },
-    {
-      name: t('estimatelist:EstimateList.TotalIncludingTax'),
+      name: t('orderlist:OrderList.TotalIncludingTax'),
       key: 'totalIncludingTax',
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.Situation'),
+      name: t('orderlist:OrderList.Situation'),
       key: 'status',
       format: (record: any) => (
         <div
@@ -89,7 +84,7 @@ export default function EstimateList() {
             className='flex items-center'
           >
             <p className='mr-[12px] cursor-pointer text-nowrap font-bold'>
-              {t('estimatelist:EstimateList.Search')}
+              {t('orderlist:OrderList.Search')}
             </p>
             <div className='cursor-pointer'>
               {showSearch ? (
@@ -101,13 +96,13 @@ export default function EstimateList() {
           </div>
           <div className='flex mr-[40px]'>
             <Buttom
-              text={t('estimatelist:EstimateList.NewDocument')}
+              text={t('orderlist:OrderList.Printing')}
               className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8'
-              onClick={() => navigate('/sale-management/quotation-slip-input')}
             />
             <Buttom
-              text={t('estimatelist:EstimateList.Print')}
-              className='text-nowrap border border-cyan-500 text-cyan-500'
+              text={t('orderlist:OrderList.NewDocument')}
+              className='text-nowrap border border-green-500 text-green-500'
+              onClick={() => navigate('/sale-management/order-form')}
             />
           </div>
         </div>
@@ -117,7 +112,7 @@ export default function EstimateList() {
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
                 <p className='min-w-[130px] text-nowrap '>
-                  {t('estimatelist:EstimateList.CustomerCode')}
+                  {t('orderlist:OrderList.CustomerCode')}
                 </p>
                 <div className='flex w-full'>
                   <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
@@ -128,7 +123,7 @@ export default function EstimateList() {
               </div>
               <div className='flex w-1/3 pl-[30px] '>
                 <p className='min-w-[130px] text-nowrap '>
-                  {t('estimatelist:EstimateList.ItemCode')}
+                  {t('orderlist:OrderList.ItemCode')}
                 </p>
                 <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
                 <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
@@ -138,7 +133,7 @@ export default function EstimateList() {
               <div className='flex w-1/3 pl-[30px]'>
                 <div className='flex w-full'>
                   <p className='min-w-[130px] text-nowrap'>
-                    {t('estimatelist:EstimateList.Classification')}
+                    {t('orderlist:OrderList.Classification')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
                 </div>
@@ -148,7 +143,7 @@ export default function EstimateList() {
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
                 <p className='min-w-[130px]'>
-                  {t('estimatelist:EstimateList.Format')}
+                  {t('orderlist:OrderList.Format')}
                 </p>
                 <div className='flex w-full'>
                   <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
@@ -159,14 +154,14 @@ export default function EstimateList() {
               </div>
               <div className='flex w-1/3 pl-[30px]'>
                 <p className='min-w-[130px] text-nowrap '>
-                  {t('estimatelist:EstimateList.ItemName')}
+                  {t('orderlist:OrderList.ItemName')}
                 </p>
                 <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
               </div>
               <div className='flex w-1/3 pl-[30px]'>
                 <div className='flex w-full'>
                   <p className='min-w-[130px] text-nowrap'>
-                    {t('estimatelist:EstimateList.Situation')}
+                    {t('orderlist:OrderList.Situation')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
                 </div>
@@ -175,8 +170,9 @@ export default function EstimateList() {
 
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-2/3'>
-                <p className='min-w-[130px]'>
-                  {t('estimatelist:EstimateList.Subject')}
+                <p className='min-w-[130px] flex'>
+                  {t('orderlist:OrderList.Subject')}
+                  <p className='text-red-600'>※</p>
                 </p>
                 <div className='flex w-full'>
                   <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
@@ -186,7 +182,7 @@ export default function EstimateList() {
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-2/3'>
                 <p className='min-w-[130px]'>
-                  {t('estimatelist:EstimateList.EstimatedDate')}
+                  {t('orderlist:OrderList.OrderDate')}
                 </p>
                 <div className='flex w-full pr-2'>
                   <DateInput
@@ -206,7 +202,7 @@ export default function EstimateList() {
 
             <div className='flex justify-center w-full mt-5'>
               <Buttom
-                text={t('estimatelist:EstimateList.Search')}
+                text={t('orderlist:OrderList.Search')}
                 className='text-nowrap border bg-[#4472c4] text-white'
               />
             </div>
@@ -216,11 +212,11 @@ export default function EstimateList() {
         <div className='ml-[25px] mt-3'>
           <div className='flex items-center'>
             <p className='font-bold mr-[12px]'>
-              {t('estimatelist:EstimateList.ItemDetails')}
+              {t('orderlist:OrderList.ItemDetails')}
             </p>
           </div>
 
-          <p className='mt-3 mb-2'>{t('estimatelist:EstimateList.Show')}</p>
+          <p className='mt-3 mb-2'>{t('orderlist:OrderList.Show')}</p>
           <DataTable
             totalPage={4}
             columns={columns}

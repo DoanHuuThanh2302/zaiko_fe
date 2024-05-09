@@ -3,15 +3,16 @@ import { useTranslation } from 'react-i18next'
 import Input from '../../../components/input/input'
 import Buttom from '../../../components/buttom/buttom'
 import DateInput from '../../../components/input/date'
-import { IconsSearch } from '../../../assets/icons/icons'
+import { IconsDelete, IconsSearch } from '../../../assets/icons/icons'
 import Select from '../../../components/select/select'
 import DataTable from '../../../components/table/table'
 import items from '../../../../data/order-slip-entry.json'
 import Radio from '../../../components/input/radio'
+import { useState } from 'react'
 
 export default function OrderSlipEntry() {
   const [t] = useTranslation()
-  const data = items.items
+  const [data, setData] = useState(items.items)
   const today = new Date()
   const formattedDate = today.toISOString().split('T')[0]
 
@@ -30,6 +31,24 @@ export default function OrderSlipEntry() {
   const totalDiscount = data.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.Discount
   }, 0)
+
+  const addNewRow = () => {
+    const newRow = {
+      ItemCode: '',
+      Model: '',
+      ItemName: 'ワイヤレスイヤホン',
+      Classification: '電子機器',
+      Quantity: 0,
+      Unit: '',
+      UnitPrice: 0,
+      Discount: 0,
+      TaxClassification: 0,
+      status: '未請求',
+      Delete: false,
+      Date: '',
+    }
+    setData([...data, newRow])
+  }
 
   const columns = [
     {
@@ -189,8 +208,15 @@ export default function OrderSlipEntry() {
       ),
     },
     {
-      name: t('orderslipentry:OrderSlipEntry.DeliveryDate'),
-      key: 'Date',
+      name: t('orderslipentry:OrderSlipEntry.Delete'),
+      key: 'id',
+      format: () => {
+        return (
+          <div className={'flex justify-center'}>
+            <IconsDelete />
+          </div>
+        )
+      },
       className: 'text-center text-nowrap',
     },
   ]
@@ -454,7 +480,12 @@ export default function OrderSlipEntry() {
             />
           </div>
 
-          <div className='flex justify-end ml-[25px] mt-6'>
+          <div className='flex justify-between ml-[25px] mt-6'>
+            <Buttom
+              className='text-[10px] h-[24px] border border-blue-200 bg-[#00b0f0] text-white !py-0 !rounded-[3px] !w-[150px]'
+              text={t('orderslipentry:OrderSlipEntry.AddItemLine')}
+              onClick={() => addNewRow()}
+            />
             <div className='mr-10 border border-gray-300 shadow-lg'>
               <table className='table-auto w-full border-collapse'>
                 <tbody>
