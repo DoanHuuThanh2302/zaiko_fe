@@ -95,6 +95,7 @@ body {
   font-family: 'Noto-Sans-JP';
   height: 100%;
   background-color: rgb(243 244 246);
+  font-size: 14px;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

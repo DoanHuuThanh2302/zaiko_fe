@@ -7,23 +7,24 @@ interface ButtomProps {
   name?: string
 }
 
-export default function Input({
+export default function DateInput({
   onChange,
   className,
   placeholder,
   value,
-  type,
   name,
 }: ButtomProps) {
   return (
     <>
       <input
-        type={type}
+        type='date'
         defaultValue={value}
         placeholder={placeholder}
         onChange={onChange}
         name={name}
-        className={`w-full h-[24px] border text-[10px] px-3 py-3 rounded-[3px] border-blue-200 ${className}`}
+        min='1990-01-01'
+        max='2010-12-31'
+        className={`w-[450px] h-[24px] border text-[10px] px-3 py-3 rounded-[3px] border-blue-200 ${className}`}
       ></input>
     </>
   )

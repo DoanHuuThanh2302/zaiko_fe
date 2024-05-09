@@ -4,6 +4,7 @@ import Input from '../../../components/input/input'
 import Buttom from '../../../components/buttom/buttom'
 import { IconsDown, IconsSearch, IconsUp } from '../../../assets/icons/icons'
 import Select from '../../../components/select/select'
+import DateInput from '../../../components/input/date'
 import DataTable from '../../../components/table/table'
 import record from '../../../../data/estimate-list.json'
 import { useState } from 'react'
@@ -11,49 +12,65 @@ import { useNavigate } from 'react-router-dom'
 
 export default function EstimateList() {
   const navigate = useNavigate()
-  const [data, setData] = useState(record.records)
+  const data = record.records
+  const today = new Date()
+  const formattedDate = today.toISOString().split('T')[0]
   const [showSearch, setShowSearch] = useState(true)
-  const [showDataDetails, setShowDataDetails] = useState(true)
   const [t] = useTranslation()
   const columns = [
     {
       name: t('estimatelist:EstimateList.SlipNumber'),
       key: 'invoiceNumber',
+      format: (record: any) => (
+        <div
+          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap`}
+        >
+          {record.invoiceNumber}
+        </div>
+      ),
+      className: 'text-center text-nowrap',
     },
     {
       name: t('estimatelist:EstimateList.Subject'),
       key: 'subject',
+      className: 'text-center text-nowrap',
     },
     {
       name: t('estimatelist:EstimateList.SaleDate'),
       key: 'saleDate',
+      className: 'text-center text-nowrap',
     },
     {
       name: t('estimatelist:EstimateList.CustomerCode'),
       key: 'customerCode',
+      className: 'text-center text-nowrap',
     },
     {
       name: t('estimatelist:EstimateList.CustomerName'),
       key: 'customerName',
+      className: 'text-center text-nowrap',
     },
     {
       name: t('estimatelist:EstimateList.TotalExcludingTax'),
       key: 'totalExcludingTax',
+      className: 'text-center text-nowrap',
     },
     {
       name: t('estimatelist:EstimateList.TotalConsumptionTax'),
       key: 'totalTax',
+      className: 'text-center text-nowrap',
     },
     {
       name: t('estimatelist:EstimateList.TotalIncludingTax'),
       key: 'totalIncludingTax',
+      className: 'text-center text-nowrap',
     },
     {
       name: t('estimatelist:EstimateList.Situation'),
       key: 'status',
       format: (record: any) => (
         <div
-          className={`hover:cursor-pointer ${
+          className={`hover:cursor-pointer flex justify-center text-nowrap ${
             record.status === '請求済' ? 'text-green-500' : 'text-red-500'
           }`}
         >
@@ -71,11 +88,15 @@ export default function EstimateList() {
             onClick={() => setShowSearch(!showSearch)}
             className='flex items-center'
           >
-            <p className='mr-[12px] cursor-pointer'>
+            <p className='mr-[12px] cursor-pointer text-nowrap font-bold'>
               {t('estimatelist:EstimateList.Search')}
             </p>
             <div className='cursor-pointer'>
-              {showSearch ? <IconsDown /> : <IconsUp />}
+              {showSearch ? (
+                <IconsDown color='#000000' />
+              ) : (
+                <IconsUp color='#000000' />
+              )}
             </div>
           </div>
           <div className='flex mr-[40px]'>
@@ -93,79 +114,93 @@ export default function EstimateList() {
 
         {showSearch ? (
           <div>
-            <div className='flex ml-[25px]'>
-              <div className='flex w-1/3 justifi-between'>
-                <p className=' text-nowrap w-3/5'>
-                  {t('estimatelist:EstimateList.CustomerCode')}
+            <div className='flex ml-[25px] mt-3 mr-[40px]'>
+              <div className='flex w-1/3'>
+                <p className='min-w-[130px] text-nowrap '>
+                  {t('saleslipentry:SaleSlipEntry.SlipNumber')}
                 </p>
-                <Input className='!w-full' />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[26px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <div className='flex w-full'>
+                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                    <IconsSearch />
+                  </div>
+                </div>
+              </div>
+              <div className='flex w-1/3 pl-[60px] '>
+                <p className='min-w-[130px] text-nowrap '>
+                  {t('saleslipentry:SaleSlipEntry.ChildNumber')}
+                </p>
+                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
-              <div className='flex w-1/3 justifi-between ml-[30px]'>
-                <p className='text-nowrap  w-2/5'>
-                  {t('estimatelist:EstimateList.ItemCode')}
-                </p>
-                <Input className='w-full ' />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[26px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
-                  <IconsSearch />
+              <div className='flex w-1/3 pl-[30px]'>
+                <div className='flex w-full'>
+                  <p className='min-w-[130px] text-nowrap'>
+                    {t('saleslipentry:SaleSlipEntry.CompanyRepresentative')}
+                  </p>
+                  <Select options={[]} className='!w-full !bg-white' />
                 </div>
-              </div>
-              <div className='flex w-1/3 justifi-between ml-[150px] mr-[40px]'>
-                <p className='text-nowrap mr-5'>
-                  {t('estimatelist:EstimateList.Classification')}
-                </p>
-                <Select options={[]} className='w-[100px] !bg-white' />
               </div>
             </div>
 
-            <div className='flex ml-[25px] mt-3'>
-              <div className='flex w-1/3 justifi-between'>
-                <p className=' text-nowrap w-3/5'>
-                  {t('estimatelist:EstimateList.Format')}
+            <div className='flex ml-[25px] mt-3 mr-[40px]'>
+              <div className='flex w-1/3'>
+                <p className='min-w-[130px]'>
+                  {t('saleslipentry:SaleSlipEntry.SlipNumber')}
                 </p>
-                <Input className='!w-full' />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[26px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
-                  <IconsSearch />
+                <div className='flex w-full'>
+                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                    <IconsSearch />
+                  </div>
                 </div>
               </div>
-              <div className='flex w-1/3 justifi-between ml-[30px]'>
-                <p className='text-nowrap  w-2/5'>
-                  {t('estimatelist:EstimateList.ItemName')}
+              <div className='flex w-1/3 pl-[60px]'>
+                <p className='min-w-[130px] text-nowrap '>
+                  {t('saleslipentry:SaleSlipEntry.ChildNumber')}
                 </p>
-                <Input className='w-full ' />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[26px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
-                  <IconsSearch />
-                </div>
+                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
               </div>
-              <div className='flex w-1/3 justifi-between ml-[150px] mr-[40px]'>
-                <p className='text-nowrap mr-5'>
-                  {t('estimatelist:EstimateList.Situation')}
-                </p>
-                <Select options={[]} className='w-[100px] !bg-white' />
+              <div className='flex w-1/3 pl-[30px]'>
+                <div className='flex w-full'>
+                  <p className='min-w-[130px] text-nowrap'>
+                    {t('saleslipentry:SaleSlipEntry.CompanyRepresentative')}
+                  </p>
+                  <Select options={[]} className='!w-full !bg-white' />
+                </div>
               </div>
             </div>
 
-            <div className='flex ml-[25px] mt-3'>
+            <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-2/3'>
-                <p className=' text-nowrap w-1/5'>
-                  {t('estimatelist:EstimateList.Format')}
+                <p className='min-w-[130px]'>
+                  {t('saleslipentry:SaleSlipEntry.SlipNumber')}
                 </p>
-                <Input className='!w-full mr-[90px]' />
+                <div className='flex w-full'>
+                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                </div>
               </div>
             </div>
-
-            <div className='flex ml-[25px] mt-3'>
-              <div className='flex w-2/3'>
-                <p className=' text-nowrap w-1/5'>
-                  {t('estimatelist:EstimateList.Format')}
+            <div className='flex ml-[25px] mt-3 mr-[40px]'>
+              <div className='flex w-1/3'>
+                <p className='min-w-[130px]'>
+                  {t('saleslipentry:SaleSlipEntry.SlipNumber')}
                 </p>
-                <div className='flex w-full mr-[100px]'>
-                  <Input className='!w-1/3 mr-[30px]' type='date' />
-                  <p>~</p>
-                  <Input className='!w-1/3 ml-[30px]' type='date' />
+                <div className='flex w-full pr-2'>
+                  <DateInput
+                    className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
+                    value={formattedDate}
+                  />
                 </div>
+                <p className=''>~</p>
+              </div>
+              <div className='flex w-1/3 pl-3'>
+                <DateInput
+                  className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+                  value={formattedDate}
+                />
               </div>
             </div>
 
@@ -179,30 +214,20 @@ export default function EstimateList() {
         ) : null}
 
         <div className='ml-[25px] mt-3'>
-          <div
-            onClick={() => setShowDataDetails(!showDataDetails)}
-            className='flex items-center'
-          >
+          <div className='flex items-center'>
             <p className='font-bold mr-[12px]'>
               {t('estimatelist:EstimateList.ItemDetails')}
             </p>
-            <div className='cursor-pointer'>
-              {showDataDetails ? <IconsDown /> : <IconsUp />}
-            </div>
           </div>
-          {showDataDetails ? (
-            <>
-              {' '}
-              <p className='mt-3 mb-2'>{t('estimatelist:EstimateList.Show')}</p>
-              <DataTable
-                totalPage={4}
-                columns={columns}
-                data={data}
-                className='mr-[40px]'
-                forcePage={0}
-              />
-            </>
-          ) : null}
+
+          <p className='mt-3 mb-2'>{t('estimatelist:EstimateList.Show')}</p>
+          <DataTable
+            totalPage={4}
+            columns={columns}
+            data={data}
+            className='mr-[40px]'
+            forcePage={0}
+          />
         </div>
       </div>
     </>

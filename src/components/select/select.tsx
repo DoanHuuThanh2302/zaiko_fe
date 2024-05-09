@@ -27,7 +27,7 @@ const Select: React.FC<SelectProps> = ({
   name,
 }) => {
   return (
-    <div className=''>
+    <div className='w-full'>
       {label && (
         <label className={'text-[#687C97]'} htmlFor={id}>
           {label}
@@ -38,7 +38,7 @@ const Select: React.FC<SelectProps> = ({
         defaultValue={value}
         name={name}
         onChange={(e) => handleChange(e.target.value)}
-        className={`h-[24px] border text-[10px] px-3 py-3 rounded-[3px] border-blue-200 ${className} ${
+        className={`h-[24px] px-5 border rounded-[3px] border-blue-200 text-[10px] ${className} ${
           label ? 'mt-2' : ''
         } `}
       >

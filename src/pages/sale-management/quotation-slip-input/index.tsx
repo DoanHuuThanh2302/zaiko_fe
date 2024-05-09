@@ -2,6 +2,8 @@ import Header from '../../../components/header/header'
 import { useTranslation } from 'react-i18next'
 import Buttom from '../../../components/buttom/buttom'
 import Input from '../../../components/input/input'
+import Radio from '../../../components/input/radio'
+import DateInput from '../../../components/input/date'
 import Select from '../../../components/select/select'
 import { IconsSearch, IconsDelete } from '../../../assets/icons/icons'
 import DataTable from '../../../components/table/table'
@@ -11,14 +13,18 @@ import { useState } from 'react'
 export default function Quotation() {
   const [t] = useTranslation()
   const [data, setData] = useState(items.items)
-  console.log(data)
+  const today = new Date()
+  const formattedDate = today.toISOString().split('T')[0]
   const totalUnitPrice = data.reduce((accumulator, currentItem) => {
-    return accumulator + currentItem.UnitPrice
+    return accumulator + currentItem.UnitPrice * currentItem.Quantity
   }, 0)
   const totalAmountAfterTax = data.reduce((accumulator, currentItem) => {
     return (
       accumulator +
-      (currentItem.UnitPrice * currentItem.TaxClassification) / 100
+      (currentItem.UnitPrice *
+        currentItem.Quantity *
+        currentItem.TaxClassification) /
+        100
     )
   }, 0)
   const totalDiscount = data.reduce((accumulator, currentItem) => {
@@ -29,8 +35,8 @@ export default function Quotation() {
     const newRow = {
       ItemCode: '',
       Model: '',
-      ItemName: '',
-      Classification: '',
+      ItemName: 'ワイヤレスイヤホン',
+      Classification: '電子機器',
       Quantity: 0,
       Unit: '',
       UnitPrice: 0,
@@ -45,47 +51,137 @@ export default function Quotation() {
     {
       name: 'No.',
       key: 'name',
-      className: '!pl-0 text-center',
+      className: 'text-center',
     },
     {
-      name: t('quotation:Quoation.ItemCode'),
+      name: t('quotation:Quotation.ItemCode'),
       key: 'ItemCode',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-between'}>
+            <p className='text-nowrap'>{record.ItemCode}</p>
+            <IconsSearch />
+          </div>
+        )
+      },
     },
     {
-      name: t('quotation:Quoation.Model'),
+      name: t('quotation:Quotation.Model'),
       key: 'Model',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-between'}>
+            <p className='text-nowrap'>{record.Model}</p>
+            <IconsSearch />
+          </div>
+        )
+      },
     },
     {
-      name: t('quotation:Quoation.ItemName'),
+      name: t('quotation:Quotation.ItemName'),
       key: 'ItemName',
+      format: (record: any) => {
+        return (
+          <div
+            className={
+              'px-2 py-[10px] flex items-center justify-between bg-gray-200'
+            }
+          >
+            <p className='text-nowrap'>{record.ItemName}</p>
+          </div>
+        )
+      },
+      className: 'text-center text-nowrap',
     },
     {
-      name: t('quotation:Quoation.Classification'),
+      name: t('quotation:Quotation.Classification'),
       key: 'Classification',
+      format: (record: any) => {
+        return (
+          <div
+            className={
+              'px-2 py-[10px] flex items-center justify-between bg-gray-200'
+            }
+          >
+            <p className='text-nowrap'>{record.Classification}</p>
+          </div>
+        )
+      },
+      className: 'text-center text-nowrap',
     },
     {
-      name: t('quotation:Quoation.Quantity'),
+      name: t('quotation:Quotation.Quantity'),
       key: 'Quantity',
+      className: 'text-center text-nowrap',
     },
     {
-      name: t('quotation:Quoation.Unit'),
+      name: t('quotation:Quotation.Unit'),
       key: 'Unit',
+      format: () => {
+        return (
+          <div className={'px-2 flex items-center justify-between'}>
+            <Select
+              id='a1'
+              options={[{ value: '1', label: '台' }]}
+              className='w-full !bg-white'
+              placeholder='台'
+            />
+          </div>
+        )
+      },
+      className: 'text-center',
     },
     {
-      name: t('quotation:Quoation.UnitPrice'),
+      name: t('quotation:Quotation.UnitPrice'),
       key: 'UnitPrice',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-center'}>
+            <p className='text-nowrap'>
+              ¥{record.UnitPrice.toLocaleString('ja-JP')}
+            </p>
+          </div>
+        )
+      },
+      className: 'text-center',
     },
-    { name: t('quotation:Quoation.discount'), key: 'Discount' },
     {
-      name: t('quotation:Quoation.TaxClassification'),
+      name: t('quotation:Quotation.discount'),
+      key: 'Discount',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-center'}>
+            <p className='text-nowrap'>
+              ¥{record.Discount.toLocaleString('ja-JP')}
+            </p>
+          </div>
+        )
+      },
+      className: 'text-center',
+    },
+    {
+      name: t('quotation:Quotation.TaxClassification'),
       key: 'TaxClassification',
+      format: () => {
+        return (
+          <div className={'px-2 flex items-center justify-between'}>
+            <Select
+              id='a1'
+              options={[{ value: '1', label: '8' }]}
+              className='w-full !bg-white'
+              placeholder='外税'
+            />
+          </div>
+        )
+      },
+      className: 'text-center',
     },
     {
-      name: t('quotation:Quoation.Delete'),
+      name: t('quotation:Quotation.Delete'),
       key: 'id',
       format: () => {
         return (
-          <div className={'px-2'}>
+          <div className={'flex justify-center'}>
             <IconsDelete />
           </div>
         )
@@ -100,200 +196,230 @@ export default function Quotation() {
         <Header category={t('sidebar:Sidebar.QuotationSlipInput')} />
       </div>
       <div className='bg-gray-100 pb-[50px]'>
-        <div className='bg-gray-100 flex items-center h-[80px] justify-between border-b'>
-          <div className='flex ml-[25px] '>
-            <p className='w-[130px]'>ステータス</p>
-            <Input />
+        <div className='bg-gray-100 flex items-center h-[80px] justify-between'>
+          <div className='flex ml-[25px] w-1/3'>
+            <p className='min-w-[100px] text-nowrap'>
+              {t('quotation:Quotation.Status')}
+            </p>
+            <Buttom
+              className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              text='未締切'
+            />
           </div>
-          <div className='flex justify-between w-1/2 mr-[40px]'>
+          <div className='flex justify-end w-2/3 mr-[40px]'>
             <Buttom
-              text={t('quotation:Quoation.ApprovalRequest')}
-              className='text-nowrap border border-orange-500 text-orange-500'
+              text={t('quotation:Quotation.ApprovalRequest')}
+              className='text-nowrap border border-orange-500 text-orange-500 mr-[20px]'
             />
             <Buttom
-              text={t('quotation:Quoation.Approval')}
-              className='text-nowrap border border-green-500 text-green-500'
+              text={t('quotation:Quotation.Approval')}
+              className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px]'
             />
             <Buttom
-              text={t('quotation:Quoation.NotApproved')}
-              className='text-nowrap border border-indigo-500 text-indigo-500'
+              text={t('quotation:Quotation.NotApproved')}
+              className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px]'
             />
             <Buttom
-              text={t('quotation:Quoation.CostReference')}
-              className='text-nowrap border border-pink-500 text-pink-500'
+              text={t('quotation:Quotation.CostReference')}
+              className='text-nowrap border border-[#00b0f0] text-[#00b0f0] mr-[20px]'
             />
             <Buttom
-              text={t('quotation:Quoation.newDocument')}
-              className='text-nowrap border border-emerald-500 text-emerald-500'
+              text={t('quotation:Quotation.NewDocument')}
+              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-[20px]'
             />
             <Buttom
-              text={t('quotation:Quoation.QuotePrinting')}
+              text={t('quotation:Quotation.QuotePrinting')}
               className='text-nowrap border border-cyan-500 text-cyan-500'
             />
           </div>
         </div>
 
-        <div className='flex ml-[25px] mt-5'>
-          <p className='w-[130px]'>{t('quotation:Quoation.SlipIssueDate')}</p>
-          <Input type='date' />
+        <div className='flex ml-[25px] mt-3 mr-[40px]'>
+          <div className='flex w-1/3 justify-between'>
+            <p className=' text-nowrap min-w-[100px]'>
+              {t('quotation:Quotation.SlipIssueDate')}
+            </p>
+            <DateInput className='!w-full' value={formattedDate} />
+          </div>
         </div>
 
-        <div className='flex justify-between ml-[25px] mt-3'>
-          <div className='flex'>
-            <p className='w-[130px]'>{t('quotation:Quoation.SlipNumber')}</p>
-            <Buttom
-              text={t('quotation:Quoation.QuotePrinting')}
-              className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] w-[420px] h-[24px] h-[24px] !py-0 !rounded-[3px]'
-            />
-            <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center'>
-              <IconsSearch />
+        <div className='flex ml-[25px] mt-3 mr-[40px]'>
+          <div className='flex w-1/3'>
+            <p className='min-w-[100px] text-nowrap'>
+              {t('quotation:Quotation.SlipNumber')}
+            </p>
+            <div className='flex w-full'>
+              <Buttom
+                text={t('quotation:Quotation.Domestic')}
+                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              />
+              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <IconsSearch />
+              </div>
             </div>
           </div>
-          <div className='flex  mr-[40px] ml-[70px]'>
-            <Input type='radio' className='!w-3' />
-            <label className='ml-2'>{t('quotation:Quoation.Domestic')}</label>
+          <div className='flex w-2/3 pl-[60px]'>
+            <Radio name='location' type='radio' className='!w-3' check={true} />
+            <label className='ml-2 text-nowrap'>
+              {t('quotation:Quotation.Domestic')}
+            </label>
 
-            <Input type='radio' className='!w-3 ml-[20px]' />
-            <label className='ml-2'>{t('quotation:Quoation.Abroad')}</label>
-
-            <div className='flex'>
-              <div className='flex ml-[50px]'>
-                <p className='mr-[30px]'>{t('quotation:Quoation.Currency')}</p>
-                <Select options={[]} className='w-[80px]' />
-              </div>
-              <div className='flex ml-[50px]'>
-                <p className='mr-[30px]'>
-                  {t('quotation:Quoation.CreditTransaction')}
+            <Radio name='location' type='radio' className='!w-3 ml-[20px]' />
+            <label className='ml-2 text-nowrap'>
+              {t('quotation:Quotation.Abroad')}
+            </label>
+            <div className='flex w-1/2 ml-[30px]'>
+              <div className='flex w-full'>
+                <p className='mr-[10px] text-nowrap '>
+                  {t('quotation:Quotation.Currency')}
                 </p>
-                <Select options={[]} className='w-[130px]' />
-              </div>
-              <div className='flex ml-[50px]'>
-                <p className='mr-[30px]'>
-                  {t('quotation:Quoation.CompanyRepresentative')}
-                </p>
-                <Select options={[]} className='w-[130px]' />
+                <Select options={[]} className='!w-full !bg-white' />
               </div>
             </div>
-          </div>
-        </div>
 
-        <div className='flex ml-[25px] mt-3'>
-          <div className='flex'>
-            <p className='w-[130px] text-nowrap flex'>
-              {t('quotation:Quoation.CustomerCode')}
-              <p className='text-red-600'>※</p>
-            </p>
-            <Input className='text-[10px] !w-[420px] h-[24px] !py-0 !rounded-[3px]' />
-            <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center'>
-              <IconsSearch />
+            <div className='flex w-1/2'>
+              <p className='text-nowrap px-2'>
+                {t('quotation:Quotation.TransactionCategory')}
+              </p>
+              <Select options={[]} className='!w-full !bg-white' />
+            </div>
+            <div className='flex w-1/2'>
+              <p className='text-nowrap px-2'>
+                {t('quotation:Quotation.CompanyRepresentative')}
+              </p>
+              <Select options={[]} className='!w-full !bg-white' />
             </div>
           </div>
-
-          <div className='flex ml-[100px]'>
-            <p className='mr-[30px]'>{t('quotation:Quoation.CustomerName')}</p>
-            <Buttom className='text-[10px] border border-blue-200 bg-gray-200 h-[24px] !py-0 !rounded-[3px] !w-[300px]' />
-          </div>
-
-          <div className='flex ml-[50px]'>
-            <p className='mr-[30px]'>{t('quotation:Quoation.ContactPerson')}</p>
-            <Buttom className='text-[10px] h-[24px] border border-blue-200 bg-gray-200 text-[10px] !py-0 !rounded-[3px] !w-[150px]' />
-          </div>
         </div>
 
-        <div className='flex ml-[25px] mt-3'>
-          <div className='flex'>
-            <p className='w-[130px] text-nowrap'>
-              {t('quotation:Quoation.DeliveryCode')}
+        <div className='flex ml-[25px] mt-3 mr-[40px]'>
+          <div className='flex w-1/3'>
+            <p className='min-w-[100px] text-nowrap flex'>
+              {t('quotation:Quotation.CustomerCode')}
+              <p className='text-red-600'>※</p>
             </p>
-            <Buttom className='text-[10px] !w-[420px] h-[24px] border border-blue-200 bg-gray-200 !py-0 !rounded-[3px]' />
-            <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center'>
-              <IconsSearch />
+            <div className='flex w-full'>
+              <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <IconsSearch />
+              </div>
             </div>
           </div>
-
-          <div className='flex ml-[100px]'>
-            <p className='mr-[30px]'>{t('quotation:Quoation.DeliveryName')}</p>
-            <Buttom className='text-[10px] border border-blue-200 bg-gray-200 h-[24px] !py-0 !rounded-[3px] !w-[300px]' />
-          </div>
-
-          <div className='flex ml-[50px]'>
-            <p className='mr-[30px]'>
-              {t('quotation:Quoation.DeliveryPersonInCharge')}
+          <div className='flex w-1/3 pl-[60px] ]'>
+            <p className='min-w-[100px] text-nowrap '>
+              {t('quotation:Quotation.CustomerName')}
             </p>
-            <Buttom className='text-[10px] h-[24px] border border-blue-200 bg-gray-200 text-[10px] !py-0 !rounded-[3px] !w-[150px]' />
+            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
           </div>
-
-          <div className='flex items-center ml-4'>
-            <Input type='checkbox' className='!w-[10px] h-[10px]' />
-            <p className='mr-[30px] text-nowrap'>
-              {t('quotation:Quoation.SameAsBusinessPartner')}
-            </p>
-          </div>
-        </div>
-
-        <div className='flex ml-[25px] mt-3'>
-          <div className='flex'>
-            <p className='w-[130px] text-nowrap flex'>
-              {t('quotation:Quoation.BillingCode')}
-              <p className='text-red-600'>※</p>
-            </p>
-            <Input className='text-[10px] !w-[420px] h-[24px] !py-0 !rounded-[3px]' />
-            <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center'>
-              <IconsSearch />
+          <div className='flex w-1/3 pl-[30px]'>
+            <div className='flex w-full'>
+              <p className='min-w-[100px] text-nowrap'>
+                {t('quotation:Quotation.ContactPerson')}
+              </p>
+              <Buttom
+                text={t('quotation:Quotation.DeliveryCode')}
+                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              />
             </div>
           </div>
+        </div>
 
-          <div className='flex ml-[100px]'>
-            <p className='mr-[30px]'>{t('quotation:Quoation.BillingName')}</p>
-            <Buttom className='text-[10px] border border-blue-200 bg-gray-200 h-[24px] !py-0 !rounded-[3px] !w-[300px]' />
-          </div>
-
-          <div className='flex ml-[50px]'>
-            <p className='mr-[30px]'>
-              {t('quotation:Quoation.BillingContact')}
+        <div className='flex ml-[25px] mt-3 mr-[40px]'>
+          <div className='flex w-1/3'>
+            <p className='min-w-[100px] text-nowrap'>
+              {t('quotation:Quotation.DeliveryCode')}
             </p>
-            <Buttom className='text-[10px] h-[24px] border border-blue-200 bg-gray-200 text-[10px] !py-0 !rounded-[3px] !w-[150px]' />
+            <div className='flex w-full'>
+              <Buttom
+                text={t('quotation:Quotation.DeliveryCode')}
+                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              />
+              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <IconsSearch />
+              </div>
+            </div>
           </div>
-
-          <div className='flex items-center ml-4'>
-            <Input type='checkbox' className='!w-[10px] h-[10px]' />
-            <p className='mr-[30px] text-nowrap'>
-              {t('quotation:Quoation.SameAsBusinessPartner')}
+          <div className='flex w-1/3 pl-[60px] ]'>
+            <p className='min-w-[100px] text-nowrap '>
+              {t('quotation:Quotation.DeliveryName')}
+            </p>
+            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+          </div>
+          <div className='flex w-1/3 pl-[30px]'>
+            <p className='min-w-[100px] text-nowrap'>
+              {t('quotation:Quotation.DeliveryPersonInCharge')}
+            </p>
+            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6' />
+            <Input type='checkbox' className='!w-[10px] h-[10px] mr-2' />
+            <p className='text-nowrap'>
+              {t('quotation:Quotation.SameAsBusinessPartner')}
             </p>
           </div>
         </div>
 
-        <div className='flex ml-[25px] mt-3'>
-          <div className='flex'>
-            <p className='w-[130px] text-nowrap flex'>
-              {t('quotation:Quoation.Subject')}
+        <div className='flex ml-[25px] mt-3 mr-[40px]'>
+          <div className='flex w-1/3'>
+            <p className='min-w-[100px] flex no-wrap'>
+              {t('quotation:Quotation.BillingCode')}
               <p className='text-red-600'>※</p>
             </p>
-            <Input className='text-[10px] w-[920px]  !rounded-[3px]' />
+            <div className='flex w-full'>
+              <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <IconsSearch />
+              </div>
+            </div>
+          </div>
+          <div className='flex w-1/3 pl-[60px] ]'>
+            <p className='min-w-[100px] text-nowrap '>
+              {t('quotation:Quotation.BillingName')}
+            </p>
+            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+          </div>
+          <div className='flex w-1/3 pl-[30px]'>
+            <p className='min-w-[100px] text-nowrap'>
+              {t('quotation:Quotation.BillingContact')}
+            </p>
+            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6' />
+            <Input type='checkbox' className='!w-[10px] h-[10px] mr-2' />
+            <p className='text-nowrap'>
+              {t('quotation:Quotation.SameAsBusinessPartner')}
+            </p>
           </div>
         </div>
 
-        <div className='flex ml-[25px] mt-3'>
-          <div className='flex'>
-            <p className='w-[130px] text-nowrap flex'>
-              {t('quotation:Quoation.EstimatedDate')}
+        <div className='flex ml-[25px] mt-3 mr-[40px]'>
+          <div className='flex w-2/3'>
+            <p className='min-w-[100px] text-nowrap flex'>
+              {t('estimatelist:EstimateList.Subject')}
               <p className='text-red-600'>※</p>
             </p>
-            <Input className='text-[10px]' type='date' />
+            <Input className='!w-full' />
           </div>
         </div>
 
-        <div className='flex ml-[25px] mt-3'>
-          <div className='flex'>
-            <p className='w-[130px] text-nowrap flex'>
-              {t('quotation:Quoation.Deadline')}
+        <div className='flex ml-[25px] mt-3 mr-[40px]'>
+          <div className='flex w-1/3 justify-between'>
+            <p className=' text-nowrap min-w-[100px] flex'>
+              {t('quotation:Quotation.EstimatedDate')}
               <p className='text-red-600'>※</p>
             </p>
-            <Input className='text-[10px]' type='date' />
+            <DateInput className='!w-full' value={formattedDate} />
           </div>
         </div>
+
+        <div className='flex ml-[25px] mt-3 mr-[40px]'>
+          <div className='flex w-1/3 justify-between'>
+            <p className=' text-nowrap min-w-[100px] flex'>
+              {t('quotation:Quotation.Deadline')}
+              <p className='text-red-600'>※</p>
+            </p>
+            <DateInput className='!w-full' value={formattedDate} />
+          </div>
+        </div>
+
         <div className='ml-[25px] mt-3'>
-          <p>{t('quotation:Quoation.ItemDetails')}</p>
+          <p className='font-bold'>{t('quotation:Quotation.ItemDetails')}</p>
           <DataTable
             totalPage={0}
             columns={columns}
@@ -304,52 +430,68 @@ export default function Quotation() {
         <div className='flex justify-between ml-[25px] mt-6'>
           <Buttom
             className='text-[10px] h-[24px] border border-blue-200 bg-[#00b0f0] text-white !py-0 !rounded-[3px] !w-[150px]'
-            text={t('quotation:Quoation.AddItemLine')}
+            text={t('quotation:Quotation.AddItemLine')}
             onClick={() => addNewRow()}
           />
-          <div className='mr-[200px] grid grid-column-1 gap-4'>
-            <div className='flex'>
-              <p className='w-[130px]'>
-                {t('quotation:Quoation.EstimatedAmount')}:
-              </p>
-              <p>¥{totalUnitPrice + totalDiscount + totalAmountAfterTax}</p>
-            </div>
-
-            <div className='flex'>
-              <p className='w-[130px]'>
-                {t('quotation:Quoation.TotalExcludingTax')}:
-              </p>
-              <p>¥{totalUnitPrice}</p>
-            </div>
-
-            <div className='flex'>
-              <p className='w-[130px]'>
-                {t('quotation:Quoation.TotalDiscount')}:
-              </p>
-              <p>¥{totalDiscount}</p>
-            </div>
-
-            <div className='flex'>
-              <p className='w-[130px]'>
-                {t('quotation:Quoation.TotalConsumptionTax')}:
-              </p>
-              <p>¥{totalAmountAfterTax}</p>
-            </div>
+          <div className='mr-10 border border-gray-300 shadow-lg'>
+            <table className='table-auto w-full border-collapse'>
+              <tbody>
+                <tr className='border-b border-gray-200'>
+                  <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
+                    {t('quotation:Quotation.EstimatedAmount')}:
+                  </th>
+                  <td className='font-bold border-l border-gray-300 px-10'>
+                    ¥
+                    {(
+                      totalUnitPrice +
+                      totalDiscount +
+                      totalAmountAfterTax
+                    ).toLocaleString('ja-JP')}
+                  </td>
+                </tr>
+                <tr className='border-b border-gray-200'>
+                  <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
+                    {t('quotation:Quotation.TotalExcludingTax')}:
+                  </th>
+                  <td className='border-l border-gray-300 px-10'>
+                    ¥{totalUnitPrice.toLocaleString('ja-JP')}
+                  </td>
+                </tr>
+                <tr className='border-b border-gray-200'>
+                  <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
+                    {t('quotation:Quotation.discount')}:
+                  </th>
+                  <td className='border-l border-gray-300 px-10'>
+                    ¥{totalDiscount.toLocaleString('ja-JP')}
+                  </td>
+                </tr>
+                <tr className='border-b border-gray-200'>
+                  <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
+                    {t('quotation:Quotation.TotalConsumptionTax')}:
+                  </th>
+                  <td className='border-l border-gray-300 px-10'>
+                    ¥{totalAmountAfterTax.toLocaleString('ja-JP')}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <div className=' ml-[25px] mr-[40px] mt-6'>
-          <p className='w-[130px]'>{t('quotation:Quoation.Remarks')}</p>
+          <p className='min-w-[130px] font-bold'>
+            {t('quotation:Quotation.Remarks')}
+          </p>
           <textarea className='w-full h-[200px] border border-blue-200 mt-2 px-2 py-2'></textarea>
         </div>
 
         <div className=' ml-[25px] mr-[40px] mt-6 flex'>
           <Buttom
-            text={t('quotation:Quoation.Keep')}
+            text={t('quotation:Quotation.Keep')}
             className='text-nowrap border bg-[#4472c4] text-white'
           />
           <Buttom
-            text={t('quotation:Quoation.Delete')}
+            text={t('quotation:Quotation.Delete')}
             className='text-nowrap border bg-[#757070] text-white ml-2'
           />
         </div>

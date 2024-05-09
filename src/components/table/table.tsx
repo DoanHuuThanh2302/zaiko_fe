@@ -19,7 +19,6 @@ const DataTable: React.FC<DataTableProps> = ({
   className,
   totalPage,
   forcePage,
-  paginate,
 }: DataTableProps) => {
   return (
     <div
@@ -34,13 +33,13 @@ const DataTable: React.FC<DataTableProps> = ({
           {title}
         </div>
       )}
-      <div className=' w-full'>
-        <table className={'bg-white w-full lg:w-full'}>
+      <div className='overflow-x-auto xl:overflow-visible w-full'>
+        <table className={'bg-white w-[1025px] xl:w-full '}>
           <thead className={'bg-[#F9FBFD] border border-[#EDF2F6]'}>
             <tr>
               {columns.map((column) => (
                 <th
-                  className={`py-[8px] px-[15px] text-[12px] text-center border border-[#EDF2F6] bg-[#0095ce] text-left text-white ${column.className}`}
+                  className={`py-[8px] text-[12px] text-center border border-[#EDF2F6] bg-[#0095ce] text-left text-white ${column.className}`}
                   key={column.key}
                 >
                   {column.name}
@@ -54,7 +53,7 @@ const DataTable: React.FC<DataTableProps> = ({
                 {columns.map((column) =>
                   item[column.key] ? (
                     <td
-                      className={`py-[15px] px-[20px] border border-[#EDF2F6] text-left break-all ${
+                      className={`border border-[#EDF2F6] text-left break-all ${
                         column.className ? column.className : ''
                       }`}
                       key={column.key}
@@ -67,7 +66,7 @@ const DataTable: React.FC<DataTableProps> = ({
                     </td>
                   ) : item.hasOwnProperty(column.key) ? (
                     <td
-                      className={`py-[15px] px-[20px] border border-[#EDF2F6] text-left break-all ${
+                      className={`border border-[#EDF2F6] text-left break-all ${
                         column.className ? column.className : ''
                       }`}
                       key={column.key}
@@ -76,7 +75,7 @@ const DataTable: React.FC<DataTableProps> = ({
                     </td>
                   ) : (
                     <td
-                      className={`py-[15px] px-[20px] border border-[#EDF2F6] text-left break-all ${
+                      className={`border border-[#EDF2F6] text-left break-all ${
                         column.className ? column.className : ''
                       }`}
                       key={column.key}

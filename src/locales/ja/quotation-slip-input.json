@@ -1,11 +1,11 @@
 {
-    "Quoation": {
+    "Quotation": {
         "Status": "ステータス",
         "ApprovalRequest": "承認依頼",
         "Approval": "承認",
         "NotApproved": "承認不可",
         "CostReference": "原価参照",
-        "newDocument": "新規伝票",
+        "NewDocument": "新規伝票",
         "QuotePrinting": "見積書印刷",
         "SlipIssueDate":"伝票発行日",
         "SlipNumber": "伝票番号",

@@ -2,28 +2,28 @@ interface ButtomProps {
   onChange?: any
   className?: string
   placeholder?: string
-  value?: string
   type?: string
   name?: string
+  check?: boolean
 }
 
-export default function Input({
+export default function Radio({
   onChange,
   className,
   placeholder,
-  value,
   type,
   name,
+  check,
 }: ButtomProps) {
   return (
     <>
       <input
         type={type}
-        defaultValue={value}
         placeholder={placeholder}
         onChange={onChange}
         name={name}
-        className={`w-full h-[24px] border text-[10px] px-3 py-3 rounded-[3px] border-blue-200 ${className}`}
+        checked={check}
+        className={`w-[450px] h-[24px] border text-[10px] px-3 py-3 rounded-[3px] border-blue-200 ${className}`}
       ></input>
     </>
   )

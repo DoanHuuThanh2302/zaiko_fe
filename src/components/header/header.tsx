@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import {
   IconsMenu,
   IconsChevronsRight,
@@ -9,7 +8,6 @@ import { useDispatch } from 'react-redux'
 import { setShow } from '../sidebar/sidebar-slice'
 
 const Header = ({ category = '' }: { category?: string }) => {
-  const [t] = useTranslation()
   const dispatch = useDispatch()
   const [showSideBar, setShowSideBar] = useState(true)
 
@@ -20,7 +18,7 @@ const Header = ({ category = '' }: { category?: string }) => {
 
   return (
     <>
-      <div className={`h-14 bg-white mt-0 flex w-full z-[9]`}>
+      <div className={`h-16 bg-[#00b0f0] mt-0 flex w-full z-[9]`}>
         <div
           className='ml-6 flex items-center cursor-pointer'
           onClick={() => handleShowSidebar()}
@@ -28,7 +26,7 @@ const Header = ({ category = '' }: { category?: string }) => {
           {showSideBar ? <IconsMenu /> : <IconsChevronsRight />}
         </div>
         <div className='flex justify-between items-center h-full ml-10 w-full'>
-          <p>{category}</p>
+          <p className='text-white text-[17px] font-bold'>{category}</p>
           <div className={`mr-[50px]`}>
             <IconsUser />
           </div>
