@@ -23,7 +23,7 @@ export default function EstimateList() {
       key: 'invoiceNumber',
       format: (record: any) => (
         <div
-          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap`}
+          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5`}
         >
           {record.invoiceNumber}
         </div>
@@ -126,7 +126,7 @@ export default function EstimateList() {
                   </div>
                 </div>
               </div>
-              <div className='flex w-1/3 pl-[60px] '>
+              <div className='flex w-1/3 pl-[30px] '>
                 <p className='min-w-[130px] text-nowrap '>
                   {t('saleslipentry:SaleSlipEntry.ChildNumber')}
                 </p>
@@ -157,7 +157,7 @@ export default function EstimateList() {
                   </div>
                 </div>
               </div>
-              <div className='flex w-1/3 pl-[60px]'>
+              <div className='flex w-1/3 pl-[30px]'>
                 <p className='min-w-[130px] text-nowrap '>
                   {t('saleslipentry:SaleSlipEntry.ChildNumber')}
                 </p>

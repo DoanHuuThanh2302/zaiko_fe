@@ -9,7 +9,7 @@ import DataTable from '../../../components/table/table'
 import items from '../../../../data/order-slip-entry.json'
 import Radio from '../../../components/input/radio'
 
-export default function SaleSlipEntry() {
+export default function OrderSlipEntry() {
   const [t] = useTranslation()
   const data = items.items
   const today = new Date()
@@ -38,7 +38,7 @@ export default function SaleSlipEntry() {
       className: 'text-center',
     },
     {
-      name: t('saleslipentry:SaleSlipEntry.ItemCode'),
+      name: t('orderslipentry:OrderSlipEntry.ItemCode'),
       key: 'ItemCode',
       format: (record: any) => {
         return (
@@ -50,7 +50,7 @@ export default function SaleSlipEntry() {
       },
     },
     {
-      name: t('saleslipentry:SaleSlipEntry.Model'),
+      name: t('orderslipentry:OrderSlipEntry.Model'),
       key: 'Model',
       format: (record: any) => {
         return (
@@ -62,7 +62,7 @@ export default function SaleSlipEntry() {
       },
     },
     {
-      name: t('saleslipentry:SaleSlipEntry.ItemName'),
+      name: t('orderslipentry:OrderSlipEntry.ItemName'),
       key: 'ItemName',
       format: (record: any) => {
         return (
@@ -78,7 +78,7 @@ export default function SaleSlipEntry() {
       className: 'text-center text-nowrap',
     },
     {
-      name: t('saleslipentry:SaleSlipEntry.Classification'),
+      name: t('orderslipentry:OrderSlipEntry.Classification'),
       key: 'Classification',
       format: (record: any) => {
         return (
@@ -95,12 +95,12 @@ export default function SaleSlipEntry() {
       className: 'text-center text-nowrap',
     },
     {
-      name: t('saleslipentry:SaleSlipEntry.Quantity'),
+      name: t('orderslipentry:OrderSlipEntry.Quantity'),
       key: 'Quantity',
       className: 'text-center text-nowrap',
     },
     {
-      name: t('saleslipentry:SaleSlipEntry.Unit'),
+      name: t('orderslipentry:OrderSlipEntry.Unit'),
       key: 'Unit',
       format: () => {
         return (
@@ -117,7 +117,7 @@ export default function SaleSlipEntry() {
       className: 'text-center',
     },
     {
-      name: t('saleslipentry:SaleSlipEntry.UnitPrice'),
+      name: t('orderslipentry:OrderSlipEntry.UnitPrice'),
       key: 'UnitPrice',
       format: (record: any) => {
         return (
@@ -131,7 +131,21 @@ export default function SaleSlipEntry() {
       className: 'text-center',
     },
     {
-      name: t('saleslipentry:SaleSlipEntry.Discount'),
+      name: t('orderslipentry:OrderSlipEntry.Subtotal'),
+      key: 'UnitPrice',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-center'}>
+            <p className='text-nowrap'>
+              ¥{(record.UnitPrice * record.Quantity).toLocaleString('ja-JP')}
+            </p>
+          </div>
+        )
+      },
+      className: 'text-center',
+    },
+    {
+      name: t('orderslipentry:OrderSlipEntry.discount'),
       key: 'Discount',
       format: (record: any) => {
         return (
@@ -145,7 +159,7 @@ export default function SaleSlipEntry() {
       className: 'text-center',
     },
     {
-      name: t('saleslipentry:SaleSlipEntry.TaxClassification'),
+      name: t('orderslipentry:OrderSlipEntry.TaxClassification'),
       key: 'TaxClassification',
       format: () => {
         return (
@@ -162,7 +176,20 @@ export default function SaleSlipEntry() {
       className: 'text-center',
     },
     {
-      name: t('saleslipentry:SaleSlipEntry.DeliveryDate'),
+      name: t('orderslipentry:OrderSlipEntry.Situation'),
+      key: 'status',
+      format: (record: any) => (
+        <div
+          className={`hover:cursor-pointer flex justify-center text-nowrap ${
+            record.status === '請求済' ? 'text-green-500' : 'text-red-500'
+          }`}
+        >
+          {record.status}
+        </div>
+      ),
+    },
+    {
+      name: t('orderslipentry:OrderSlipEntry.DeliveryDate'),
       key: 'Date',
       className: 'text-center text-nowrap',
     },
@@ -176,7 +203,7 @@ export default function SaleSlipEntry() {
           <div className='bg-gray-100 flex items-center h-[80px] justify-between'>
             <div className='flex ml-[25px] w-1/3'>
               <p className='min-w-[100px] text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.Status')}
+                {t('orderslipentry:OrderSlipEntry.Status')}
               </p>
               <Buttom
                 className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
@@ -185,41 +212,20 @@ export default function SaleSlipEntry() {
             </div>
             <div className='flex justify-end w-2/3 mr-[40px]'>
               <Buttom
-                text={t('saleslipentry:SaleSlipEntry.NewDocument')}
+                text={t('orderslipentry:OrderSlipEntry.SalesProcessing')}
                 className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px]'
               />
               <Buttom
-                text={t('saleslipentry:SaleSlipEntry.AkadenProcessing')}
+                text={t('orderslipentry:OrderSlipEntry.DeliveryNotePrinting')}
                 className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px]'
               />
               <Buttom
-                text={t('saleslipentry:SaleSlipEntry.DepositProcessing')}
+                text={t('orderslipentry:OrderSlipEntry.ShippingProposal')}
                 className='text-nowrap border border-[#00b0f0] text-[#00b0f0] mr-[20px]'
               />
               <Buttom
-                text={t('saleslipentry:SaleSlipEntry.DeliveryNotePrinting')}
-                className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-[20px]'
-              />
-              <Buttom
-                text={t('saleslipentry:SaleSlipEntry.InvoicePrinting')}
-                className='text-nowrap border border-cyan-500 text-cyan-500'
-              />
-            </div>
-          </div>
-
-          <div className='bg-gray-100 flex items-center justify-end'>
-            <div className='flex justify-end w-2/3 mr-[40px]'>
-              <Buttom
-                text={t('saleslipentry:SaleSlipEntry.ApprovalRequest')}
-                className='text-nowrap border border-yellow-500 text-yellow-500 mr-[30px]'
-              />
-              <Buttom
-                text={t('saleslipentry:SaleSlipEntry.Approval')}
-                className='text-nowrap border border-amber-500 text-amber-500 mr-[30px]'
-              />
-              <Buttom
-                text={t('saleslipentry:SaleSlipEntry.NotApproved')}
-                className='text-nowrap border border-teal-500 text-teal-500'
+                text={t('orderslipentry:OrderSlipEntry.NewDocument')}
+                className='text-nowrap border border-orange-500 text-orange-500 mr-[20px]'
               />
             </div>
           </div>
@@ -227,28 +233,7 @@ export default function SaleSlipEntry() {
           <div className='flex ml-[25px] mr-[40px] mt-3'>
             <div className='flex w-1/3 justify-between'>
               <p className=' text-nowrap min-w-[100px]'>
-                {t('saleslipentry:SaleSlipEntry.SlipIssueDate')}
-              </p>
-              <DateInput className='!w-full' value={formattedDate} />
-            </div>
-            <div className='flex w-1/3 justifi-between pl-[30px]'>
-              <p className='min-w-[100px] text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.OrderDate')}
-              </p>
-              <DateInput className='!w-full' value={formattedDate} />
-            </div>
-          </div>
-
-          <div className='flex ml-[25px] mt-3 mr-[40px]'>
-            <div className='flex w-1/3 justify-between'>
-              <p className=' text-nowrap min-w-[100px]'>
-                {t('saleslipentry:SaleSlipEntry.ExpectedShippingDate')}
-              </p>
-              <DateInput className='!w-full' value={formattedDate} />
-            </div>
-            <div className='flex w-1/3 justifi-between pl-[30px]'>
-              <p className='min-w-[100px] text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.ScheduledBillingDate')}
+                {t('orderslipentry:OrderSlipEntry.SlipIssueDate')}
               </p>
               <DateInput className='!w-full' value={formattedDate} />
             </div>
@@ -257,11 +242,11 @@ export default function SaleSlipEntry() {
           <div className='flex ml-[25px] mt-3 mr-[40px]'>
             <div className='flex w-1/3'>
               <p className='min-w-[100px] text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.SalesOrderNumber')}
+                {t('orderslipentry:OrderSlipEntry.SalesOrderNumber')}
               </p>
               <div className='flex w-full'>
                 <Buttom
-                  text={t('saleslipentry:SaleSlipEntry.Domestic')}
+                  text={t('orderslipentry:OrderSlipEntry.Domestic')}
                   className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
                 />
                 <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
@@ -278,7 +263,7 @@ export default function SaleSlipEntry() {
                   check={true}
                 />
                 <label className='ml-2 text-nowrap'>
-                  {t('saleslipentry:SaleSlipEntry.Domestic')}
+                  {t('orderslipentry:OrderSlipEntry.Domestic')}
                 </label>
 
                 <Radio
@@ -287,12 +272,12 @@ export default function SaleSlipEntry() {
                   className='!w-3 ml-[20px]'
                 />
                 <label className='ml-2 text-nowrap'>
-                  {t('saleslipentry:SaleSlipEntry.Abroad')}
+                  {t('orderslipentry:OrderSlipEntry.Abroad')}
                 </label>
                 <div className='flex w-full ml-[30px]'>
                   <div className='flex w-full'>
                     <p className='mr-[10px] text-nowrap '>
-                      {t('saleslipentry:SaleSlipEntry.Currency')}
+                      {t('orderslipentry:OrderSlipEntry.Currency')}
                     </p>
                     <Select options={[]} className='!w-full !bg-white' />
                   </div>
@@ -302,7 +287,7 @@ export default function SaleSlipEntry() {
             <div className='w-1/3 pl-[30px]'>
               <div className='flex'>
                 <p className='min-w-[100px] text-nowrap'>
-                  {t('saleslipentry:SaleSlipEntry.TransactionClassification')}
+                  {t('orderslipentry:OrderSlipEntry.TransactionClassification')}
                 </p>
                 <Select options={[]} className='!w-full !bg-white' />
               </div>
@@ -312,11 +297,11 @@ export default function SaleSlipEntry() {
           <div className='flex ml-[25px] mt-3 mr-[40px]'>
             <div className='flex w-1/3'>
               <p className='min-w-[100px] text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.SlipNumber')}
+                {t('orderslipentry:OrderSlipEntry.QuotationDocumentNumber')}
               </p>
               <div className='flex w-full'>
                 <Buttom
-                  text={t('saleslipentry:SaleSlipEntry.SlipNumber')}
+                  text='3003'
                   className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
                 />
                 <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
@@ -324,16 +309,11 @@ export default function SaleSlipEntry() {
                 </div>
               </div>
             </div>
-            <div className='flex w-1/3 pl-[30px] ]'>
-              <p className='min-w-[100px] text-nowrap '>
-                {t('saleslipentry:SaleSlipEntry.ChildNumber')}
-              </p>
-              <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
-            </div>
+            <div className='flex w-1/3 pl-[30px] ]'></div>
             <div className='flex w-1/3 pl-[30px]'>
               <div className='flex w-full'>
                 <p className='min-w-[100px] text-nowrap'>
-                  {t('saleslipentry:SaleSlipEntry.CompanyRepresentative')}
+                  {t('orderslipentry:OrderSlipEntry.CompanyRepresentative')}
                 </p>
                 <Select options={[]} className='!w-full !bg-white' />
               </div>
@@ -343,31 +323,31 @@ export default function SaleSlipEntry() {
           <div className='flex ml-[25px] mt-3 mr-[40px]'>
             <div className='flex w-1/3'>
               <p className='min-w-[100px] flex text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.CustomerCode')}
+                {t('orderslipentry:OrderSlipEntry.CustomerCode')}
                 <p className='text-red-600'>※</p>
               </p>
               <div className='flex w-full'>
                 <Buttom
-                  text={t('saleslipentry:SaleSlipEntry.ChildNumber')}
+                  text='Ul12345'
                   className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
                 />
               </div>
             </div>
             <div className='flex w-1/3 pl-[30px] ]'>
               <p className='min-w-[100px] text-nowrap '>
-                {t('saleslipentry:SaleSlipEntry.CustomerName')}
+                {t('orderslipentry:OrderSlipEntry.CustomerName')}
               </p>
               <Buttom
-                text={t('saleslipentry:SaleSlipEntry.ChildNumber')}
+                text='Ul12345'
                 className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
               />
             </div>
             <div className='flex w-1/3 pl-[30px]'>
               <p className='min-w-[100px] text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.ContactPerson')}
+                {t('orderslipentry:OrderSlipEntry.ContactPerson')}
               </p>
               <Buttom
-                text={t('saleslipentry:SaleSlipEntry.ChildNumber')}
+                text='Ul12345'
                 className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
               />
             </div>
@@ -376,29 +356,29 @@ export default function SaleSlipEntry() {
           <div className='flex ml-[25px] mt-3 mr-[40px]'>
             <div className='flex w-1/3'>
               <p className='min-w-[100px] text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.DeliveryCode')}
+                {t('orderslipentry:OrderSlipEntry.DeliveryCode')}
               </p>
               <div className='flex w-full'>
                 <Buttom
-                  text={t('saleslipentry:SaleSlipEntry.DeliveryCode')}
+                  text={t('orderslipentry:OrderSlipEntry.DeliveryCode')}
                   className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
                 />
               </div>
             </div>
             <div className='flex w-1/3 pl-[30px] ]'>
               <p className='min-w-[100px] text-nowrap '>
-                {t('saleslipentry:SaleSlipEntry.DeliveryName')}
+                {t('orderslipentry:OrderSlipEntry.DeliveryName')}
               </p>
               <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
             </div>
             <div className='flex w-1/3 pl-[30px]'>
               <p className='min-w-[100px] text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.DeliveryPersonInCharge')}
+                {t('orderslipentry:OrderSlipEntry.DeliveryPersonInCharge')}
               </p>
               <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6' />
               <Input type='checkbox' className='!w-[10px] h-[10px] mr-2' />
               <p className='text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.SameAsBusinessPartner')}
+                {t('orderslipentry:OrderSlipEntry.SameAsBusinessPartner')}
               </p>
             </div>
           </div>
@@ -406,30 +386,30 @@ export default function SaleSlipEntry() {
           <div className='flex ml-[25px] mt-3 mr-[40px]'>
             <div className='flex w-1/3'>
               <p className='min-w-[100px] flex no-wrap'>
-                {t('saleslipentry:SaleSlipEntry.BillingCode')}
+                {t('orderslipentry:OrderSlipEntry.BillingCode')}
                 <p className='text-red-600'>※</p>
               </p>
               <div className='flex w-full'>
                 <Buttom
-                  text={t('saleslipentry:SaleSlipEntry.DeliveryCode')}
+                  text={t('orderslipentry:OrderSlipEntry.DeliveryCode')}
                   className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
                 />
               </div>
             </div>
             <div className='flex w-1/3 pl-[30px] ]'>
               <p className='min-w-[100px] text-nowrap '>
-                {t('saleslipentry:SaleSlipEntry.BillingName')}
+                {t('orderslipentry:OrderSlipEntry.BillingName')}
               </p>
               <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
             </div>
             <div className='flex w-1/3 pl-[30px]'>
               <p className='min-w-[100px] text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.BillingContact')}
+                {t('orderslipentry:OrderSlipEntry.BillingContact')}
               </p>
               <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6' />
               <Input type='checkbox' className='!w-[10px] h-[10px] mr-2' />
               <p className='text-nowrap'>
-                {t('saleslipentry:SaleSlipEntry.SameAsBusinessPartner')}
+                {t('orderslipentry:OrderSlipEntry.SameAsBusinessPartner')}
               </p>
             </div>
           </div>
@@ -444,9 +424,27 @@ export default function SaleSlipEntry() {
             </div>
           </div>
 
+          <div className='flex ml-[25px] mr-[40px] mt-3'>
+            <div className='flex w-1/3 justify-between'>
+              <p className=' text-nowrap min-w-[100px]'>
+                {t('orderslipentry:OrderSlipEntry.OrderDate')}
+              </p>
+              <DateInput className='!w-full' value={formattedDate} />
+            </div>
+          </div>
+
+          <div className='flex ml-[25px] mr-[40px] mt-3'>
+            <div className='flex w-1/3 justify-between'>
+              <p className=' text-nowrap min-w-[100px]'>
+                {t('orderslipentry:OrderSlipEntry.SlipIssueDate')}
+              </p>
+              <DateInput className='!w-full' value={formattedDate} />
+            </div>
+          </div>
+
           <div className='ml-[25px] mt-3'>
             <p className='text-nowrap font-bold'>
-              {t('saleslipentry:SaleSlipEntry.ItemDetails')}
+              {t('orderslipentry:OrderSlipEntry.ItemDetails')}
             </p>
             <DataTable
               totalPage={0}
@@ -462,7 +460,7 @@ export default function SaleSlipEntry() {
                 <tbody>
                   <tr className='border-b border-gray-200'>
                     <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
-                      {t('saleslipentry:SaleSlipEntry.BillingAmount')}:
+                      {t('orderslipentry:OrderSlipEntry.OrderAmount')}:
                     </th>
                     <td className='font-bold border-l border-gray-300 px-10'>
                       ¥
@@ -475,7 +473,7 @@ export default function SaleSlipEntry() {
                   </tr>
                   <tr className='border-b border-gray-200'>
                     <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
-                      {t('saleslipentry:SaleSlipEntry.TotalExcludingTax')}:
+                      {t('orderslipentry:OrderSlipEntry.TotalExcludingTax')}:
                     </th>
                     <td className='border-l border-gray-300 px-10'>
                       ¥{totalUnitPrice.toLocaleString('ja-JP')}
@@ -483,7 +481,7 @@ export default function SaleSlipEntry() {
                   </tr>
                   <tr className='border-b border-gray-200'>
                     <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
-                      {t('saleslipentry:SaleSlipEntry.discount')}:
+                      {t('orderslipentry:OrderSlipEntry.Discount')}:
                     </th>
                     <td className='border-l border-gray-300 px-10'>
                       ¥{totalDiscount.toLocaleString('ja-JP')}
@@ -491,7 +489,7 @@ export default function SaleSlipEntry() {
                   </tr>
                   <tr className='border-b border-gray-200'>
                     <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
-                      {t('saleslipentry:SaleSlipEntry.TotalConsumptionTax')}:
+                      {t('orderslipentry:OrderSlipEntry.TotalConsumptionTax')}:
                     </th>
                     <td className='border-l border-gray-300 px-10'>
                       ¥{totalAmountAfterTax.toLocaleString('ja-JP')}
@@ -499,7 +497,7 @@ export default function SaleSlipEntry() {
                   </tr>
                   <tr>
                     <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
-                      {t('saleslipentry:SaleSlipEntry.TotalIncludingTax')}:
+                      {t('orderslipentry:OrderSlipEntry.TotalIncludingTax')}:
                     </th>
                     <td className='border-l border-gray-300 px-10'>
                       ¥
@@ -515,18 +513,18 @@ export default function SaleSlipEntry() {
 
           <div className=' ml-[25px] mr-[40px] mt-6'>
             <p className='min-w-[100px] text-nowrap font-bold'>
-              {t('saleslipentry:SaleSlipEntry.Remarks')}
+              {t('orderslipentry:OrderSlipEntry.Remarks')}
             </p>
             <textarea className='w-full h-[200px] border border-blue-200 mt-2 px-2 py-2'></textarea>
           </div>
 
           <div className=' ml-[25px] mr-[40px] mt-6 flex'>
             <Buttom
-              text={t('saleslipentry:SaleSlipEntry.Keep')}
+              text={t('orderslipentry:OrderSlipEntry.Keep')}
               className='text-nowrap border bg-[#4472c4] text-white'
             />
             <Buttom
-              text={t('saleslipentry:SaleSlipEntry.Delete')}
+              text={t('orderslipentry:OrderSlipEntry.Delete')}
               className='text-nowrap border bg-[#757070] text-white ml-2'
             />
           </div>

@@ -84,7 +84,7 @@ export default function Quotation() {
         return (
           <div
             className={
-              'px-2 py-[10px] flex items-center justify-between bg-gray-200'
+              'px-2 py-[10px] flex items-center justify-center bg-gray-200'
             }
           >
             <p className='text-nowrap'>{record.ItemName}</p>
@@ -100,7 +100,7 @@ export default function Quotation() {
         return (
           <div
             className={
-              'px-2 py-[10px] flex items-center justify-between bg-gray-200'
+              'px-2 py-[10px] flex items-center justify-center bg-gray-200'
             }
           >
             <p className='text-nowrap'>{record.Classification}</p>
@@ -258,7 +258,7 @@ export default function Quotation() {
               </div>
             </div>
           </div>
-          <div className='flex w-2/3 pl-[60px]'>
+          <div className='flex w-2/3 pl-[30px]'>
             <Radio name='location' type='radio' className='!w-3' check={true} />
             <label className='ml-2 text-nowrap'>
               {t('quotation:Quotation.Domestic')}
@@ -305,7 +305,7 @@ export default function Quotation() {
               </div>
             </div>
           </div>
-          <div className='flex w-1/3 pl-[60px] ]'>
+          <div className='flex w-1/3 pl-[30px] ]'>
             <p className='min-w-[100px] text-nowrap '>
               {t('quotation:Quotation.CustomerName')}
             </p>
@@ -339,7 +339,7 @@ export default function Quotation() {
               </div>
             </div>
           </div>
-          <div className='flex w-1/3 pl-[60px] ]'>
+          <div className='flex w-1/3 pl-[30px] ]'>
             <p className='min-w-[100px] text-nowrap '>
               {t('quotation:Quotation.DeliveryName')}
             </p>
@@ -370,7 +370,7 @@ export default function Quotation() {
               </div>
             </div>
           </div>
-          <div className='flex w-1/3 pl-[60px] ]'>
+          <div className='flex w-1/3 pl-[30px] ]'>
             <p className='min-w-[100px] text-nowrap '>
               {t('quotation:Quotation.BillingName')}
             </p>

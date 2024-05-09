@@ -2,8 +2,9 @@ import { Routes, Route, Outlet } from 'react-router-dom'
 import EstimateList from './pages/sale-management/estimate-list'
 import Sidebar from './components/sidebar/sidebar'
 import Quotation from './pages/sale-management/quotation-slip-input'
-import OrderSlipEntry from './pages/sale-management/sale-slip-entry'
+import SaleSlipEntry from './pages/sale-management/sale-slip-entry'
 import { useSelector } from 'react-redux'
+import OrderSlipEntry from './pages/sale-management/form-order'
 
 const SidebarLayout = () => {
   const show = useSelector((state: any) => state.sidebarData.sidebar)
@@ -34,6 +35,10 @@ function App() {
             />
             <Route
               path='/sale-management/sale-slip-entry'
+              element={<SaleSlipEntry />}
+            />
+            <Route
+              path='/sale-management/order-form'
               element={<OrderSlipEntry />}
             />
           </Route>

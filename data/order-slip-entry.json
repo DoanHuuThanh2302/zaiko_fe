@@ -10,6 +10,7 @@
         "UnitPrice": 13000,
         "Discount": 1000,
         "TaxClassification": 5 ,
+        "status": "請求済",
         "Date": "2023/6/23"
       },
       {
@@ -22,6 +23,7 @@
         "UnitPrice": 13000,
         "Discount": 1000,
         "TaxClassification": 8 ,
+        "status": "未請求",
         "Date": "2023/6/23"
       },
       {
@@ -34,6 +36,7 @@
         "UnitPrice": 13000,
         "Discount": 1000,
         "TaxClassification": 10 ,
+        "status": "請求済",
         "Date": "2023/6/23"
       },
       {
@@ -46,6 +49,7 @@
         "UnitPrice": 13000,
         "Discount": 1000,
         "TaxClassification": 12 ,
+        "status": "未請求",
         "Date": "2023/6/23"
       }
     ]
