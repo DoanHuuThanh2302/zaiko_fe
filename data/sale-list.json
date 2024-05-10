@@ -9,17 +9,19 @@
         "totalExcludingTax": 240000,
         "totalTax": 24000,
         "totalIncludingTax": 264000,
+        "DeliveryNoteIssueDate": "1/20/2021",
         "status": "請求済"
       },
       {
         "invoiceNumber": "1432",
         "subject": "新品購入",
         "saleDate": "1/20/2021",
-        "customerCode": "",
+        "customerCode": "421451",
         "customerName": "伊丹産業",
         "totalExcludingTax": 200000,
         "totalTax": 20000,
         "totalIncludingTax": 220000,
+        "DeliveryNoteIssueDate": "1/20/2021",
         "status": "未請求"
       }
     ]

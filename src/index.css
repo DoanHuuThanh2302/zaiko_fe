@@ -115,3 +115,18 @@ body {
     border-radius: 10px;
   }
 }
+
+.react-datepicker-wrapper {
+  width: 100%;
+  height: 24px;
+}
+.react-datepicker__input-container {
+  border:  solid 1px rgb(191 219 254);
+  background-color: white;
+}
+
+.react-datepicker__input-container input{
+  width: 100%;
+  padding-left: 10px;
+  font-size: 12px;
+}

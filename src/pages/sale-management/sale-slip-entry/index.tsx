@@ -2,18 +2,19 @@ import Header from '../../../components/header/header'
 import { useTranslation } from 'react-i18next'
 import Input from '../../../components/input/input'
 import Buttom from '../../../components/buttom/buttom'
-import DateInput from '../../../components/input/date'
 import { IconsSearch } from '../../../assets/icons/icons'
 import Select from '../../../components/select/select'
 import DataTable from '../../../components/table/table'
 import items from '../../../../data/order-slip-entry.json'
 import Radio from '../../../components/input/radio'
+import { useState } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 export default function SaleSlipEntry() {
   const [t] = useTranslation()
   const data = items.items
-  const today = new Date()
-  const formattedDate = today.toISOString().split('T')[0]
+  const [startDate, setStartDate] = useState(new Date())
 
   const totalUnitPrice = data.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.UnitPrice * currentItem.Quantity
@@ -229,13 +230,21 @@ export default function SaleSlipEntry() {
               <p className=' text-nowrap min-w-[100px]'>
                 {t('saleslipentry:SaleSlipEntry.SlipIssueDate')}
               </p>
-              <DateInput className='!w-full' value={formattedDate} />
+              <DatePicker
+                selected={startDate}
+                onChange={(date: any) => setStartDate(date)}
+                dateFormat='yyyy-MM-dd'
+              />
             </div>
             <div className='flex w-1/3 justifi-between pl-[30px]'>
               <p className='min-w-[100px] text-nowrap'>
                 {t('saleslipentry:SaleSlipEntry.OrderDate')}
               </p>
-              <DateInput className='!w-full' value={formattedDate} />
+              <DatePicker
+                selected={startDate}
+                onChange={(date: any) => setStartDate(date)}
+                dateFormat='yyyy-MM-dd'
+              />
             </div>
           </div>
 
@@ -244,13 +253,21 @@ export default function SaleSlipEntry() {
               <p className=' text-nowrap min-w-[100px]'>
                 {t('saleslipentry:SaleSlipEntry.ExpectedShippingDate')}
               </p>
-              <DateInput className='!w-full' value={formattedDate} />
+              <DatePicker
+                selected={startDate}
+                onChange={(date: any) => setStartDate(date)}
+                dateFormat='yyyy-MM-dd'
+              />
             </div>
             <div className='flex w-1/3 justifi-between pl-[30px]'>
               <p className='min-w-[100px] text-nowrap'>
                 {t('saleslipentry:SaleSlipEntry.ScheduledBillingDate')}
               </p>
-              <DateInput className='!w-full' value={formattedDate} />
+              <DatePicker
+                selected={startDate}
+                onChange={(date: any) => setStartDate(date)}
+                dateFormat='yyyy-MM-dd'
+              />
             </div>
           </div>
 
@@ -457,7 +474,7 @@ export default function SaleSlipEntry() {
           </div>
 
           <div className='flex justify-end ml-[25px] mt-6'>
-            <div className='mr-10 border border-gray-300 shadow-lg'>
+            <div className='mr-10 border border-gray-300 bg-white'>
               <table className='table-auto w-full border-collapse'>
                 <tbody>
                   <tr className='border-b border-gray-200'>

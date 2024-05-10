@@ -4,17 +4,19 @@ import Input from '../../../components/input/input'
 import Buttom from '../../../components/buttom/buttom'
 import { IconsDown, IconsSearch, IconsUp } from '../../../assets/icons/icons'
 import Select from '../../../components/select/select'
-import DateInput from '../../../components/input/date'
 import DataTable from '../../../components/table/table'
 import record from '../../../../data/estimate-list.json'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 export default function OrderList() {
   const navigate = useNavigate()
   const data = record.records
   const today = new Date()
   const formattedDate = today.toISOString().split('T')[0]
+  const [startDate, setStartDate] = useState(new Date())
   const [showSearch, setShowSearch] = useState(true)
   const [t] = useTranslation()
   const columns = [
@@ -53,11 +55,29 @@ export default function OrderList() {
     {
       name: t('orderlist:OrderList.TotalExcludingTax'),
       key: 'totalExcludingTax',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-center'}>
+            <p className='text-nowrap'>
+              ¥{record.totalExcludingTax.toLocaleString('ja-JP')}
+            </p>
+          </div>
+        )
+      },
       className: 'text-center text-nowrap',
     },
     {
       name: t('orderlist:OrderList.TotalIncludingTax'),
       key: 'totalIncludingTax',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-center'}>
+            <p className='text-nowrap'>
+              ¥{record.totalIncludingTax.toLocaleString('ja-JP')}
+            </p>
+          </div>
+        )
+      },
       className: 'text-center text-nowrap',
     },
     {
@@ -185,16 +205,18 @@ export default function OrderList() {
                   {t('orderlist:OrderList.OrderDate')}
                 </p>
                 <div className='flex w-full pr-2'>
-                  <DateInput
-                    className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
-                    value={formattedDate}
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date: any) => setStartDate(date)}
+                    dateFormat='yyyy-MM-dd'
                   />
                 </div>
                 <p>~</p>
                 <div className='flex w-full pl-2'>
-                  <DateInput
-                    className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
-                    value={formattedDate}
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date: any) => setStartDate(date)}
+                    dateFormat='yyyy-MM-dd'
                   />
                 </div>
               </div>

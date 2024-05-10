@@ -3,6 +3,7 @@ import EstimateList from './pages/sale-management/estimate-list'
 import Sidebar from './components/sidebar/sidebar'
 import Quotation from './pages/sale-management/quotation-slip-input'
 import SaleSlipEntry from './pages/sale-management/sale-slip-entry'
+import SaleList from './pages/sale-management/sale-list'
 import { useSelector } from 'react-redux'
 import OrderSlipEntry from './pages/sale-management/form-order'
 import OrderList from './pages/sale-management/order-list'
@@ -43,6 +44,7 @@ function App() {
               element={<OrderSlipEntry />}
             />
             <Route path='/sale-management/order-list' element={<OrderList />} />
+            <Route path='/sale-management/sale-list' element={<SaleList />} />
           </Route>
         </Routes>
       </main>

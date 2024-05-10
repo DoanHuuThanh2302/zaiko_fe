@@ -2,19 +2,19 @@ import Header from '../../../components/header/header'
 import { useTranslation } from 'react-i18next'
 import Input from '../../../components/input/input'
 import Buttom from '../../../components/buttom/buttom'
-import DateInput from '../../../components/input/date'
 import { IconsDelete, IconsSearch } from '../../../assets/icons/icons'
 import Select from '../../../components/select/select'
 import DataTable from '../../../components/table/table'
 import items from '../../../../data/order-slip-entry.json'
 import Radio from '../../../components/input/radio'
 import { useState } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 export default function OrderSlipEntry() {
   const [t] = useTranslation()
   const [data, setData] = useState(items.items)
-  const today = new Date()
-  const formattedDate = today.toISOString().split('T')[0]
+  const [startDate, setStartDate] = useState(new Date())
 
   const totalUnitPrice = data.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.UnitPrice * currentItem.Quantity
@@ -261,7 +261,11 @@ export default function OrderSlipEntry() {
               <p className=' text-nowrap min-w-[100px]'>
                 {t('orderslipentry:OrderSlipEntry.SlipIssueDate')}
               </p>
-              <DateInput className='!w-full' value={formattedDate} />
+              <DatePicker
+                selected={startDate}
+                onChange={(date: any) => setStartDate(date)}
+                dateFormat='yyyy-MM-dd'
+              />
             </div>
           </div>
 
@@ -455,7 +459,11 @@ export default function OrderSlipEntry() {
               <p className=' text-nowrap min-w-[100px]'>
                 {t('orderslipentry:OrderSlipEntry.OrderDate')}
               </p>
-              <DateInput className='!w-full' value={formattedDate} />
+              <DatePicker
+                selected={startDate}
+                onChange={(date: any) => setStartDate(date)}
+                dateFormat='yyyy-MM-dd'
+              />
             </div>
           </div>
 
@@ -464,7 +472,11 @@ export default function OrderSlipEntry() {
               <p className=' text-nowrap min-w-[100px]'>
                 {t('orderslipentry:OrderSlipEntry.SlipIssueDate')}
               </p>
-              <DateInput className='!w-full' value={formattedDate} />
+              <DatePicker
+                selected={startDate}
+                onChange={(date: any) => setStartDate(date)}
+                dateFormat='yyyy-MM-dd'
+              />
             </div>
           </div>
 
@@ -486,7 +498,7 @@ export default function OrderSlipEntry() {
               text={t('orderslipentry:OrderSlipEntry.AddItemLine')}
               onClick={() => addNewRow()}
             />
-            <div className='mr-10 border border-gray-300 shadow-lg'>
+            <div className='mr-10 border border-gray-300 bg-white'>
               <table className='table-auto w-full border-collapse'>
                 <tbody>
                   <tr className='border-b border-gray-200'>

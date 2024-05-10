@@ -135,9 +135,14 @@ export default function Sidebar() {
                             {t('sidebar:Sidebar.SalesSlipEntry')}
                           </Link>
                         </li>
-                        <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
+                        <li
+                          className={`h-6 py-5 relative right-[10px] flex items-center focus:outline-none ${getNavLinkClass(
+                            '/sale-management/sale-list',
+                            'bg-[#1e4e79] w-[257px]'
+                          )}`}
+                        >
                           <Link
-                            to='/estimate-list'
+                            to='/sale-management/sale-list'
                             className='pl-[56px] pr-[23px] text-sm font-bold text-white'
                           >
                             {t('sidebar:Sidebar.SalesList')}

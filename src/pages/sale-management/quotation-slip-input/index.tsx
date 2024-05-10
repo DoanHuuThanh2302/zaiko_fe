@@ -3,18 +3,18 @@ import { useTranslation } from 'react-i18next'
 import Buttom from '../../../components/buttom/buttom'
 import Input from '../../../components/input/input'
 import Radio from '../../../components/input/radio'
-import DateInput from '../../../components/input/date'
 import Select from '../../../components/select/select'
 import { IconsSearch, IconsDelete } from '../../../assets/icons/icons'
 import DataTable from '../../../components/table/table'
 import items from '../../../../data/quotation.json'
 import { useState } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 export default function Quotation() {
   const [t] = useTranslation()
   const [data, setData] = useState(items.items)
-  const today = new Date()
-  const formattedDate = today.toISOString().split('T')[0]
+  const [startDate, setStartDate] = useState(new Date())
   const totalUnitPrice = data.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.UnitPrice * currentItem.Quantity
   }, 0)
@@ -239,7 +239,11 @@ export default function Quotation() {
             <p className=' text-nowrap min-w-[100px]'>
               {t('quotation:Quotation.SlipIssueDate')}
             </p>
-            <DateInput className='!w-full' value={formattedDate} />
+            <DatePicker
+              selected={startDate}
+              onChange={(date: any) => setStartDate(date)}
+              dateFormat='yyyy-MM-dd'
+            />
           </div>
         </div>
 
@@ -404,7 +408,11 @@ export default function Quotation() {
               {t('quotation:Quotation.EstimatedDate')}
               <p className='text-red-600'>※</p>
             </p>
-            <DateInput className='!w-full' value={formattedDate} />
+            <DatePicker
+              selected={startDate}
+              onChange={(date: any) => setStartDate(date)}
+              dateFormat='yyyy-MM-dd'
+            />
           </div>
         </div>
 
@@ -414,7 +422,11 @@ export default function Quotation() {
               {t('quotation:Quotation.Deadline')}
               <p className='text-red-600'>※</p>
             </p>
-            <DateInput className='!w-full' value={formattedDate} />
+            <DatePicker
+              selected={startDate}
+              onChange={(date: any) => setStartDate(date)}
+              dateFormat='yyyy-MM-dd'
+            />
           </div>
         </div>
 
@@ -433,7 +445,7 @@ export default function Quotation() {
             text={t('quotation:Quotation.AddItemLine')}
             onClick={() => addNewRow()}
           />
-          <div className='mr-10 border border-gray-300 shadow-lg'>
+          <div className='mr-10 border border-gray-300 bg-white'>
             <table className='table-auto w-full border-collapse'>
               <tbody>
                 <tr className='border-b border-gray-200'>

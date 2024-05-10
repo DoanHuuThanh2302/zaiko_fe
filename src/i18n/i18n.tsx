@@ -8,7 +8,7 @@ import CommonJa from '../locales/ja/common.json'
 import OrderSlipEntryJa from '../locales/ja/order-slip-entry.json'
 import SaleSlipEntryJa from '../locales/ja/sale-slip-entry.json'
 import OrderListJa from '../locales/ja/order-list.json'
-
+import SaleListJa from '../locales/ja/sale-list.json'
 const resources = {
   ja: {
     sidebar: SidebarJa,
@@ -18,6 +18,7 @@ const resources = {
     orderslipentry: OrderSlipEntryJa,
     saleslipentry: SaleSlipEntryJa,
     orderlist: OrderListJa,
+    salelist: SaleListJa,
   },
   en: { sidebar: SidebarEn },
 }
@@ -32,6 +33,7 @@ i18n.use(initReactI18next).init({
     'orderslipentry',
     'saleslipentry',
     'orderlist',
+    'salelist',
   ],
   lng: import.meta.env.VITE_DEFAULT_LANG || 'ja',
   interpolation: {
