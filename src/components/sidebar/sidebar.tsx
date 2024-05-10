@@ -148,9 +148,14 @@ export default function Sidebar() {
                             {t('sidebar:Sidebar.SalesList')}
                           </Link>
                         </li>
-                        <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
+                        <li
+                          className={`h-6 py-5 relative right-[10px] flex items-center focus:outline-none ${getNavLinkClass(
+                            '/sale-management/billing-deadline',
+                            'bg-[#1e4e79] w-[257px]'
+                          )}`}
+                        >
                           <Link
-                            to='/estimate-list'
+                            to='/sale-management/billing-deadline'
                             className='pl-[56px] pr-[23px] text-sm font-bold text-white'
                           >
                             {t('sidebar:Sidebar.BillingDeadline')}

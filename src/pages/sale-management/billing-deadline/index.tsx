@@ -5,59 +5,54 @@ import Buttom from '../../../components/buttom/buttom'
 import { IconsDown, IconsSearch, IconsUp } from '../../../assets/icons/icons'
 import Select from '../../../components/select/select'
 import DataTable from '../../../components/table/table'
-import record from '../../../../data/estimate-list.json'
+import record from '../../../../data/billing-deadline.json'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-export default function EstimateList() {
-  const navigate = useNavigate()
+export default function BillingDeadline() {
   const data = record.records
+  const [startDate, setStartDate] = useState(new Date())
   const [showSearch, setShowSearch] = useState(true)
   const [t] = useTranslation()
-  const [startDate, setStartDate] = useState(new Date())
   const columns = [
     {
-      name: t('estimatelist:EstimateList.SlipNumber'),
-      key: 'invoiceNumber',
-      format: (record: any) => (
+      name: '',
+      key: 'id',
+      format: () => (
         <div
-          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5`}
+          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5 px-2`}
         >
-          {record.invoiceNumber}
+          <Input type='checkbox' className='w-[11px] h-[18px]' />
         </div>
       ),
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.Subject'),
-      key: 'subject',
-      className: 'text-center text-nowrap w-2/12',
-    },
-    {
-      name: t('estimatelist:EstimateList.SaleDate'),
-      key: 'saleDate',
+      name: t('billingdeadline:BillingDeadline.CustomerCode'),
+      key: 'CustomerCode',
+      format: (record: any) => (
+        <div
+          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5`}
+        >
+          {record.CustomerCode}
+        </div>
+      ),
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.CustomerCode'),
-      key: 'customerCode',
-      className: 'text-center text-nowrap w-1/12',
-    },
-    {
-      name: t('estimatelist:EstimateList.CustomerName'),
-      key: 'customerName',
+      name: t('billingdeadline:BillingDeadline.PreviousClosingDate'),
+      key: 'LastClosingDate',
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.TotalExcludingTax'),
-      key: 'totalExcludingTax',
+      name: t('billingdeadline:BillingDeadline.CarryoverAmount'),
+      key: 'CarriedOverAmount',
       format: (record: any) => {
         return (
           <div className={'px-2 flex items-center justify-center'}>
             <p className='text-nowrap'>
-              ¥{record.totalExcludingTax.toLocaleString('ja-JP')}
+              ¥{record.CarriedOverAmount.toLocaleString('ja-JP')}
             </p>
           </div>
         )
@@ -65,13 +60,13 @@ export default function EstimateList() {
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.TotalConsumptionTax'),
-      key: 'totalTax',
+      name: t('billingdeadline:BillingDeadline.BillingAmount'),
+      key: 'BillingAmount',
       format: (record: any) => {
         return (
           <div className={'px-2 flex items-center justify-center'}>
             <p className='text-nowrap'>
-              ¥{record.totalTax.toLocaleString('ja-JP')}
+              ¥{record.BillingAmount.toLocaleString('ja-JP')}
             </p>
           </div>
         )
@@ -79,13 +74,13 @@ export default function EstimateList() {
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.TotalIncludingTax'),
-      key: 'totalIncludingTax',
+      name: t('billingdeadline:BillingDeadline.ConsumptionTax'),
+      key: 'ConsumptionTax',
       format: (record: any) => {
         return (
           <div className={'px-2 flex items-center justify-center'}>
             <p className='text-nowrap'>
-              ¥{record.totalIncludingTax.toLocaleString('ja-JP')}
+              ¥{record.ConsumptionTax.toLocaleString('ja-JP')}
             </p>
           </div>
         )
@@ -93,15 +88,41 @@ export default function EstimateList() {
       className: 'text-center text-nowrap',
     },
     {
-      name: t('estimatelist:EstimateList.Situation'),
-      key: 'status',
+      name: t('billingdeadline:BillingDeadline.BilledAmount'),
+      key: 'BillingAmountIncludingTax',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-center'}>
+            <p className='text-nowrap'>
+              ¥{record.BillingAmountIncludingTax.toLocaleString('ja-JP')}
+            </p>
+          </div>
+        )
+      },
+      className: 'text-center text-nowrap',
+    },
+    {
+      name: t('billingdeadline:BillingDeadline.CollectionDate'),
+      key: 'CollectionDate',
+      className: 'text-center text-nowrap',
+    },
+    {
+      name: t('billingdeadline:BillingDeadline.InvoiceIssueDate'),
+      key: 'InvoiceIssueDate',
+      className: 'text-center text-nowrap',
+    },
+    {
+      name: t('billingdeadline:BillingDeadline.TighteningSituation'),
+      key: 'ClosingStatus',
       format: (record: any) => (
         <div
           className={`hover:cursor-pointer flex justify-center text-nowrap ${
-            record.status === '請求済' ? 'text-green-500' : 'text-red-500'
+            record.ClosingStatus === '未請求'
+              ? 'text-green-500'
+              : 'text-red-500'
           }`}
         >
-          {record.status}
+          {record.ClosingStatus}
         </div>
       ),
     },
@@ -116,7 +137,7 @@ export default function EstimateList() {
             className='flex items-center'
           >
             <p className='mr-[12px] cursor-pointer text-nowrap font-bold'>
-              {t('estimatelist:EstimateList.Search')}
+              {t('billingdeadline:BillingDeadline.Search')}
             </p>
             <div className='cursor-pointer'>
               {showSearch ? (
@@ -128,13 +149,24 @@ export default function EstimateList() {
           </div>
           <div className='flex mr-[40px]'>
             <Buttom
-              text={t('estimatelist:EstimateList.NewDocument')}
-              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8'
-              onClick={() => navigate('/sale-management/quotation-slip-input')}
+              text={t('billingdeadline:BillingDeadline.ApprovalRequest')}
+              className='text-nowrap border border-orange-500 text-orange-500 mr-8'
             />
             <Buttom
-              text={t('estimatelist:EstimateList.Print')}
-              className='text-nowrap border border-cyan-500 text-cyan-500'
+              text={t('billingdeadline:BillingDeadline.Approval')}
+              className='text-nowrap border border-red-500 text-red-500 mr-8'
+            />
+            <Buttom
+              text={t('billingdeadline:BillingDeadline.NotApproved')}
+              className='text-nowrap border border-yellow-500 text-yellow-500 mr-8'
+            />
+            <Buttom
+              text={t('billingdeadline:BillingDeadline.Printing')}
+              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8'
+            />
+            <Buttom
+              text={t('billingdeadline:BillingDeadline.Printing')}
+              className='text-nowrap border border-green-500 text-green-500'
             />
           </div>
         </div>
@@ -144,7 +176,7 @@ export default function EstimateList() {
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
                 <p className='min-w-[130px] text-nowrap '>
-                  {t('estimatelist:EstimateList.CustomerCode')}
+                  {t('billingdeadline:BillingDeadline.CustomerLedger')}
                 </p>
                 <div className='flex w-full'>
                   <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
@@ -153,19 +185,20 @@ export default function EstimateList() {
                   </div>
                 </div>
               </div>
-              <div className='flex w-1/3 pl-[30px] '>
-                <p className='min-w-[130px] text-nowrap '>
-                  {t('estimatelist:EstimateList.ItemCode')}
-                </p>
+              <div className='flex w-1/3 pl-[50px]'>
+                <p className='min-w-[50px]'>~</p>
                 <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
                 <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
-              <div className='flex w-1/3 pl-[30px]'>
+            </div>
+
+            <div className='flex ml-[25px] mt-3 mr-[40px]'>
+              <div className='flex w-1/3'>
                 <div className='flex w-full'>
                   <p className='min-w-[130px] text-nowrap'>
-                    {t('estimatelist:EstimateList.Classification')}
+                    {t('billingdeadline:BillingDeadline.DeadlineGroup')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
                 </div>
@@ -175,69 +208,54 @@ export default function EstimateList() {
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
                 <p className='min-w-[130px]'>
-                  {t('estimatelist:EstimateList.Format')}
+                  {t('billingdeadline:BillingDeadline.DeadlineDate')}
                 </p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
-                    <IconsSearch />
-                  </div>
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date: any) => setStartDate(date)}
+                    dateFormat='yyyy-MM-dd'
+                  />
                 </div>
               </div>
-              <div className='flex w-1/3 pl-[30px]'>
-                <p className='min-w-[130px] text-nowrap '>
-                  {t('estimatelist:EstimateList.ItemName')}
-                </p>
-                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
-              </div>
-              <div className='flex w-1/3 pl-[30px]'>
+              <div className='flex w-1/3 pl-[100px]'>
                 <div className='flex w-full'>
-                  <p className='min-w-[130px] text-nowrap'>
-                    {t('estimatelist:EstimateList.Situation')}
+                  <p className='min-w-[70px] text-nowrap'>
+                    {t('billingdeadline:BillingDeadline.TightenedState')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
                 </div>
               </div>
             </div>
-
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
-              <div className='flex w-2/3'>
-                <p className='min-w-[130px]'>
-                  {t('estimatelist:EstimateList.Subject')}
+              <div className='flex w-1/3'>
+                <Input type='checkbox' className='w-[11px]' />
+                <p className='ml-5'>
+                  {t('billingdeadline:BillingDeadline.ShowOnlyCustomers')}
                 </p>
-                <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-                </div>
-              </div>
-            </div>
-            <div className='flex ml-[25px] mt-3 mr-[40px]'>
-              <div className='flex w-2/3'>
-                <p className='min-w-[130px]'>
-                  {t('estimatelist:EstimateList.EstimatedDate')}
-                </p>
-                <div className='flex w-full pr-2'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
-                  />
-                </div>
-                <p>~</p>
-                <div className='flex w-full pl-2'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
-                  />
-                </div>
               </div>
             </div>
 
             <div className='flex justify-center w-full mt-5'>
               <Buttom
-                text={t('estimatelist:EstimateList.Search')}
+                text={t('billingdeadline:BillingDeadline.Search')}
                 className='text-nowrap border bg-[#4472c4] text-white'
               />
+            </div>
+
+            <div className='flex justify-end w-full mt-3'>
+              <div className='mr-[40px]'>
+                <Buttom
+                  text={t('billingdeadline:BillingDeadline.ExecuteTightening')}
+                  className='text-nowrap border bg-[#4472c4] text-white'
+                />
+                <Buttom
+                  text={t(
+                    'billingdeadline:BillingDeadline.CancellationOfClosing'
+                  )}
+                  className='text-nowrap border bg-[#757070] text-white ml-[20px]'
+                />
+              </div>
             </div>
           </div>
         ) : null}
@@ -245,11 +263,13 @@ export default function EstimateList() {
         <div className='ml-[25px] mt-3'>
           <div className='flex items-center'>
             <p className='font-bold mr-[12px]'>
-              {t('estimatelist:EstimateList.ItemDetails')}
+              {t('billingdeadline:BillingDeadline.ItemDetails')}
             </p>
           </div>
 
-          <p className='mt-3 mb-2'>{t('estimatelist:EstimateList.Show')}</p>
+          <p className='mt-3 mb-2'>
+            {t('billingdeadline:BillingDeadline.Show')}
+          </p>
           <DataTable
             totalPage={4}
             columns={columns}
