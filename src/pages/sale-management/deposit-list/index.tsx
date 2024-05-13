@@ -5,66 +5,59 @@ import Buttom from '../../../components/buttom/buttom'
 import { IconsDown, IconsSearch, IconsUp } from '../../../assets/icons/icons'
 import Select from '../../../components/select/select'
 import DataTable from '../../../components/table/table'
-import record from '../../../../data/billing-deadline.json'
+import record from '../../../../data/sale-list.json'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-export default function BillingDeadline() {
+export default function DepositList() {
+  const navigate = useNavigate()
   const data = record.records
   const [startDate, setStartDate] = useState(new Date())
   const [showSearch, setShowSearch] = useState(true)
   const [t] = useTranslation()
   const columns = [
     {
-      name: '',
-      key: 'id',
-      format: () => (
-        <div
-          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5 px-2`}
-        >
-          <Input type='checkbox' className='w-[11px] h-[18px]' />
-        </div>
-      ),
-      className: 'text-center text-nowrap',
-    },
-    {
-      name: t('billingdeadline:BillingDeadline.CustomerCode'),
-      key: 'CustomerCode',
+      name: t('depositlist:DepositList.SlipNumber'),
+      key: 'invoiceNumber',
       format: (record: any) => (
         <div
           className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5`}
         >
-          {record.CustomerCode}
+          {record.invoiceNumber}
         </div>
       ),
       className: 'text-center text-nowrap',
     },
     {
-      name: t('billingdeadline:BillingDeadline.CustomerName'),
-      key: 'CustomerName',
-      format: (record: any) => (
-        <div
-          className={`hover:cursor-pointer flex justify-center text-nowrap py-5`}
-        >
-          {record.CustomerName}
-        </div>
-      ),
+      name: t('depositlist:DepositList.Subject'),
+      key: 'subject',
       className: 'text-center text-nowrap',
     },
     {
-      name: t('billingdeadline:BillingDeadline.PreviousClosingDate'),
-      key: 'LastClosingDate',
+      name: t('depositlist:DepositList.SaleDate'),
+      key: 'saleDate',
       className: 'text-center text-nowrap',
     },
     {
-      name: t('billingdeadline:BillingDeadline.CarryoverAmount'),
-      key: 'CarriedOverAmount',
+      name: t('depositlist:DepositList.CustomerCode'),
+      key: 'customerCode',
+      className: 'text-center text-nowrap',
+    },
+    {
+      name: t('depositlist:DepositList.CustomerName'),
+      key: 'customerName',
+      className: 'text-center text-nowrap',
+    },
+    {
+      name: t('depositlist:DepositList.TotalExcludingTax'),
+      key: 'totalExcludingTax',
       format: (record: any) => {
         return (
           <div className={'px-2 flex items-center justify-center'}>
             <p className='text-nowrap'>
-              ¥{record.CarriedOverAmount.toLocaleString('ja-JP')}
+              ¥{record.totalExcludingTax.toLocaleString('ja-JP')}
             </p>
           </div>
         )
@@ -72,13 +65,13 @@ export default function BillingDeadline() {
       className: 'text-center text-nowrap',
     },
     {
-      name: t('billingdeadline:BillingDeadline.BillingAmount'),
-      key: 'BillingAmount',
+      name: t('depositlist:DepositList.TotalIncludingTax'),
+      key: 'totalIncludingTax',
       format: (record: any) => {
         return (
           <div className={'px-2 flex items-center justify-center'}>
             <p className='text-nowrap'>
-              ¥{record.BillingAmount.toLocaleString('ja-JP')}
+              ¥{record.totalIncludingTax.toLocaleString('ja-JP')}
             </p>
           </div>
         )
@@ -86,55 +79,20 @@ export default function BillingDeadline() {
       className: 'text-center text-nowrap',
     },
     {
-      name: t('billingdeadline:BillingDeadline.ConsumptionTax'),
-      key: 'ConsumptionTax',
-      format: (record: any) => {
-        return (
-          <div className={'px-2 flex items-center justify-center'}>
-            <p className='text-nowrap'>
-              ¥{record.ConsumptionTax.toLocaleString('ja-JP')}
-            </p>
-          </div>
-        )
-      },
+      name: t('depositlist:DepositList.TotalIncludingTax'),
+      key: 'DeliveryNoteIssueDate',
       className: 'text-center text-nowrap',
     },
     {
-      name: t('billingdeadline:BillingDeadline.BilledAmount'),
-      key: 'BillingAmountIncludingTax',
-      format: (record: any) => {
-        return (
-          <div className={'px-2 flex items-center justify-center'}>
-            <p className='text-nowrap'>
-              ¥{record.BillingAmountIncludingTax.toLocaleString('ja-JP')}
-            </p>
-          </div>
-        )
-      },
-      className: 'text-center text-nowrap',
-    },
-    {
-      name: t('billingdeadline:BillingDeadline.CollectionDate'),
-      key: 'CollectionDate',
-      className: 'text-center text-nowrap',
-    },
-    {
-      name: t('billingdeadline:BillingDeadline.InvoiceIssueDate'),
-      key: 'InvoiceIssueDate',
-      className: 'text-center text-nowrap',
-    },
-    {
-      name: t('billingdeadline:BillingDeadline.TighteningSituation'),
-      key: 'ClosingStatus',
+      name: t('depositlist:DepositList.PaymentDay'),
+      key: 'status',
       format: (record: any) => (
         <div
           className={`hover:cursor-pointer flex justify-center text-nowrap ${
-            record.ClosingStatus === '未請求'
-              ? 'text-green-500'
-              : 'text-red-500'
+            record.status === '請求済' ? 'text-green-500' : 'text-red-500'
           }`}
         >
-          {record.ClosingStatus}
+          {record.status}
         </div>
       ),
     },
@@ -149,7 +107,7 @@ export default function BillingDeadline() {
             className='flex items-center'
           >
             <p className='mr-[12px] cursor-pointer text-nowrap font-bold'>
-              {t('billingdeadline:BillingDeadline.Search')}
+              {t('depositlist:DepositList.Search')}
             </p>
             <div className='cursor-pointer'>
               {showSearch ? (
@@ -161,24 +119,13 @@ export default function BillingDeadline() {
           </div>
           <div className='flex mr-[40px]'>
             <Buttom
-              text={t('billingdeadline:BillingDeadline.ApprovalRequest')}
-              className='text-nowrap border border-orange-500 text-orange-500 mr-8'
-            />
-            <Buttom
-              text={t('billingdeadline:BillingDeadline.Approval')}
-              className='text-nowrap border border-red-500 text-red-500 mr-8'
-            />
-            <Buttom
-              text={t('billingdeadline:BillingDeadline.NotApproved')}
-              className='text-nowrap border border-yellow-500 text-yellow-500 mr-8'
-            />
-            <Buttom
-              text={t('billingdeadline:BillingDeadline.Printing')}
+              text={t('depositlist:DepositList.Printing')}
               className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8'
             />
             <Buttom
-              text={t('billingdeadline:BillingDeadline.Printing')}
+              text={t('depositlist:DepositList.NewDocument')}
               className='text-nowrap border border-green-500 text-green-500'
+              onClick={() => navigate('/sale-management/order-form')}
             />
           </div>
         </div>
@@ -188,7 +135,7 @@ export default function BillingDeadline() {
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
                 <p className='min-w-[130px] text-nowrap '>
-                  {t('billingdeadline:BillingDeadline.CustomerLedger')}
+                  {t('depositlist:DepositList.CustomerCode')}
                 </p>
                 <div className='flex w-full'>
                   <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
@@ -197,8 +144,10 @@ export default function BillingDeadline() {
                   </div>
                 </div>
               </div>
-              <div className='flex w-1/3 pl-[50px]'>
-                <p className='min-w-[50px]'>~</p>
+              <div className='flex w-1/3 pl-[30px] '>
+                <p className='min-w-[130px] text-nowrap '>
+                  {t('depositlist:DepositList.ItemCode')}
+                </p>
                 <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
                 <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
@@ -208,9 +157,26 @@ export default function BillingDeadline() {
 
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
+                <p className='min-w-[130px]'>
+                  {t('depositlist:DepositList.Format')}
+                </p>
+                <div className='flex w-full'>
+                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                    <IconsSearch />
+                  </div>
+                </div>
+              </div>
+              <div className='flex w-1/3 pl-[30px]'>
+                <p className='min-w-[130px] text-nowrap '>
+                  {t('depositlist:DepositList.ItemName')}
+                </p>
+                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+              </div>
+              <div className='flex w-1/3 pl-[30px]'>
                 <div className='flex w-full'>
                   <p className='min-w-[130px] text-nowrap'>
-                    {t('billingdeadline:BillingDeadline.DeadlineGroup')}
+                    {t('depositlist:DepositList.Classification')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
                 </div>
@@ -220,9 +186,9 @@ export default function BillingDeadline() {
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
                 <p className='min-w-[130px]'>
-                  {t('billingdeadline:BillingDeadline.DeadlineDate')}
+                  {t('depositlist:DepositList.PaymentDay')}
                 </p>
-                <div className='flex w-full'>
+                <div className='flex w-full pr-2'>
                   <DatePicker
                     selected={startDate}
                     onChange={(date: any) => setStartDate(date)}
@@ -230,44 +196,13 @@ export default function BillingDeadline() {
                   />
                 </div>
               </div>
-              <div className='flex w-1/3 pl-[100px]'>
-                <div className='flex w-full'>
-                  <p className='min-w-[70px] text-nowrap'>
-                    {t('billingdeadline:BillingDeadline.TightenedState')}
-                  </p>
-                  <Select options={[]} className='!w-full !bg-white' />
-                </div>
-              </div>
-            </div>
-            <div className='flex ml-[25px] mt-3 mr-[40px]'>
-              <div className='flex w-1/3'>
-                <Input type='checkbox' className='w-[10px]' />
-                <p className='ml-5'>
-                  {t('billingdeadline:BillingDeadline.ShowOnlyCustomers')}
-                </p>
-              </div>
             </div>
 
             <div className='flex justify-center w-full mt-5'>
               <Buttom
-                text={t('billingdeadline:BillingDeadline.Search')}
+                text={t('depositlist:DepositList.Search')}
                 className='text-nowrap border bg-[#4472c4] text-white'
               />
-            </div>
-
-            <div className='flex justify-end w-full mt-3'>
-              <div className='mr-[40px]'>
-                <Buttom
-                  text={t('billingdeadline:BillingDeadline.ExecuteTightening')}
-                  className='text-nowrap border bg-[#4472c4] text-white'
-                />
-                <Buttom
-                  text={t(
-                    'billingdeadline:BillingDeadline.CancellationOfClosing'
-                  )}
-                  className='text-nowrap border bg-[#757070] text-white ml-[20px]'
-                />
-              </div>
             </div>
           </div>
         ) : null}
@@ -275,13 +210,11 @@ export default function BillingDeadline() {
         <div className='ml-[25px] mt-3'>
           <div className='flex items-center'>
             <p className='font-bold mr-[12px]'>
-              {t('billingdeadline:BillingDeadline.ItemDetails')}
+              {t('depositlist:DepositList.ItemDetails')}
             </p>
           </div>
 
-          <p className='mt-3 mb-2'>
-            {t('billingdeadline:BillingDeadline.Show')}
-          </p>
+          <p className='mt-3 mb-2'>{t('depositlist:DepositList.Show')}</p>
           <DataTable
             totalPage={4}
             columns={columns}
