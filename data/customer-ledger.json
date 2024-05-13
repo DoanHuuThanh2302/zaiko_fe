@@ -1,0 +1,51 @@
+[
+    {
+        "date": "2018-9-30",
+        "transaction_type": "売上",
+        "status": "請求済",
+        "item_code": "Z0020-A",
+        "item_name": "荒砥石",
+        "unit_price": 1300,
+        "quantity": 10,
+        "amount":30000,
+        "subtotal": 14300,
+        "total": 116800
+      },
+    {
+      "date": "2018-9-30",
+      "transaction_type": "売上",
+      "status": "請求済",
+      "item_code": "Z0020-A",
+      "item_name": "荒砥石",
+      "unit_price": 1300,
+      "quantity": 10,
+      "amount":30000,
+      "subtotal": 14300,
+      "total": 116800
+    },
+    {
+        "date": "2018-9-30",
+        "transaction_type": "売上",
+        "status": "請求済",
+        "item_code": "Z0020-A",
+        "item_name": "荒砥石",
+        "unit_price": 1300,
+        "quantity": 10,
+        "amount":30000,
+        "subtotal": 14300,
+        "total": 116800
+      },
+      {
+        "date": "2018-9-30",
+        "transaction_type": "売上",
+        "status": "請求済",
+        "item_code": "Z0020-A",
+        "item_name": "荒砥石",
+        "unit_price": 1300,
+        "quantity": 10,
+        "amount":30000,
+        "subtotal": 14300,
+        "total": 200000
+      }
+  ]
+  

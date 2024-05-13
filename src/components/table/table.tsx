@@ -10,6 +10,7 @@ interface DataTableProps {
   totalPage: number
   forcePage?: number
   paginate?: (pageNumber?: number) => void
+  children?: any
 }
 
 const DataTable: React.FC<DataTableProps> = ({
@@ -19,6 +20,7 @@ const DataTable: React.FC<DataTableProps> = ({
   className,
   totalPage,
   forcePage,
+  children,
 }: DataTableProps) => {
   return (
     <div
@@ -92,6 +94,7 @@ const DataTable: React.FC<DataTableProps> = ({
             ))}
           </tbody>
         </table>
+        {children}
         <div className={'w-full'}>
           <PaginatedItems
             //setCurrentPage={paginate}
