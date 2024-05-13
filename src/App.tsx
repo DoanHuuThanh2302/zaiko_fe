@@ -13,6 +13,7 @@ import PaymentSlip from './pages/sale-management/payment-slip'
 import DepositList from './pages/sale-management/deposit-list'
 import CustomerLedger from './pages/sale-management/customer-ledger'
 import PurchaseOrder from './pages/purchase-management/purchase-order'
+import PurchaseOrderList from './pages/purchase-management/order-list'
 
 const SidebarLayout = () => {
   const show = useSelector((state: any) => state.sidebarData.sidebar)
@@ -74,6 +75,10 @@ function App() {
             <Route
               path='/purchase-management/purchase-order'
               element={<PurchaseOrder />}
+            />
+            <Route
+              path='/purchase-management/purchase-order-list'
+              element={<PurchaseOrderList />}
             />
           </Route>
         </Routes>
