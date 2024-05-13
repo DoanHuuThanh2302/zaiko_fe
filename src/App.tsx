@@ -9,6 +9,7 @@ import OrderSlipEntry from './pages/sale-management/form-order'
 import OrderList from './pages/sale-management/order-list'
 import BillingDeadline from './pages/sale-management/billing-deadline'
 import InvoiceIssue from './pages/sale-management/invoice-issue'
+import PaymentSlip from './pages/sale-management/payment-slip'
 
 const SidebarLayout = () => {
   const show = useSelector((state: any) => state.sidebarData.sidebar)
@@ -54,6 +55,10 @@ function App() {
             <Route
               path='/sale-management/invoice-issue'
               element={<InvoiceIssue />}
+            />
+            <Route
+              path='/sale-management/payment-slip'
+              element={<PaymentSlip />}
             />
           </Route>
         </Routes>

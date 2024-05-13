@@ -174,9 +174,14 @@ export default function Sidebar() {
                             {t('sidebar:Sidebar.InvoiceIssue')}
                           </Link>
                         </li>
-                        <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none'>
+                        <li
+                          className={`h-6 py-5 relative right-[10px] flex items-center focus:outline-none ${getNavLinkClass(
+                            '/sale-management/payment-slip',
+                            'bg-[#1e4e79] w-[257px]'
+                          )}`}
+                        >
                           <Link
-                            to='/estimate-list'
+                            to='/sale-management/payment-slip'
                             className='pl-[56px] pr-[23px] text-sm font-bold text-white'
                           >
                             {t('sidebar:Sidebar.EnterPaymentSlip')}

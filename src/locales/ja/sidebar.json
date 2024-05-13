@@ -17,7 +17,7 @@
         "PurchaseOrderEntry": "発注伝票入力",
         "PurchaseSlipEntry": "仕入伝票入力",
         "PurchaseList": "仕入一覧",
-        "PaymentSlipEntry":"支払伝票入力",
+        "PaymentSlipEntry":"入金伝票入力",
         "PaymentList": "支払一覧",
         "PaymentDeadline": "支払締切",
         "ListOfAccountsPayable": "買掛金一覧",

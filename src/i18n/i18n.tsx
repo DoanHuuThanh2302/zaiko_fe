@@ -11,6 +11,7 @@ import OrderListJa from '../locales/ja/order-list.json'
 import SaleListJa from '../locales/ja/sale-list.json'
 import BillingDeadlineJa from '../locales/ja/billing-deadline.json'
 import InvoiceIssueJa from '../locales/ja/invoice-issue.json'
+import PaymentSlipJa from '../locales/ja/payment-slip.json'
 
 const resources = {
   ja: {
@@ -24,6 +25,7 @@ const resources = {
     salelist: SaleListJa,
     billingdeadline: BillingDeadlineJa,
     invoiceissue: InvoiceIssueJa,
+    paymentslip: PaymentSlipJa,
   },
   en: { sidebar: SidebarEn },
 }
@@ -41,6 +43,7 @@ i18n.use(initReactI18next).init({
     'salelist',
     'billingdeadline',
     'invoiceissue',
+    'paymentslip',
   ],
   lng: import.meta.env.VITE_DEFAULT_LANG || 'ja',
   interpolation: {

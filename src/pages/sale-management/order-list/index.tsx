@@ -14,8 +14,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 export default function OrderList() {
   const navigate = useNavigate()
   const data = record.records
-  const today = new Date()
-  const formattedDate = today.toISOString().split('T')[0]
   const [startDate, setStartDate] = useState(new Date())
   const [showSearch, setShowSearch] = useState(true)
   const [t] = useTranslation()
