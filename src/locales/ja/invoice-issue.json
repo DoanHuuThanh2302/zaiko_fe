@@ -16,7 +16,5 @@
         "ConsumptionTax": "消費税",
         "BilledAmount": "請求額（税込）",
         "CollectionDate": "回収日付"
-      }
-      
-      
+      } 
   }

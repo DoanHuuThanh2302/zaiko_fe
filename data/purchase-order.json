@@ -1,0 +1,44 @@
+[
+    {
+      "code": "40014331",
+      "item_code": "Z0020-A",
+      "item_name": "砥石 Z0020-A",
+      "category": "部品",
+      "unit": "個",
+      "unit_price": 13000,
+      "quantity": 1,
+      "minimum": 100,
+      "order_quantity": 0,
+      "delivery_quantity": 0,
+      "slip": "伝票"
+    },
+    {
+      "code": "40014332",
+      "item_code": "SV-30S",
+      "item_name": "SV-30S圧力センサー",
+      "category": "部品",
+      "unit": "個",
+      "unit_price": 13000,
+      "quantity": 1,
+      "minimum": 100,
+      "order_quantity": 100,
+      "delivery_quantity": 100,
+      "tax": "外税",
+      "slip": "伝票"
+    },
+    {
+      "code": "40014332",
+      "item_code": "SV-30S",
+      "item_name": "SV-30S圧力センサー",
+      "category": "部品",
+      "unit": "個",
+      "unit_price": 13000,
+      "quantity": 1,
+      "minimum": 100,
+      "order_quantity": 30,
+      "delivery_quantity": 70,
+      "tax": "外税",
+      "slip": "伝票"
+    }
+  ]
+  

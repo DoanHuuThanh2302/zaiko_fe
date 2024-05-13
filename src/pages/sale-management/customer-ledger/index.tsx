@@ -202,7 +202,7 @@ export default function CustomerLedger() {
             className='mr-[40px]'
             forcePage={0}
           >
-            <div className='flex justify-end ml-[25px] mt-6'>
+            <div className='flex justify-end ml-[25px] mt-6 w-[1000px] xl:w-full xl:pr-[25px]'>
               <div className='border border-gray-300 bg-white'>
                 <table className='table-auto w-full border-collapse'>
                   <tbody>

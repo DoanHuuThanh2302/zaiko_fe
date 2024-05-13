@@ -36,7 +36,7 @@ const DataTable: React.FC<DataTableProps> = ({
         </div>
       )}
       <div className='overflow-x-auto xl:overflow-visible w-full'>
-        <table className={'bg-white w-[1025px] xl:w-full '}>
+        <table className={'bg-white w-[1025px] xl:w-full'}>
           <thead className={'bg-[#F9FBFD] border border-[#EDF2F6]'}>
             <tr>
               {columns.map((column) => (
