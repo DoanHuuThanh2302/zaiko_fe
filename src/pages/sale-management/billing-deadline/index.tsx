@@ -241,7 +241,7 @@ export default function BillingDeadline() {
             </div>
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
-                <Input type='checkbox' className='w-[10px]' />
+                <Input type='checkbox' className='!w-[12px]' />
                 <p className='ml-5'>
                   {t('billingdeadline:BillingDeadline.ShowOnlyCustomers')}
                 </p>
