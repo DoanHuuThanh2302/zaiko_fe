@@ -3,25 +3,25 @@
       {
         "invoiceNumber": "1231",
         "subject": "補修部品",
-        "saleDate": "1/20/2021",
+        "saleDate": "2021/1/20",
         "customerCode": "100423",
         "customerName": "伊丹産業",
         "totalExcludingTax": 240000,
         "totalTax": 24000,
         "totalIncludingTax": 264000,
-        "DeliveryNoteIssueDate": "1/20/2021",
+        "DeliveryNoteIssueDate": "2021/1/20",
         "status": "請求済"
       },
       {
         "invoiceNumber": "1432",
         "subject": "新品購入",
-        "saleDate": "1/20/2021",
+        "saleDate": "2021/1/20",
         "customerCode": "421451",
         "customerName": "伊丹産業",
         "totalExcludingTax": 200000,
         "totalTax": 20000,
         "totalIncludingTax": 220000,
-        "DeliveryNoteIssueDate": "1/20/2021",
+        "DeliveryNoteIssueDate": "2021/1/20",
         "status": "未請求"
       }
     ]
