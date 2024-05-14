@@ -16,6 +16,7 @@ import PurchaseOrder from './pages/purchase-management/purchase-order'
 import PurchaseOrderList from './pages/purchase-management/order-list'
 import PurchaseSlip from './pages/purchase-management/purchase-slip'
 import PurchaseList from './pages/purchase-management/purchase-list'
+import PurchasePaymentSlip from './pages/purchase-management/purchase-payment-slip'
 
 const SidebarLayout = () => {
   const show = useSelector((state: any) => state.sidebarData.sidebar)
@@ -89,6 +90,10 @@ function App() {
             <Route
               path='/purchase-management/purchase-list'
               element={<PurchaseList />}
+            />
+            <Route
+              path='/purchase-management/purchase-payment-slip'
+              element={<PurchasePaymentSlip />}
             />
           </Route>
         </Routes>
