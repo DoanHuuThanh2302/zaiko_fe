@@ -20,6 +20,7 @@ import PurchaseSlipJa from '../locales/ja/purchase-slip.json'
 import PurchaseListJa from '../locales/ja/purchase-list.json'
 import PurchasePaymentSlipJa from '../locales/ja/purchase-payment-slip.json'
 import PurchasePaymentListJa from '../locales/ja/purchase-payment-list.json'
+import ListOfAccountsPayableJa from '../locales/ja/list-of-accounts-payable.json'
 
 const resources = {
   ja: {
@@ -42,6 +43,7 @@ const resources = {
     purchaselist: PurchaseListJa,
     purchasepaymentslip: PurchasePaymentSlipJa,
     purchasepaymentlist: PurchasePaymentListJa,
+    listOfAccountsPayable: ListOfAccountsPayableJa,
   },
   en: { sidebar: SidebarEn },
 }
@@ -68,6 +70,7 @@ i18n.use(initReactI18next).init({
     'purchaselist',
     'purchasepaymentslip',
     'purchasepaymentlist',
+    'listOfAccountsPayable',
   ],
   lng: import.meta.env.VITE_DEFAULT_LANG || 'ja',
   interpolation: {
