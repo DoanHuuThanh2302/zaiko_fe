@@ -46,7 +46,13 @@
       "TotalConsumptionTax": "消費税合計",
       "TotalIncludingTax": "税込合計",
       "Remarks": "備考",
-      "Keep": "保存"
+      "Keep": "保存",
+      "ListOfRecipients": "引当先一覧",
+      "Choice": "選択",
+      "AssigneeCode": "引当先コード",
+      "AccountName": "引当先名",
+      "Completion": "完了",
+      "Cancel": "キャンセル"
     }
     
       

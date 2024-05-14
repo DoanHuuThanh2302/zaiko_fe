@@ -10,11 +10,31 @@ import Radio from '../../../components/input/radio'
 import { useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import Modal from '../../../components/modal/modal'
 
 export default function OrderSlipEntry() {
   const [t] = useTranslation()
   const [data, setData] = useState(items.items)
   const [startDate, setStartDate] = useState(new Date())
+  const [showListOfRecipients, setShowListOfRecipients] = useState(false)
+  const closeModalShowListOfRecipients = () => {
+    setShowListOfRecipients(false)
+  }
+
+  const listOfRecipients = [
+    {
+      choice: 1,
+      quantity: 2,
+      AssigneeCode: 'JPN-001',
+      AccountName: '倉庫エリアA',
+    },
+    {
+      choice: 2,
+      quantity: 6,
+      AssigneeCode: 'JPN-002',
+      AccountName: '倉庫エリアB',
+    },
+  ]
 
   const totalUnitPrice = data.reduce((accumulator, currentItem) => {
     return accumulator + currentItem.UnitPrice * currentItem.Quantity
@@ -116,6 +136,20 @@ export default function OrderSlipEntry() {
     {
       name: t('orderslipentry:OrderSlipEntry.Quantity'),
       key: 'Quantity',
+      format: (record: any) => {
+        return (
+          <div
+            className={'px-2 flex items-center justify-center cursor-pointer'}
+          >
+            <p
+              className='text-nowrap underline text-[#2e75b5]'
+              onClick={() => setShowListOfRecipients(true)}
+            >
+              {record.Quantity}
+            </p>
+          </div>
+        )
+      },
       className: 'text-center text-nowrap',
     },
     {
@@ -221,9 +255,81 @@ export default function OrderSlipEntry() {
     },
   ]
 
+  const columns2 = [
+    {
+      name: t('orderslipentry:OrderSlipEntry.Choice'),
+      key: 'choice',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-center py-3'}>
+            {record.choice}
+          </div>
+        )
+      },
+      className: 'text-center',
+    },
+    {
+      name: t('orderslipentry:OrderSlipEntry.Quantity'),
+      key: 'status',
+      format: (record: any) => (
+        <div className={`hover:cursor-pointer flex justify-center text-nowrap`}>
+          {record.quantity}
+        </div>
+      ),
+    },
+    {
+      name: t('orderslipentry:OrderSlipEntry.AssigneeCode'),
+      key: 'id',
+      format: (record: any) => (
+        <div className={`hover:cursor-pointer flex justify-center text-nowrap`}>
+          {record.AssigneeCode}
+        </div>
+      ),
+      className: 'text-center text-nowrap',
+    },
+    {
+      name: t('orderslipentry:OrderSlipEntry.AccountName'),
+      key: 'id',
+      format: (record: any) => (
+        <div className={`hover:cursor-pointer flex justify-center text-nowrap`}>
+          {record.AccountName}
+        </div>
+      ),
+      className: 'text-center text-nowrap w-[200px]',
+    },
+  ]
+
   return (
     <>
       <Header category={t('sidebar:Sidebar.SalesSlipEntry')} />
+      {showListOfRecipients ? (
+        <Modal>
+          <div className='mt-2 flex justify-center'>
+            <div className='w-full'>
+              <p className='ml-3'>
+                {t('orderslipentry:OrderSlipEntry.ListOfRecipients')}
+              </p>
+              <DataTable
+                columns={columns2}
+                data={listOfRecipients}
+                totalPage={0}
+                className='mx-8 mt-3'
+                childClassName='!w-full'
+              ></DataTable>
+              <div className='flex justify-end mr-10 mt-5 mb-3'>
+                <Buttom
+                  text={t('orderslipentry:OrderSlipEntry.Completion')}
+                  className='mr-4 bg-[#00b0f0] text-white'
+                />
+                <Buttom
+                  text={t('orderslipentry:OrderSlipEntry.Cancel')}
+                  onClick={() => closeModalShowListOfRecipients()}
+                />
+              </div>
+            </div>
+          </div>
+        </Modal>
+      ) : null}
       <div className='bg-gray-100 pb-[50px]'>
         <div className='bg-gray-100 pb-[50px]'>
           <div className='bg-gray-100 flex items-center h-[80px] justify-between'>

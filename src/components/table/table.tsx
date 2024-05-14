@@ -11,6 +11,7 @@ interface DataTableProps {
   forcePage?: number
   paginate?: (pageNumber?: number) => void
   children?: any
+  childClassName?: string
 }
 
 const DataTable: React.FC<DataTableProps> = ({
@@ -18,6 +19,7 @@ const DataTable: React.FC<DataTableProps> = ({
   columns,
   title,
   className,
+  childClassName,
   totalPage,
   forcePage,
   children,
@@ -36,7 +38,7 @@ const DataTable: React.FC<DataTableProps> = ({
         </div>
       )}
       <div className='overflow-x-auto xl:overflow-visible w-full'>
-        <table className={'bg-white w-[1025px] xl:w-full'}>
+        <table className={`bg-white w-[1025px] xl:w-full ${childClassName}`}>
           <thead className={'bg-[#F9FBFD] border border-[#EDF2F6]'}>
             <tr>
               {columns.map((column) => (
