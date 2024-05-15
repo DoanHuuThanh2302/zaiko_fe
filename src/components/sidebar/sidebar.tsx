@@ -78,7 +78,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/sale-management/quotation-slip-input'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.QuotationSlipInput')}
                           </Link>
@@ -91,7 +91,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.EstimateList')}
                           </Link>
@@ -104,7 +104,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/sale-management/order-form'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.OrderSlipEntry')}
                           </Link>
@@ -117,7 +117,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/sale-management/order-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.OrderList')}
                           </Link>
@@ -130,7 +130,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/sale-management/sale-slip-entry'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.SalesSlipEntry')}
                           </Link>
@@ -143,7 +143,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/sale-management/sale-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.SalesList')}
                           </Link>
@@ -156,7 +156,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/sale-management/billing-deadline'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.BillingDeadline')}
                           </Link>
@@ -169,7 +169,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/sale-management/invoice-issue'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.InvoiceIssue')}
                           </Link>
@@ -182,7 +182,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/sale-management/payment-slip'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.EnterPaymentSlip')}
                           </Link>
@@ -195,7 +195,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/sale-management/deposit-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.DepositList')}
                           </Link>
@@ -208,7 +208,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/sale-management/customer-ledger'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.CustomerLedger')}
                           </Link>
@@ -216,7 +216,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.ListOfAccountsReceivable')}
                           </Link>
@@ -253,7 +253,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/purchase-management/purchase-order-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.OrderList')}
                           </Link>
@@ -266,7 +266,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/purchase-management/purchase-order'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.PurchaseOrderEntry')}
                           </Link>
@@ -279,7 +279,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/purchase-management/purchase-slip'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.PurchaseSlipEntry')}
                           </Link>
@@ -292,7 +292,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/purchase-management/purchase-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.PurchaseList')}
                           </Link>
@@ -305,7 +305,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/purchase-management/purchase-payment-slip'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.Receipt/PaymentSlipEntry')}
                           </Link>
@@ -318,7 +318,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/purchase-management/purchase-payment-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.PaymentList')}
                           </Link>
@@ -331,7 +331,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/purchase-management/payment-deadline'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.PaymentDeadline')}
                           </Link>
@@ -345,7 +345,7 @@ export default function Sidebar() {
                         >
                           <Link
                             to='/purchase-management/list-of-accounts-payable'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.ListOfAccountsPayable')}
                           </Link>
@@ -377,7 +377,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.Receipt/PaymentSlipEntry')}
                           </Link>
@@ -385,7 +385,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t(
                               'sidebar:Sidebar.ListOfReceiptAndPaymentDetails'
@@ -395,7 +395,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.Receipt/PaymentHistory')}
                           </Link>
@@ -403,7 +403,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.ListOfInventoryDetails')}
                           </Link>
@@ -411,7 +411,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.Inventory')}
                           </Link>
@@ -419,7 +419,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t(
                               'sidebar:Sidebar.CalculateProductionCostAndPurchaseQuantity'
@@ -455,7 +455,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.CustomMaster')}
                           </Link>
@@ -463,7 +463,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.SupplierMaster')}
                           </Link>
@@ -471,7 +471,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.ShippingDestinationMaster')}
                           </Link>
@@ -479,7 +479,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.PartsMaster')}
                           </Link>
@@ -487,7 +487,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.ChildPartMaster')}
                           </Link>
@@ -495,7 +495,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.CompanyInformation')}
                           </Link>
@@ -503,7 +503,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.PersonInChargeMaster')}
                           </Link>
@@ -511,7 +511,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.CommonMaster')}
                           </Link>
@@ -519,7 +519,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.WarehouseMaster')}
                           </Link>
@@ -527,7 +527,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.StorageBinMaster')}
                           </Link>
@@ -535,7 +535,7 @@ export default function Sidebar() {
                         <li className='h-6 py-5 relative right-[10px] flex items-center focus:outline-none '>
                           <Link
                             to='/estimate-list'
-                            className='pl-[56px] pr-[23px] text-sm font-bold text-white'
+                            className='pl-[56px] pr-[23px] text-sm font-bold text-white w-full'
                           >
                             {t('sidebar:Sidebar.CostSearch')}
                           </Link>

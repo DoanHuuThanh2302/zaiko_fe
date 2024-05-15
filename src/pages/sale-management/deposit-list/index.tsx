@@ -99,7 +99,7 @@ export default function DepositList() {
   ]
   return (
     <>
-      <Header category={t('sidebar:Sidebar.EstimateList')} />
+      <Header category={t('sidebar:Sidebar.DepositList')} />
       <div className='bg-gray-100 pb-[50px] h-[890px]'>
         <div className='bg-gray-100 flex items-center h-[80px] justify-between ml-[25px]'>
           <div
@@ -188,7 +188,7 @@ export default function DepositList() {
                 <p className='min-w-[130px]'>
                   {t('depositlist:DepositList.PaymentDay')}
                 </p>
-                <div className='flex w-full pr-2'>
+                <div className='flex w-full'>
                   <DatePicker
                     selected={startDate}
                     onChange={(date: any) => setStartDate(date)}

@@ -13,21 +13,24 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 export default function Quotation() {
   const [t] = useTranslation()
-  const [data, setData] = useState(items.items)
+  const [data, setData] = useState<any>(items.items)
   const [startDate, setStartDate] = useState(new Date())
-  const totalUnitPrice = data.reduce((accumulator, currentItem) => {
+  const totalUnitPrice = data.reduce((accumulator: any, currentItem: any) => {
     return accumulator + currentItem.UnitPrice * currentItem.Quantity
   }, 0)
-  const totalAmountAfterTax = data.reduce((accumulator, currentItem) => {
-    return (
-      accumulator +
-      (currentItem.UnitPrice *
-        currentItem.Quantity *
-        currentItem.TaxClassification) /
-        100
-    )
-  }, 0)
-  const totalDiscount = data.reduce((accumulator, currentItem) => {
+  const totalAmountAfterTax = data.reduce(
+    (accumulator: any, currentItem: any) => {
+      return (
+        accumulator +
+        (currentItem.UnitPrice *
+          currentItem.Quantity *
+          currentItem.TaxClassification) /
+          100
+      )
+    },
+    0
+  )
+  const totalDiscount = data.reduce((accumulator: any, currentItem: any) => {
     return accumulator + currentItem.Discount
   }, 0)
 
@@ -38,10 +41,8 @@ export default function Quotation() {
       ItemName: 'ワイヤレスイヤホン',
       Classification: '電子機器',
       Quantity: 0,
-      Unit: '',
       UnitPrice: 0,
       Discount: 0,
-      TaxClassification: 0,
       Delete: false,
     }
     setData([...data, newRow])
@@ -245,6 +246,24 @@ export default function Quotation() {
               dateFormat='yyyy-MM-dd'
             />
           </div>
+          <div className='flex w-1/3 pl-[30px] 2xl:hidden'>
+            <div className='flex w-full'>
+              <Radio
+                name='location'
+                type='radio'
+                className='!w-3'
+                check={true}
+              />
+              <label className='ml-2 text-nowrap'>
+                {t('quotation:Quotation.Domestic')}
+              </label>
+
+              <Radio name='location' type='radio' className='!w-3 ml-[20px]' />
+              <label className='ml-2 text-nowrap'>
+                {t('quotation:Quotation.Abroad')}
+              </label>
+            </div>
+          </div>
         </div>
 
         <div className='flex ml-[25px] mt-3 mr-[40px]'>
@@ -262,7 +281,7 @@ export default function Quotation() {
               </div>
             </div>
           </div>
-          <div className='flex w-2/3 pl-[30px]'>
+          <div className='flex w-2/3 pl-[30px] hidden 2xl:flex'>
             <Radio name='location' type='radio' className='!w-3' check={true} />
             <label className='ml-2 text-nowrap'>
               {t('quotation:Quotation.Domestic')}
@@ -275,6 +294,30 @@ export default function Quotation() {
             <div className='flex w-1/2 ml-[30px]'>
               <div className='flex w-full'>
                 <p className='mr-[10px] text-nowrap '>
+                  {t('quotation:Quotation.Currency')}
+                </p>
+                <Select options={[]} className='!w-full !bg-white' />
+              </div>
+            </div>
+
+            <div className='flex w-1/2'>
+              <p className='text-nowrap px-2'>
+                {t('quotation:Quotation.TransactionCategory')}
+              </p>
+              <Select options={[]} className='!w-full !bg-white' />
+            </div>
+            <div className='flex w-1/2'>
+              <p className='text-nowrap px-2'>
+                {t('quotation:Quotation.CompanyRepresentative')}
+              </p>
+              <Select options={[]} className='!w-full !bg-white' />
+            </div>
+          </div>
+
+          <div className='flex w-2/3 pl-[30px] 2xl:hidden'>
+            <div className='flex w-1/2'>
+              <div className='flex w-full'>
+                <p className='min-w-[50px] text-nowrap '>
                   {t('quotation:Quotation.Currency')}
                 </p>
                 <Select options={[]} className='!w-full !bg-white' />
@@ -441,7 +484,7 @@ export default function Quotation() {
         </div>
         <div className='flex justify-between ml-[25px] mt-6'>
           <Buttom
-            className='text-[10px] h-[24px] border border-blue-200 bg-[#00b0f0] text-white !py-0 !rounded-[3px] !w-[150px]'
+            className='text-[10px] h-[36px] border border-blue-200 bg-[#00b0f0] text-white'
             text={t('quotation:Quotation.AddItemLine')}
             onClick={() => addNewRow()}
           />

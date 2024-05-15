@@ -103,7 +103,7 @@ export default function PurchaseOrderList() {
   ]
   return (
     <>
-      <Header category={t('sidebar:Sidebar.EstimateList')} />
+      <Header category={t('sidebar:Sidebar.OrderList')} />
       <div className='bg-gray-100 pb-[50px] h-[890px]'>
         <div className='bg-gray-100 flex items-center h-[80px] justify-between ml-[25px]'>
           <div

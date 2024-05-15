@@ -13,22 +13,25 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 export default function PaymentSlip() {
   const [t] = useTranslation()
-  const [data, setData] = useState(items.items)
+  const [data, setData] = useState<any>(items.items)
   const [startDate, setStartDate] = useState(new Date())
 
-  const totalUnitPrice = data.reduce((accumulator, currentItem) => {
+  const totalUnitPrice = data.reduce((accumulator: any, currentItem: any) => {
     return accumulator + currentItem.UnitPrice * currentItem.Quantity
   }, 0)
-  const totalAmountAfterTax = data.reduce((accumulator, currentItem) => {
-    return (
-      accumulator +
-      (currentItem.UnitPrice *
-        currentItem.Quantity *
-        currentItem.TaxClassification) /
-        100
-    )
-  }, 0)
-  const totalDiscount = data.reduce((accumulator, currentItem) => {
+  const totalAmountAfterTax = data.reduce(
+    (accumulator: any, currentItem: any) => {
+      return (
+        accumulator +
+        (currentItem.UnitPrice *
+          currentItem.Quantity *
+          currentItem.TaxClassification) /
+          100
+      )
+    },
+    0
+  )
+  const totalDiscount = data.reduce((accumulator: any, currentItem: any) => {
     return accumulator + currentItem.Discount
   }, 0)
 
@@ -39,7 +42,6 @@ export default function PaymentSlip() {
       ItemName: '',
       Classification: '電子機器',
       Quantity: 0,
-      Unit: '',
       UnitPrice: 0,
       Discount: 0,
       TaxClassification: 0,
@@ -321,7 +323,7 @@ export default function PaymentSlip() {
 
           <div className='flex justify-between ml-[25px] mt-6'>
             <Buttom
-              className='text-[10px] h-[24px] border border-blue-200 bg-[#00b0f0] text-white !py-0 !rounded-[3px] !w-[150px]'
+              className='text-[10px] h-[36px] border border-blue-200 bg-[#00b0f0] text-white'
               text={t('paymentslip:PaymentSlip.AddLine')}
               onClick={() => addNewRow()}
             />

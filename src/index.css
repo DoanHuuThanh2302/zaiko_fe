@@ -123,6 +123,7 @@ body {
 .react-datepicker__input-container {
   border:  solid 1px rgb(191 219 254);
   background-color: white;
+  border-radius: 3px;
 }
 
 .react-datepicker__input-container input{
@@ -130,4 +131,5 @@ body {
   padding-left: 15px;
   font-size: 12px;
   cursor: pointer;
+  border-radius: 3px;
 }

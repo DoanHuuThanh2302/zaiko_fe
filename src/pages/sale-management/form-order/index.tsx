@@ -301,7 +301,7 @@ export default function OrderSlipEntry() {
 
   return (
     <>
-      <Header category={t('sidebar:Sidebar.SalesSlipEntry')} />
+      <Header category={t('sidebar:Sidebar.OrderSlipEntry')} />
       {showListOfRecipients ? (
         <Modal>
           <div className='mt-2 flex justify-center'>
@@ -600,7 +600,7 @@ export default function OrderSlipEntry() {
 
           <div className='flex justify-between ml-[25px] mt-6'>
             <Buttom
-              className='text-[10px] h-[24px] border border-blue-200 bg-[#00b0f0] text-white !py-0 !rounded-[3px] !w-[150px]'
+              className='text-[10px] h-[36px] border border-blue-200 bg-[#00b0f0] text-white'
               text={t('orderslipentry:OrderSlipEntry.AddItemLine')}
               onClick={() => addNewRow()}
             />

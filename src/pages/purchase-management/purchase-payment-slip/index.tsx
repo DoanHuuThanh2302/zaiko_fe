@@ -312,7 +312,7 @@ export default function PurchasePaymentSlip() {
         </div>
         <div className='flex justify-between ml-[25px] mt-6'>
           <Buttom
-            className='text-[10px] h-[24px] border border-blue-200 bg-[#00b0f0] text-white !py-0 !rounded-[3px] !w-[150px]'
+            className='text-[10px] h-[36px] border border-blue-200 bg-[#00b0f0] text-white'
             text={t('purchasepaymentslip:PurchasePaymentSlip.AddItemLine')}
             onClick={() => addNewRow()}
           />

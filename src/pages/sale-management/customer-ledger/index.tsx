@@ -108,7 +108,7 @@ export default function CustomerLedger() {
   ]
   return (
     <>
-      <Header category={t('sidebar:Sidebar.EstimateList')} />
+      <Header category={t('sidebar:Sidebar.CustomerLedger')} />
       <div className='bg-gray-100 pb-[50px] h-[890px]'>
         <div className='bg-gray-100 flex items-center h-[80px] justify-end ml-[25px]'>
           <div className='flex mr-[40px]'>
