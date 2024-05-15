@@ -19,6 +19,7 @@ import PurchaseList from './pages/purchase-management/purchase-list'
 import PurchasePaymentSlip from './pages/purchase-management/purchase-payment-slip'
 import PurchasePaymentList from './pages/purchase-management/purchase-payment-list'
 import ListOfAccountsPayable from './pages/purchase-management/list-of-accounts-payable'
+import PaymentDeadline from './pages/purchase-management/payment-deadline'
 
 const SidebarLayout = () => {
   const show = useSelector((state: any) => state.sidebarData.sidebar)
@@ -104,6 +105,10 @@ function App() {
             <Route
               path='/purchase-management/list-of-accounts-payable'
               element={<ListOfAccountsPayable />}
+            />
+            <Route
+              path='/purchase-management/payment-deadline'
+              element={<PaymentDeadline />}
             />
           </Route>
         </Routes>
