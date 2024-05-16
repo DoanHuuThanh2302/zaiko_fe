@@ -7,12 +7,12 @@ import Select from '../../../components/select/select'
 import DataTable from '../../../components/table/table'
 import record from '../../../../data/billing-deadline.json'
 import { useState } from 'react'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function BillingDeadline() {
   const data = record.records
   const [startDate, setStartDate] = useState(new Date())
+
   const [showSearch, setShowSearch] = useState(true)
   const [t] = useTranslation()
   const columns = [
@@ -21,7 +21,7 @@ export default function BillingDeadline() {
       key: 'id',
       format: () => (
         <div
-          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5 px-2`}
+          className={`hover:cursor-pointer flex justify-center text-nowrap py-3 px-2`}
         >
           <Input type='checkbox' className='w-[11px] h-[18px]' />
         </div>
@@ -33,7 +33,7 @@ export default function BillingDeadline() {
       key: 'CustomerCode',
       format: (record: any) => (
         <div
-          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5`}
+          className={`hover:cursor-pointer flex justify-center text-nowrap py-3`}
         >
           {record.CustomerCode}
         </div>
@@ -45,7 +45,7 @@ export default function BillingDeadline() {
       key: 'CustomerName',
       format: (record: any) => (
         <div
-          className={`hover:cursor-pointer flex justify-center text-nowrap py-5`}
+          className={`hover:cursor-pointer flex justify-center text-nowrap py-3`}
         >
           {record.CustomerName}
         </div>
@@ -162,23 +162,23 @@ export default function BillingDeadline() {
           <div className='flex mr-[40px]'>
             <Buttom
               text={t('billingdeadline:BillingDeadline.ApprovalRequest')}
-              className='text-nowrap border border-orange-500 text-orange-500 mr-8'
+              className='text-nowrap border border-orange-500 text-orange-500 mr-8 !w-[110px]'
             />
             <Buttom
               text={t('billingdeadline:BillingDeadline.Approval')}
-              className='text-nowrap border border-red-500 text-red-500 mr-8'
+              className='text-nowrap border border-red-500 text-red-500 mr-8 !w-[110px]'
             />
             <Buttom
               text={t('billingdeadline:BillingDeadline.NotApproved')}
-              className='text-nowrap border border-yellow-500 text-yellow-500 mr-8'
+              className='text-nowrap border border-yellow-500 text-yellow-500 mr-8 !w-[110px]'
             />
             <Buttom
               text={t('billingdeadline:BillingDeadline.Printing')}
-              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8'
+              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8 !w-[110px]'
             />
             <Buttom
-              text={t('billingdeadline:BillingDeadline.Printing')}
-              className='text-nowrap border border-green-500 text-green-500'
+              text={t('billingdeadline:BillingDeadline.CustomerLedger')}
+              className='text-nowrap border border-green-500 text-green-500 !w-[110px]'
             />
           </div>
         </div>
@@ -188,19 +188,19 @@ export default function BillingDeadline() {
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
                 <p className='min-w-[130px] text-nowrap '>
-                  {t('billingdeadline:BillingDeadline.CustomerLedger')}
+                  {t('billingdeadline:BillingDeadline.CustomerCode')}
                 </p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                  <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                     <IconsSearch />
                   </div>
                 </div>
               </div>
               <div className='flex w-1/3 pl-[50px]'>
                 <p className='min-w-[50px]'>~</p>
-                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
@@ -223,14 +223,13 @@ export default function BillingDeadline() {
                   {t('billingdeadline:BillingDeadline.DeadlineDate')}
                 </p>
                 <div className='flex w-full'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
               </div>
-              <div className='flex w-1/3 pl-[100px]'>
+              <div className='flex w-1/3 pl-[30px]'>
                 <div className='flex w-full'>
                   <p className='min-w-[70px] text-nowrap'>
                     {t('billingdeadline:BillingDeadline.TightenedState')}
@@ -251,7 +250,7 @@ export default function BillingDeadline() {
             <div className='flex justify-center w-full mt-5'>
               <Buttom
                 text={t('billingdeadline:BillingDeadline.Search')}
-                className='text-nowrap border bg-[#4472c4] text-white'
+                className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
               />
             </div>
 
@@ -259,13 +258,13 @@ export default function BillingDeadline() {
               <div className='mr-[40px]'>
                 <Buttom
                   text={t('billingdeadline:BillingDeadline.ExecuteTightening')}
-                  className='text-nowrap border bg-[#4472c4] text-white'
+                  className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
                 />
                 <Buttom
                   text={t(
                     'billingdeadline:BillingDeadline.CancellationOfClosing'
                   )}
-                  className='text-nowrap border bg-[#757070] text-white ml-[20px]'
+                  className='text-nowrap border bg-[#757070] text-white ml-[20px] w-[200px]'
                 />
               </div>
             </div>

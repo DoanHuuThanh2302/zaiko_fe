@@ -8,18 +8,20 @@ import { IconsSearch, IconsDelete } from '../../../assets/icons/icons'
 import DataTable from '../../../components/table/table'
 import items from '../../../../data/quotation.json'
 import { useState } from 'react'
-import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function Quotation() {
   const [t] = useTranslation()
   const [data, setData] = useState<any>(items.items)
   const [startDate, setStartDate] = useState(new Date())
+
   const totalUnitPrice = data.reduce((accumulator: any, currentItem: any) => {
     return accumulator + currentItem.UnitPrice * currentItem.Quantity
   }, 0)
   const totalAmountAfterTax = data.reduce(
     (accumulator: any, currentItem: any) => {
+      console.log(currentItem.TaxClassification)
       return (
         accumulator +
         (currentItem.UnitPrice *
@@ -33,6 +35,8 @@ export default function Quotation() {
   const totalDiscount = data.reduce((accumulator: any, currentItem: any) => {
     return accumulator + currentItem.Discount
   }, 0)
+
+  console.log(totalUnitPrice, totalAmountAfterTax, totalDiscount)
 
   const addNewRow = () => {
     const newRow = {
@@ -202,35 +206,45 @@ export default function Quotation() {
             <p className='min-w-[100px] text-nowrap'>
               {t('quotation:Quotation.Status')}
             </p>
-            <Buttom
-              className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
-              text='未締切'
-            />
+            <Input className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
           </div>
           <div className='flex justify-end w-2/3 mr-[40px]'>
             <Buttom
               text={t('quotation:Quotation.ApprovalRequest')}
-              className='text-nowrap border border-orange-500 text-orange-500 mr-[20px]'
+              className='text-nowrap border border-orange-500 text-orange-500 mr-[20px] !w-[110px]'
             />
             <Buttom
               text={t('quotation:Quotation.Approval')}
-              className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px]'
+              className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px] !w-[110px]'
             />
             <Buttom
               text={t('quotation:Quotation.NotApproved')}
-              className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px]'
+              className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px] !w-[110px]'
             />
             <Buttom
               text={t('quotation:Quotation.CostReference')}
-              className='text-nowrap border border-[#00b0f0] text-[#00b0f0] mr-[20px]'
+              className='text-nowrap border border-[#00b0f0] text-[#00b0f0] mr-0 2xl:mr-[20px] !w-[110px]'
             />
             <Buttom
               text={t('quotation:Quotation.NewDocument')}
-              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-[20px]'
+              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-[20px] !w-[110px] 2xl:block hidden'
             />
             <Buttom
               text={t('quotation:Quotation.QuotePrinting')}
-              className='text-nowrap border border-cyan-500 text-cyan-500'
+              className='text-nowrap border border-cyan-500 text-cyan-500  2xl:block hidden !w-[110px] '
+            />
+          </div>
+        </div>
+
+        <div className='bg-gray-100 flex items-center justify-end 2xl:hidden'>
+          <div className='flex justify-end w-2/3 mr-[40px]'>
+            <Buttom
+              text={t('quotation:Quotation.NewDocument')}
+              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-[20px]  !w-[110px]'
+            />
+            <Buttom
+              text={t('quotation:Quotation.QuotePrinting')}
+              className='text-nowrap border border-cyan-500 text-cyan-500 !w-[110px] '
             />
           </div>
         </div>
@@ -240,13 +254,12 @@ export default function Quotation() {
             <p className=' text-nowrap min-w-[100px]'>
               {t('quotation:Quotation.SlipIssueDate')}
             </p>
-            <DatePicker
-              selected={startDate}
-              onChange={(date: any) => setStartDate(date)}
-              dateFormat='yyyy-MM-dd'
+            <CustomDatePicker
+              startDate={startDate}
+              setStartDate={setStartDate}
             />
           </div>
-          <div className='flex w-1/3 pl-[30px] 2xl:hidden'>
+          <div className='flex w-1/3 pl-[30px] 22xl:hidden'>
             <div className='flex w-full'>
               <Radio
                 name='location'
@@ -272,16 +285,16 @@ export default function Quotation() {
               {t('quotation:Quotation.SlipNumber')}
             </p>
             <div className='flex w-full'>
-              <Buttom
-                text={t('quotation:Quotation.Domestic')}
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
               />
-              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+              <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                 <IconsSearch />
               </div>
             </div>
           </div>
-          <div className='flex w-2/3 pl-[30px] hidden 2xl:flex'>
+          <div className='flex w-2/3 pl-[30px] hidden 22xl:flex'>
             <Radio name='location' type='radio' className='!w-3' check={true} />
             <label className='ml-2 text-nowrap'>
               {t('quotation:Quotation.Domestic')}
@@ -314,7 +327,7 @@ export default function Quotation() {
             </div>
           </div>
 
-          <div className='flex w-2/3 pl-[30px] 2xl:hidden'>
+          <div className='flex w-2/3 pl-[30px] 22xl:hidden'>
             <div className='flex w-1/2'>
               <div className='flex w-full'>
                 <p className='min-w-[50px] text-nowrap '>
@@ -346,8 +359,8 @@ export default function Quotation() {
               <p className='text-red-600'>※</p>
             </p>
             <div className='flex w-full'>
-              <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+              <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+              <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                 <IconsSearch />
               </div>
             </div>
@@ -356,16 +369,19 @@ export default function Quotation() {
             <p className='min-w-[100px] text-nowrap '>
               {t('quotation:Quotation.CustomerName')}
             </p>
-            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+            <Input
+              isDisabled={true}
+              className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+            />
           </div>
           <div className='flex w-1/3 pl-[30px]'>
             <div className='flex w-full'>
               <p className='min-w-[100px] text-nowrap'>
                 {t('quotation:Quotation.ContactPerson')}
               </p>
-              <Buttom
-                text={t('quotation:Quotation.DeliveryCode')}
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] h-[24px] !py-0 !rounded-[3px] text-start !w-full'
               />
             </div>
           </div>
@@ -377,11 +393,11 @@ export default function Quotation() {
               {t('quotation:Quotation.DeliveryCode')}
             </p>
             <div className='flex w-full'>
-              <Buttom
-                text={t('quotation:Quotation.DeliveryCode')}
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
               />
-              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+              <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                 <IconsSearch />
               </div>
             </div>
@@ -390,13 +406,19 @@ export default function Quotation() {
             <p className='min-w-[100px] text-nowrap '>
               {t('quotation:Quotation.DeliveryName')}
             </p>
-            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+            <Input
+              isDisabled={true}
+              className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+            />
           </div>
           <div className='flex w-1/3 pl-[30px]'>
             <p className='min-w-[100px] text-nowrap'>
               {t('quotation:Quotation.DeliveryPersonInCharge')}
             </p>
-            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6' />
+            <Input
+              isDisabled={true}
+              className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6'
+            />
             <Input type='checkbox' className='!w-[10px] h-[10px] mr-2' />
             <p className='text-nowrap'>
               {t('quotation:Quotation.SameAsBusinessPartner')}
@@ -411,8 +433,8 @@ export default function Quotation() {
               <p className='text-red-600'>※</p>
             </p>
             <div className='flex w-full'>
-              <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
-              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+              <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+              <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                 <IconsSearch />
               </div>
             </div>
@@ -421,13 +443,19 @@ export default function Quotation() {
             <p className='min-w-[100px] text-nowrap '>
               {t('quotation:Quotation.BillingName')}
             </p>
-            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+            <Input
+              isDisabled={true}
+              className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+            />
           </div>
           <div className='flex w-1/3 pl-[30px]'>
             <p className='min-w-[100px] text-nowrap'>
               {t('quotation:Quotation.BillingContact')}
             </p>
-            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6' />
+            <Input
+              isDisabled={true}
+              className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6'
+            />
             <Input type='checkbox' className='!w-[10px] h-[10px] mr-2' />
             <p className='text-nowrap'>
               {t('quotation:Quotation.SameAsBusinessPartner')}
@@ -451,10 +479,9 @@ export default function Quotation() {
               {t('quotation:Quotation.EstimatedDate')}
               <p className='text-red-600'>※</p>
             </p>
-            <DatePicker
-              selected={startDate}
-              onChange={(date: any) => setStartDate(date)}
-              dateFormat='yyyy-MM-dd'
+            <CustomDatePicker
+              startDate={startDate}
+              setStartDate={setStartDate}
             />
           </div>
         </div>
@@ -465,10 +492,9 @@ export default function Quotation() {
               {t('quotation:Quotation.Deadline')}
               <p className='text-red-600'>※</p>
             </p>
-            <DatePicker
-              selected={startDate}
-              onChange={(date: any) => setStartDate(date)}
-              dateFormat='yyyy-MM-dd'
+            <CustomDatePicker
+              startDate={startDate}
+              setStartDate={setStartDate}
             />
           </div>
         </div>
@@ -484,7 +510,7 @@ export default function Quotation() {
         </div>
         <div className='flex justify-between ml-[25px] mt-6'>
           <Buttom
-            className='text-[10px] h-[36px] border border-blue-200 bg-[#00b0f0] text-white'
+            className='text-[10px] h-[36px] border border-gray-200 bg-[#00b0f0] text-white'
             text={t('quotation:Quotation.AddItemLine')}
             onClick={() => addNewRow()}
           />
@@ -537,13 +563,13 @@ export default function Quotation() {
           <p className='min-w-[130px] font-bold'>
             {t('quotation:Quotation.Remarks')}
           </p>
-          <textarea className='w-full h-[200px] border border-blue-200 mt-2 px-2 py-2'></textarea>
+          <textarea className='w-full h-[200px] border border-gray-200 mt-2 px-2 py-2'></textarea>
         </div>
 
         <div className=' ml-[25px] mr-[40px] mt-6 flex'>
           <Buttom
             text={t('quotation:Quotation.Keep')}
-            className='text-nowrap border bg-[#4472c4] text-white'
+            className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
           />
           <Buttom
             text={t('quotation:Quotation.Delete')}

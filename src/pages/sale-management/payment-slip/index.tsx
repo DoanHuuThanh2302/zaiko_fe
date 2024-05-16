@@ -8,8 +8,7 @@ import DataTable from '../../../components/table/table'
 import items from '../../../../data/order-slip-entry.json'
 import Radio from '../../../components/input/radio'
 import { useState } from 'react'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function PaymentSlip() {
   const [t] = useTranslation()
@@ -163,20 +162,19 @@ export default function PaymentSlip() {
               <p className='min-w-[100px] text-nowrap'>
                 {t('paymentslip:PaymentSlip.SlipIssueDate')}
               </p>
-              <DatePicker
-                selected={startDate}
-                onChange={(date: any) => setStartDate(date)}
-                dateFormat='yyyy-MM-dd'
+              <CustomDatePicker
+                startDate={startDate}
+                setStartDate={setStartDate}
               />
             </div>
             <div className='flex justify-end w-2/3 mr-[40px]'>
               <Buttom
                 text={t('paymentslip:PaymentSlip.NewDocument')}
-                className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px]'
+                className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px] !w-[110px]'
               />
               <Buttom
                 text={t('paymentslip:PaymentSlip.ReceiptPrinting')}
-                className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px]'
+                className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px] !w-[110px]'
               />
             </div>
           </div>
@@ -187,11 +185,11 @@ export default function PaymentSlip() {
                 {t('paymentslip:PaymentSlip.SalesSlipNumber')}
               </p>
               <div className='flex w-full'>
-                <Buttom
-                  text={t('paymentslip:PaymentSlip.Domestic')}
-                  className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+                <Input
+                  isDisabled={true}
+                  className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
                 />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
@@ -234,11 +232,11 @@ export default function PaymentSlip() {
                 {t('paymentslip:PaymentSlip.SlipNumber')}
               </p>
               <div className='flex w-full'>
-                <Buttom
-                  text='3003'
-                  className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+                <Input
+                  isDisabled={true}
+                  className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
                 />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
@@ -261,11 +259,11 @@ export default function PaymentSlip() {
                 <p className='text-red-600'>※</p>
               </p>
               <div className='flex w-full'>
-                <Buttom
-                  text='Ul12345'
-                  className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+                <Input
+                  isDisabled={true}
+                  className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
                 />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
@@ -274,18 +272,18 @@ export default function PaymentSlip() {
               <p className='min-w-[100px] text-nowrap '>
                 {t('paymentslip:PaymentSlip.CustomerName')}
               </p>
-              <Buttom
-                text='Ul12345'
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
               />
             </div>
             <div className='flex w-1/3 pl-[30px]'>
               <p className='min-w-[100px] text-nowrap'>
                 {t('paymentslip:PaymentSlip.ContactPerson')}
               </p>
-              <Buttom
-                text='Ul12345'
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
               />
             </div>
           </div>
@@ -295,10 +293,9 @@ export default function PaymentSlip() {
               <p className=' text-nowrap min-w-[100px]'>
                 {t('paymentslip:PaymentSlip.PaymentDay')}
               </p>
-              <DatePicker
-                selected={startDate}
-                onChange={(date: any) => setStartDate(date)}
-                dateFormat='yyyy-MM-dd'
+              <CustomDatePicker
+                startDate={startDate}
+                setStartDate={setStartDate}
               />
             </div>
             <div className='flex w-1/3 pl-[30px]'>
@@ -323,7 +320,7 @@ export default function PaymentSlip() {
 
           <div className='flex justify-between ml-[25px] mt-6'>
             <Buttom
-              className='text-[10px] h-[36px] border border-blue-200 bg-[#00b0f0] text-white'
+              className='text-[10px] h-[36px] border border-gray-200 bg-[#00b0f0] text-white'
               text={t('paymentslip:PaymentSlip.AddLine')}
               onClick={() => addNewRow()}
             />
@@ -417,13 +414,13 @@ export default function PaymentSlip() {
             <p className='min-w-[100px] text-nowrap font-bold'>
               {t('paymentslip:PaymentSlip.Remarks')}
             </p>
-            <textarea className='w-full h-[200px] border border-blue-200 mt-2 px-2 py-2'></textarea>
+            <textarea className='w-full h-[200px] border border-gray-200 mt-2 px-2 py-2'></textarea>
           </div>
 
           <div className=' ml-[25px] mr-[40px] mt-6 flex'>
             <Buttom
               text={t('paymentslip:PaymentSlip.Keep')}
-              className='text-nowrap border bg-[#4472c4] text-white'
+              className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
             />
             <Buttom
               text={t('paymentslip:PaymentSlip.Delete')}

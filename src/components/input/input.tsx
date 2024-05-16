@@ -5,6 +5,7 @@ interface ButtomProps {
   value?: string
   type?: string
   name?: string
+  isDisabled?: boolean
 }
 
 export default function Input({
@@ -14,6 +15,7 @@ export default function Input({
   value,
   type,
   name,
+  isDisabled,
 }: ButtomProps) {
   return (
     <>
@@ -23,7 +25,8 @@ export default function Input({
         placeholder={placeholder}
         onChange={onChange}
         name={name}
-        className={`w-full h-[24px] border text-[10px] px-3 py-3 rounded-[3px] border-blue-200 ${className}`}
+        disabled={isDisabled}
+        className={`w-full h-[24px] border text-[10px] px-3 py-3 rounded-[3px] border-gray-200 focus:border-solid-[4px] focus:border-gray-500 focus:outline-none ${className}`}
       ></input>
     </>
   )

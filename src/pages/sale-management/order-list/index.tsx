@@ -8,8 +8,7 @@ import DataTable from '../../../components/table/table'
 import record from '../../../../data/estimate-list.json'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function OrderList() {
   const navigate = useNavigate()
@@ -23,7 +22,7 @@ export default function OrderList() {
       key: 'invoiceNumber',
       format: (record: any) => (
         <div
-          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5`}
+          className={`hover:cursor-pointer flex justify-center text-nowrap py-3`}
         >
           {record.invoiceNumber}
         </div>
@@ -115,11 +114,11 @@ export default function OrderList() {
           <div className='flex mr-[40px]'>
             <Buttom
               text={t('orderlist:OrderList.Printing')}
-              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8'
+              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8 !w-[110px]'
             />
             <Buttom
               text={t('orderlist:OrderList.NewDocument')}
-              className='text-nowrap border border-green-500 text-green-500'
+              className='text-nowrap border border-green-500 text-green-500 !w-[110px]'
               onClick={() => navigate('/sale-management/order-form')}
             />
           </div>
@@ -133,8 +132,8 @@ export default function OrderList() {
                   {t('orderlist:OrderList.CustomerCode')}
                 </p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                  <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                     <IconsSearch />
                   </div>
                 </div>
@@ -143,14 +142,14 @@ export default function OrderList() {
                 <p className='min-w-[130px] text-nowrap '>
                   {t('orderlist:OrderList.ItemCode')}
                 </p>
-                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
               <div className='flex w-1/3 pl-[30px]'>
                 <div className='flex w-full'>
-                  <p className='min-w-[130px] text-nowrap'>
+                  <p className='min-w-[50px] text-nowrap'>
                     {t('orderlist:OrderList.Classification')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
@@ -164,8 +163,8 @@ export default function OrderList() {
                   {t('orderlist:OrderList.Format')}
                 </p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                  <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                     <IconsSearch />
                   </div>
                 </div>
@@ -174,11 +173,11 @@ export default function OrderList() {
                 <p className='min-w-[130px] text-nowrap '>
                   {t('orderlist:OrderList.ItemName')}
                 </p>
-                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+                <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
               </div>
               <div className='flex w-1/3 pl-[30px]'>
                 <div className='flex w-full'>
-                  <p className='min-w-[130px] text-nowrap'>
+                  <p className='min-w-[50px] text-nowrap'>
                     {t('orderlist:OrderList.Situation')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
@@ -193,7 +192,7 @@ export default function OrderList() {
                   <p className='text-red-600'>※</p>
                 </p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
                 </div>
               </div>
             </div>
@@ -203,18 +202,16 @@ export default function OrderList() {
                   {t('orderlist:OrderList.OrderDate')}
                 </p>
                 <div className='flex w-full pr-2'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
                 <p>~</p>
                 <div className='flex w-full pl-2'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
               </div>
@@ -223,7 +220,7 @@ export default function OrderList() {
             <div className='flex justify-center w-full mt-5'>
               <Buttom
                 text={t('orderlist:OrderList.Search')}
-                className='text-nowrap border bg-[#4472c4] text-white'
+                className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
               />
             </div>
           </div>

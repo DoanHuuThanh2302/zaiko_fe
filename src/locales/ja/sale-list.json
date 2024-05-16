@@ -16,6 +16,7 @@
         "SlipNumber": "伝票番号",
         "CustomerName": "得意先名",
         "TotalExcludingTax": "税抜合計",
+        "TotalConsumptionTax": "消費税合計",
         "TotalIncludingTax": "税込合計",
         "DeliveryNoteIssueDate":"納品書発行日"
       }   

@@ -8,8 +8,7 @@ import { IconsSearch, IconsDelete } from '../../../assets/icons/icons'
 import DataTable from '../../../components/table/table'
 import items from '../../../../data/quotation.json'
 import { useState } from 'react'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function PurchaseSlip() {
   const [t] = useTranslation()
@@ -151,7 +150,7 @@ export default function PurchaseSlip() {
       format: () => {
         return (
           <div className={'px-2 flex items-center justify-center'}>
-            <p className='text-nowrap underline text-[#2e75b5]'>未納</p>
+            <p className='text-nowrap'>未納</p>
           </div>
         )
       },
@@ -174,24 +173,26 @@ export default function PurchaseSlip() {
       key: 'ShelfBin',
       format: () => {
         return (
-          <div className={'px-2 flex items-center justify-center'}>
+          <div className={'px-2 flex items-center justify-between'}>
             <p className='text-nowrap'></p>
+            <IconsSearch />
           </div>
         )
       },
-      className: 'text-center',
+      className: 'text-center w-[80px]',
     },
     {
       name: t('purchaseslip:PurchaseSlip.Remarks'),
       key: 'Remarks',
       format: () => {
         return (
-          <div className={'px-2 flex items-center justify-center'}>
+          <div className={'px-2 flex items-center justify-between'}>
             <p className='text-nowrap'></p>
+            <IconsSearch />
           </div>
         )
       },
-      className: 'text-center',
+      className: 'text-center w-[80px]',
     },
     {
       name: t('purchaseslip:PurchaseSlip.Delete'),
@@ -217,15 +218,15 @@ export default function PurchaseSlip() {
           <div className='flex justify-end w-2/3 mr-[40px]'>
             <Buttom
               text={t('purchaseslip:PurchaseSlip.NewDocument')}
-              className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px]'
+              className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px] !w-[110px]'
             />
             <Buttom
               text={t('purchaseslip:PurchaseSlip.PaymentProcessing')}
-              className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px]'
+              className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px] !w-[110px]'
             />
             <Buttom
               text={t('purchaseslip:PurchaseSlip.AkadenProcessing')}
-              className='text-nowrap border border-[#00b0f0] text-[#00b0f0] mr-[20px]'
+              className='text-nowrap border border-[#00b0f0] text-[#00b0f0] mr-[20px] !w-[110px]'
             />
           </div>
         </div>
@@ -235,11 +236,11 @@ export default function PurchaseSlip() {
               {t('purchaseslip:PurchaseSlip.PurchaseOrderNumber')}
             </p>
             <div className='flex w-full'>
-              <Buttom
-                text={t('purchaseslip:PurchaseSlip.Domestic')}
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
               />
-              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+              <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                 <IconsSearch />
               </div>
             </div>
@@ -282,8 +283,11 @@ export default function PurchaseSlip() {
               {t('purchaseslip:PurchaseSlip.SlipNumber')}
             </p>
             <div className='flex w-full'>
-              <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
-              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              />
+              <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                 <IconsSearch />
               </div>
             </div>
@@ -292,7 +296,10 @@ export default function PurchaseSlip() {
             <p className='min-w-[100px] text-nowrap '>
               {t('purchaseslip:PurchaseSlip.ChildNumber')}
             </p>
-            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+            <Input
+              isDisabled={true}
+              className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+            />
           </div>
         </div>
         <div className='flex ml-[25px] mt-3 mr-[40px]'>
@@ -301,9 +308,9 @@ export default function PurchaseSlip() {
               {t('purchaseslip:PurchaseSlip.SupplierCode')}
             </p>
             <div className='flex w-full'>
-              <Buttom
-                text={t('purchaseslip:PurchaseSlip.SupplierName')}
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
               />
             </div>
           </div>
@@ -311,13 +318,19 @@ export default function PurchaseSlip() {
             <p className='min-w-[100px] text-nowrap '>
               {t('purchaseslip:PurchaseSlip.SupplierName')}
             </p>
-            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+            <Input
+              isDisabled={true}
+              className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+            />
           </div>
           <div className='flex w-1/3 pl-[30px]'>
             <p className='min-w-[100px] text-nowrap'>
               {t('purchaseslip:PurchaseSlip.SupplierContact')}
             </p>
-            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6' />
+            <Input
+              isDisabled={true}
+              className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6'
+            />
           </div>
         </div>
 
@@ -327,14 +340,20 @@ export default function PurchaseSlip() {
               {t('purchaseslip:PurchaseSlip.PayeeCode')}
             </p>
             <div className='flex w-full'>
-              <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
+              />
             </div>
           </div>
           <div className='flex w-1/3 pl-[30px] ]'>
             <p className='min-w-[100px] text-nowrap '>
               {t('purchaseslip:PurchaseSlip.PayeeName')}
             </p>
-            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+            <Input
+              isDisabled={true}
+              className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+            />
           </div>
         </div>
         <div className='flex ml-[25px] mt-3 mr-[40px]'>
@@ -342,10 +361,9 @@ export default function PurchaseSlip() {
             <p className=' text-nowrap min-w-[100px]'>
               {t('purchaseslip:PurchaseSlip.PurchaseDate')}
             </p>
-            <DatePicker
-              selected={startDate}
-              onChange={(date: any) => setStartDate(date)}
-              dateFormat='yyyy-MM-dd'
+            <CustomDatePicker
+              startDate={startDate}
+              setStartDate={setStartDate}
             />
           </div>
           <div className='flex w-1/3 pl-[30px]'>
@@ -377,7 +395,7 @@ export default function PurchaseSlip() {
         </div>
         <div className='flex justify-between ml-[25px] mt-6'>
           <Buttom
-            className='text-[10px] h-[36px] border border-blue-200 bg-[#00b0f0] text-white'
+            className='text-[10px] h-[36px] border border-gray-200 bg-[#00b0f0] text-white'
             text={t('purchaseslip:PurchaseSlip.AddItemLine')}
             onClick={() => addNewRow()}
           />
@@ -412,12 +430,12 @@ export default function PurchaseSlip() {
           <p className='min-w-[130px] font-bold'>
             {t('purchaseslip:PurchaseSlip.Remarks')}
           </p>
-          <textarea className='w-full h-[200px] border border-blue-200 mt-2 px-2 py-2'></textarea>
+          <textarea className='w-full h-[200px] border border-gray-200 mt-2 px-2 py-2'></textarea>
         </div>
         <div className=' ml-[25px] mr-[40px] mt-6 flex'>
           <Buttom
             text={t('purchaseslip:PurchaseSlip.Update')}
-            className='text-nowrap border bg-[#4472c4] text-white'
+            className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
           />
           <Buttom
             text={t('purchaseslip:PurchaseSlip.Delete')}

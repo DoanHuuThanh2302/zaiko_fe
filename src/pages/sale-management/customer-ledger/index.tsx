@@ -7,12 +7,12 @@ import Select from '../../../components/select/select'
 import DataTable from '../../../components/table/table'
 import record from '../../../../data/customer-ledger.json'
 import { useState } from 'react'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function CustomerLedger() {
   const data = record
   const [startDate, setStartDate] = useState(new Date())
+
   const [t] = useTranslation()
 
   const totalAmount = data.reduce((accumulator, currentItem) => {
@@ -31,11 +31,12 @@ export default function CustomerLedger() {
       key: 'date',
       format: (record: any) => (
         <div
-          className={`hover:cursor-pointer flex justify-center text-nowrap py-5`}
+          className={`hover:cursor-pointer flex justify-center text-nowrap py-3`}
         >
           {record.date}
         </div>
       ),
+      rowSpan: 2,
       className: 'text-center text-nowrap',
     },
     {
@@ -64,7 +65,9 @@ export default function CustomerLedger() {
       format: (record: any) => {
         return (
           <div className={'px-2 flex items-center justify-center'}>
-            <p className='text-nowrap'>¥{record.unit_price}</p>
+            <p className='text-nowrap'>
+              ¥{record.unit_price.toLocaleString('ja-JP')}
+            </p>
           </div>
         )
       },
@@ -80,17 +83,35 @@ export default function CustomerLedger() {
           </div>
         )
       },
-      className: 'text-center text-nowrap',
+      className: 'text-center text-nowrap w-[100px]',
     },
     {
-      name: t('customerledger:CustomerLedger.SaleAmount'),
+      name: t('customerledger:CustomerLedger.SaleAmountTaxt'),
       key: 'amount',
-      className: 'text-center text-nowrap',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-center'}>
+            <p className='text-nowrap'>
+              ¥{record.amount.toLocaleString('ja-JP')}
+            </p>
+          </div>
+        )
+      },
+      className: 'text-center text-nowrap w-[150px]',
     },
     {
-      name: t('customerledger:CustomerLedger.DepositAmount'),
+      name: t('customerledger:CustomerLedger.DepositAmountTax'),
       key: 'subtotal',
-      className: 'text-center text-nowrap',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-center'}>
+            <p className='text-nowrap'>
+              ¥{record.subtotal.toLocaleString('ja-JP')}
+            </p>
+          </div>
+        )
+      },
+      className: 'text-center text-nowrap w-[150px]',
     },
     {
       name: t('customerledger:CustomerLedger.HighAmountOfAccountsReceivable'),
@@ -100,12 +121,13 @@ export default function CustomerLedger() {
           className={`hover:cursor-pointer flex justify-center text-nowrap
           }`}
         >
-          {record.total}
+          ¥{record.total.toLocaleString('ja-JP')}
         </div>
       ),
       className: 'w-[150px]',
     },
   ]
+
   return (
     <>
       <Header category={t('sidebar:Sidebar.CustomerLedger')} />
@@ -114,7 +136,7 @@ export default function CustomerLedger() {
           <div className='flex mr-[40px]'>
             <Buttom
               text={t('customerledger:CustomerLedger.Printing')}
-              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8'
+              className='text-nowrap border border-[#4472c4] text-[#4472c4] !w-[110px]'
             />
           </div>
         </div>
@@ -126,8 +148,8 @@ export default function CustomerLedger() {
                 {t('customerledger:CustomerLedger.CustomerCode')}
               </p>
               <div className='flex w-full'>
-                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
@@ -150,30 +172,30 @@ export default function CustomerLedger() {
               <div className='flex w-full'>
                 <Select
                   options={[]}
-                  className='text-nowrap border border-blue-200 text-[10px] !bg-white !w-full h-[24px] !py-0 !rounded-[3px]'
+                  className='text-nowrap border border-gray-200 text-[10px] !bg-white !w-full h-[24px] !py-0 !rounded-[3px]'
                 />
               </div>
             </div>
           </div>
 
           <div className='flex ml-[25px] mt-3 mr-[40px]'>
-            <div className='flex w-2/3'>
+            <div className='flex w-1/3'>
               <p className='min-w-[130px]'>
                 {t('customerledger:CustomerLedger.DocumentDate')}
               </p>
-              <div className='flex w-full pr-2'>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date: any) => setStartDate(date)}
-                  dateFormat='yyyy-MM-dd'
+              <div className='flex w-full'>
+                <CustomDatePicker
+                  startDate={startDate}
+                  setStartDate={setStartDate}
                 />
               </div>
-              <p>~</p>
-              <div className='flex w-full pl-2'>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date: any) => setStartDate(date)}
-                  dateFormat='yyyy-MM-dd'
+            </div>
+            <div className='flex w-1/3 pl-[30px]'>
+              <p className='min-w-[80px] pl-[25px]'>~</p>
+              <div className='flex w-full'>
+                <CustomDatePicker
+                  startDate={startDate}
+                  setStartDate={setStartDate}
                 />
               </div>
             </div>
@@ -182,7 +204,7 @@ export default function CustomerLedger() {
           <div className='flex justify-center w-full mt-5'>
             <Buttom
               text={t('customerledger:CustomerLedger.Search')}
-              className='text-nowrap border bg-[#4472c4] text-white'
+              className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
             />
           </div>
         </div>
@@ -194,7 +216,6 @@ export default function CustomerLedger() {
             </p>
           </div>
 
-          <p className='mt-3 mb-2'>{t('customerledger:CustomerLedger.Show')}</p>
           <DataTable
             totalPage={4}
             columns={columns}
@@ -202,42 +223,38 @@ export default function CustomerLedger() {
             className='mr-[40px]'
             forcePage={0}
           >
-            <div className='flex justify-end ml-[25px] mt-6 w-[1000px] xl:w-full xl:pr-[25px]'>
+            <div className='flex justify-end ml-[25px] w-[1000px] xl:w-full xl:pr-[25px]'>
               <div className='border border-gray-300 bg-white'>
                 <table className='table-auto w-full border-collapse'>
                   <tbody>
-                    <tr className='border-b border-gray-200'>
+                    <tr className='border border-gray-200'>
                       <th
-                        className='min-w-[100px] text-center pr-4 align-top border-gray-300 px-2 py-2'
-                        colSpan={2}
+                        className='min-w-[100px] align-center border border-gray-300 bg-[#a5a5a5]'
+                        rowSpan={2}
                       >
                         {t('customerledger:CustomerLedger.Total')}
                       </th>
-                    </tr>
-                    <tr className='border-b border-gray-200'>
-                      <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
-                        {t('customerledger:CustomerLedger.SaleAmount')}:
+                      <th className='bg-[#0095ce] font-medium text-[12px] py-2 text-white align-center border border-gray-300 w-[150px]'>
+                        {t('customerledger:CustomerLedger.SaleAmount')}
                       </th>
-                      <td className='font-bold border-l border-gray-300 px-10'>
-                        ¥{totalAmount.toLocaleString('ja-JP')}
-                      </td>
-                    </tr>
-                    <tr className='border-b border-gray-200'>
-                      <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
-                        {t('customerledger:CustomerLedger.DepositAmount')}:
+                      <th className='bg-[#0095ce] font-medium text-[12px] py-2 text-white align-center border border-gray-300 w-[150px]'>
+                        {t('customerledger:CustomerLedger.DepositAmount')}
                       </th>
-                      <td className='border-l border-gray-300 px-10'>
-                        ¥{totalSubtotal.toLocaleString('ja-JP')}
-                      </td>
-                    </tr>
-                    <tr className='border-b border-gray-200'>
-                      <th className='min-w-[100px] text-left pr-4 align-top border-r border-gray-300 px-2 py-2'>
+                      <th className='bg-[#0095ce] font-medium text-[12px] py-2 text-white align-center border border-gray-300 w-[150px]'>
                         {t(
                           'customerledger:CustomerLedger.HighAmountOfAccountsReceivable'
                         )}
-                        :
                       </th>
-                      <td className='border-l border-gray-300 px-10'>
+                    </tr>
+
+                    <tr className='border border-gray-200'>
+                      <td className='text-center border-l border-gray-300'>
+                        ¥{totalAmount.toLocaleString('ja-JP')}
+                      </td>
+                      <td className='text-center border-l border-gray-300'>
+                        ¥{totalSubtotal.toLocaleString('ja-JP')}
+                      </td>
+                      <td className='text-center border-l border-gray-300'>
                         ¥{total.toLocaleString('ja-JP')}
                       </td>
                     </tr>

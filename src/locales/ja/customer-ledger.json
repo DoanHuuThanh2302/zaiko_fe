@@ -14,6 +14,8 @@
         "ItemName": "品目名",
         "UnitPrice": "単価",
         "Quantity": "数量",
+        "SaleAmountTaxt": "売上金額(税込)",
+        "DepositAmountTax": "入金金額(税込)",
         "SaleAmount": "売上金額",
         "DepositAmount": "入金金額",
         "HighAmountOfAccountsReceivable": "売掛金額高",

@@ -8,8 +8,7 @@ import { IconsSearch, IconsDelete } from '../../../assets/icons/icons'
 import DataTable from '../../../components/table/table'
 import items from '../../../../data/purchase-order.json'
 import { useState } from 'react'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function PurchaseOrder() {
   const [t] = useTranslation()
@@ -128,12 +127,12 @@ export default function PurchaseOrder() {
     {
       name: t('purchaseorder:PurchaseOrder.OrderQuantity'),
       key: 'order_quantity',
-      className: 'text-center text-nowrap',
+      className: 'text-center text-nowrap w-[50px]',
     },
     {
       name: t('purchaseorder:PurchaseOrder.NumberOfDeliveries'),
       key: 'delivery_quantity',
-      className: 'text-center text-nowrap',
+      className: 'text-center text-nowrap  w-[50px]',
     },
     {
       name: t('purchaseorder:PurchaseOrder.Order'),
@@ -187,39 +186,41 @@ export default function PurchaseOrder() {
             <p className='min-w-[100px] text-nowrap'>
               {t('purchaseorder:PurchaseOrder.Status')}
             </p>
-            <Buttom
-              className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
-              text='未締切'
-            />
+            <Input className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
           </div>
           <div className='flex justify-end w-3/4 mr-[40px]'>
             <Buttom
               text={t('purchaseorder:PurchaseOrder.ApprovalRequest')}
-              className='text-nowrap border border-yellow-500 text-yellow-500 mr-[20px]'
+              className='text-nowrap border border-yellow-500 text-yellow-500 mr-[20px] !w-[110px]'
             />
             <Buttom
               text={t('purchaseorder:PurchaseOrder.Approval')}
-              className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px]'
+              className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px] !w-[110px]'
             />
             <Buttom
               text={t('purchaseorder:PurchaseOrder.NotApproved')}
-              className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px]'
+              className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px] !w-[110px]'
             />
             <Buttom
               text={t('purchaseorder:PurchaseOrder.CostReference')}
-              className='text-nowrap border border-[#00b0f0] text-[#00b0f0] mr-[20px]'
+              className='text-nowrap border border-[#00b0f0] text-[#00b0f0] !w-[110px]'
             />
+          </div>
+        </div>
+
+        <div className='bg-gray-100 flex items-center justify-end'>
+          <div className='flex justify-end w-2/3 mr-[40px]'>
             <Buttom
               text={t('purchaseorder:PurchaseOrder.NewDocument')}
-              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-[20px]'
+              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-[20px] !w-[110px]'
             />
             <Buttom
               text={t('purchaseorder:PurchaseOrder.PurchaseProcessing')}
-              className='text-nowrap border border-cyan-500 text-cyan-500 mr-[20px]'
+              className='text-nowrap border border-cyan-500 text-cyan-500 mr-[20px] !w-[110px]'
             />{' '}
             <Buttom
               text={t('purchaseorder:PurchaseOrder.OrderFormPrinting')}
-              className='text-nowrap border border-orange-500 text-orange-500'
+              className='text-nowrap border border-orange-500 text-orange-500 !w-[110px]'
             />
           </div>
         </div>
@@ -230,11 +231,11 @@ export default function PurchaseOrder() {
               {t('purchaseorder:PurchaseOrder.PurchaseOrderSlip')}
             </p>
             <div className='flex w-full'>
-              <Buttom
-                text={t('purchaseorder:PurchaseOrder.ChildNumber')}
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
               />
-              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+              <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                 <IconsSearch />
               </div>
             </div>
@@ -245,7 +246,7 @@ export default function PurchaseOrder() {
               <p className='text-red-600'>※</p>
             </p>
             <div className='flex w-full'>
-              <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+              <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
             </div>
           </div>
         </div>
@@ -295,8 +296,8 @@ export default function PurchaseOrder() {
               <p className='text-red-600'>※</p>
             </p>
             <div className='flex w-full'>
-              <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+              <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+              <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                 <IconsSearch />
               </div>
             </div>
@@ -305,16 +306,19 @@ export default function PurchaseOrder() {
             <p className='min-w-[100px] text-nowrap '>
               {t('purchaseorder:PurchaseOrder.SupplierName')}
             </p>
-            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+            <Input
+              isDisabled={true}
+              className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+            />
           </div>
           <div className='flex w-1/3 pl-[30px]'>
             <div className='flex w-full'>
               <p className='min-w-[100px] text-nowrap'>
                 {t('purchaseorder:PurchaseOrder.SupplierContact')}
               </p>
-              <Buttom
-                text='Ul123'
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
               />
             </div>
           </div>
@@ -328,7 +332,7 @@ export default function PurchaseOrder() {
             </p>
             <div className='flex w-full'>
               <Input className='text-[10px]' />
-              <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+              <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                 <IconsSearch />
               </div>
             </div>
@@ -337,7 +341,10 @@ export default function PurchaseOrder() {
             <p className='min-w-[100px] text-nowrap '>
               {t('purchaseorder:PurchaseOrder.PayeeName')}
             </p>
-            <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+            <Input
+              isDisabled={true}
+              className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+            />
           </div>
         </div>
 
@@ -347,10 +354,9 @@ export default function PurchaseOrder() {
               {t('purchaseorder:PurchaseOrder.OrderDate')}
               <p className='text-red-600'>※</p>
             </p>
-            <DatePicker
-              selected={startDate}
-              onChange={(date: any) => setStartDate(date)}
-              dateFormat='yyyy-MM-dd'
+            <CustomDatePicker
+              startDate={startDate}
+              setStartDate={setStartDate}
             />
           </div>
           <div className='flex w-1/3 pl-[30px]'>
@@ -359,10 +365,9 @@ export default function PurchaseOrder() {
               <p className='text-red-600'>※</p>
             </p>
             <div className='flex w-full'>
-              <DatePicker
-                selected={startDate}
-                onChange={(date: any) => setStartDate(date)}
-                dateFormat='yyyy-MM-dd'
+              <CustomDatePicker
+                startDate={startDate}
+                setStartDate={setStartDate}
               />
             </div>
           </div>
@@ -372,10 +377,9 @@ export default function PurchaseOrder() {
               <p className='text-red-600'>※</p>
             </p>
             <div className='flex w-full'>
-              <DatePicker
-                selected={startDate}
-                onChange={(date: any) => setStartDate(date)}
-                dateFormat='yyyy-MM-dd'
+              <CustomDatePicker
+                startDate={startDate}
+                setStartDate={setStartDate}
               />
             </div>
           </div>
@@ -394,7 +398,7 @@ export default function PurchaseOrder() {
         </div>
         <div className='flex justify-between ml-[25px] mt-6'>
           <Buttom
-            className='text-[10px] h-[36px] border border-blue-200 bg-[#00b0f0] text-white'
+            className='text-[10px] h-[36px] border border-gray-200 bg-[#00b0f0] text-white'
             text={t('purchaseorder:PurchaseOrder.AddItemLine')}
             onClick={() => addNewRow()}
           />
@@ -436,13 +440,13 @@ export default function PurchaseOrder() {
           <p className='min-w-[130px] font-bold'>
             {t('purchaseorder:PurchaseOrder.Remarks')}
           </p>
-          <textarea className='w-full h-[200px] border border-blue-200 mt-2 px-2 py-2'></textarea>
+          <textarea className='w-full h-[200px] border border-gray-200 mt-2 px-2 py-2'></textarea>
         </div>
 
         <div className=' ml-[25px] mr-[40px] mt-6 flex'>
           <Buttom
             text={t('purchaseorder:PurchaseOrder.Update')}
-            className='text-nowrap border bg-[#4472c4] text-white'
+            className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
           />
           <Buttom
             text={t('purchaseorder:PurchaseOrder.Delete')}

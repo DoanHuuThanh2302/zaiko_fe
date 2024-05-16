@@ -120,16 +120,30 @@ body {
   width: 100%;
   height: 24px;
 }
-.react-datepicker__input-container {
-  border:  solid 1px rgb(191 219 254);
-  background-color: white;
-  border-radius: 3px;
+
+.custom-datepicker-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid  rgb(229 231 235);
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  width: 100%;
+  height: 24px;
+  padding-left: 8px;
 }
 
-.react-datepicker__input-container input{
-  width: 100%;
-  padding-left: 15px;
-  font-size: 12px;
-  cursor: pointer;
-  border-radius: 3px;
+.calendar-icon {
+  margin-left: 0.5rem;
+}
+
+.custom-datepicker .react-datepicker__day--holiday,
+.custom-datepicker .react-datepicker__day--sunday {
+  color: red !important;
+}
+
+.custom-datepicker .react-datepicker__day--saturday {
+  color: rgb(34 197 94) !important;
 }

@@ -23,7 +23,7 @@ export default function Radio({
         onChange={onChange}
         name={name}
         checked={check}
-        className={`w-[450px] h-[24px] border text-[10px] px-3 py-3 rounded-[4px] border-blue-200 ${className}`}
+        className={`w-[450px] h-[24px] border text-[10px] px-3 py-3 rounded-[4px] border-gray-200 ${className}`}
       ></input>
     </>
   )

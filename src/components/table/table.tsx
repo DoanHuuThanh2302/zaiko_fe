@@ -75,7 +75,7 @@ const DataTable: React.FC<DataTableProps> = ({
                       }`}
                       key={column.key}
                     >
-                      <input type='text' className='w-full' />
+                      <input type='text' className='!w-full' />
                     </td>
                   ) : (
                     <td

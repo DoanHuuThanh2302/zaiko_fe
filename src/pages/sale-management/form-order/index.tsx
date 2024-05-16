@@ -8,14 +8,14 @@ import DataTable from '../../../components/table/table'
 import items from '../../../../data/order-slip-entry.json'
 import Radio from '../../../components/input/radio'
 import { useState } from 'react'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
 import Modal from '../../../components/modal/modal'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function OrderSlipEntry() {
   const [t] = useTranslation()
   const [data, setData] = useState(items.items)
   const [startDate, setStartDate] = useState(new Date())
+
   const [showListOfRecipients, setShowListOfRecipients] = useState(false)
   const closeModalShowListOfRecipients = () => {
     setShowListOfRecipients(false)
@@ -142,7 +142,7 @@ export default function OrderSlipEntry() {
             className={'px-2 flex items-center justify-center cursor-pointer'}
           >
             <p
-              className='text-nowrap underline text-[#2e75b5]'
+              className='text-nowrap text-[#00b0f0] underline'
               onClick={() => setShowListOfRecipients(true)}
             >
               {record.Quantity}
@@ -337,27 +337,24 @@ export default function OrderSlipEntry() {
               <p className='min-w-[100px] text-nowrap'>
                 {t('orderslipentry:OrderSlipEntry.Status')}
               </p>
-              <Buttom
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
-                text='未締切'
-              />
+              <Input className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
             </div>
             <div className='flex justify-end w-2/3 mr-[40px]'>
               <Buttom
                 text={t('orderslipentry:OrderSlipEntry.SalesProcessing')}
-                className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px]'
+                className='text-nowrap border border-[#00a200] text-[#00a200] mr-[20px] !w-[110px]'
               />
               <Buttom
                 text={t('orderslipentry:OrderSlipEntry.DeliveryNotePrinting')}
-                className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px]'
+                className='text-nowrap border border-[#c9211e] text-[#c9211e] mr-[20px] !w-[110px]'
               />
               <Buttom
                 text={t('orderslipentry:OrderSlipEntry.ShippingProposal')}
-                className='text-nowrap border border-[#00b0f0] text-[#00b0f0] mr-[20px]'
+                className='text-nowrap border border-[#00b0f0] text-[#00b0f0] mr-[20px] !w-[110px]'
               />
               <Buttom
                 text={t('orderslipentry:OrderSlipEntry.NewDocument')}
-                className='text-nowrap border border-orange-500 text-orange-500 mr-[20px]'
+                className='text-nowrap border border-orange-500 text-orange-500 mr-[20px] !w-[110px]'
               />
             </div>
           </div>
@@ -367,10 +364,9 @@ export default function OrderSlipEntry() {
               <p className=' text-nowrap min-w-[100px]'>
                 {t('orderslipentry:OrderSlipEntry.SlipIssueDate')}
               </p>
-              <DatePicker
-                selected={startDate}
-                onChange={(date: any) => setStartDate(date)}
-                dateFormat='yyyy-MM-dd'
+              <CustomDatePicker
+                startDate={startDate}
+                setStartDate={setStartDate}
               />
             </div>
           </div>
@@ -381,11 +377,11 @@ export default function OrderSlipEntry() {
                 {t('orderslipentry:OrderSlipEntry.SalesOrderNumber')}
               </p>
               <div className='flex w-full'>
-                <Buttom
-                  text={t('orderslipentry:OrderSlipEntry.Domestic')}
-                  className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
+                <Input
+                  isDisabled={true}
+                  className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
                 />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
@@ -436,11 +432,11 @@ export default function OrderSlipEntry() {
                 {t('orderslipentry:OrderSlipEntry.QuotationDocumentNumber')}
               </p>
               <div className='flex w-full'>
-                <Buttom
-                  text='3003'
-                  className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
+                <Input
+                  isDisabled={true}
+                  className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]'
                 />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
@@ -463,28 +459,28 @@ export default function OrderSlipEntry() {
                 <p className='text-red-600'>※</p>
               </p>
               <div className='flex w-full'>
-                <Buttom
-                  text='Ul12345'
-                  className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
-                />
+                <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                  <IconsSearch />
+                </div>
               </div>
             </div>
             <div className='flex w-1/3 pl-[30px] ]'>
               <p className='min-w-[100px] text-nowrap '>
                 {t('orderslipentry:OrderSlipEntry.CustomerName')}
               </p>
-              <Buttom
-                text='Ul12345'
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
               />
             </div>
             <div className='flex w-1/3 pl-[30px]'>
               <p className='min-w-[100px] text-nowrap'>
                 {t('orderslipentry:OrderSlipEntry.ContactPerson')}
               </p>
-              <Buttom
-                text='Ul12345'
-                className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
               />
             </div>
           </div>
@@ -495,23 +491,32 @@ export default function OrderSlipEntry() {
                 {t('orderslipentry:OrderSlipEntry.DeliveryCode')}
               </p>
               <div className='flex w-full'>
-                <Buttom
-                  text={t('orderslipentry:OrderSlipEntry.DeliveryCode')}
-                  className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+                <Input
+                  isDisabled={true}
+                  className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
                 />
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                  <IconsSearch />
+                </div>
               </div>
             </div>
             <div className='flex w-1/3 pl-[30px] ]'>
               <p className='min-w-[100px] text-nowrap '>
                 {t('orderslipentry:OrderSlipEntry.DeliveryName')}
               </p>
-              <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              />
             </div>
             <div className='flex w-1/3 pl-[30px]'>
               <p className='min-w-[100px] text-nowrap'>
                 {t('orderslipentry:OrderSlipEntry.DeliveryPersonInCharge')}
               </p>
-              <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6' />
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6'
+              />
               <Input type='checkbox' className='!w-[10px] h-[10px] mr-2' />
               <p className='text-nowrap'>
                 {t('orderslipentry:OrderSlipEntry.SameAsBusinessPartner')}
@@ -526,23 +531,32 @@ export default function OrderSlipEntry() {
                 <p className='text-red-600'>※</p>
               </p>
               <div className='flex w-full'>
-                <Buttom
-                  text={t('orderslipentry:OrderSlipEntry.DeliveryCode')}
-                  className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+                <Input
+                  isDisabled={true}
+                  className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
                 />
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                  <IconsSearch />
+                </div>
               </div>
             </div>
             <div className='flex w-1/3 pl-[30px] ]'>
               <p className='min-w-[100px] text-nowrap '>
                 {t('orderslipentry:OrderSlipEntry.BillingName')}
               </p>
-              <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start'
+              />
             </div>
             <div className='flex w-1/3 pl-[30px]'>
               <p className='min-w-[100px] text-nowrap'>
                 {t('orderslipentry:OrderSlipEntry.BillingContact')}
               </p>
-              <Buttom className='text-nowrap border border-blue-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6' />
+              <Input
+                isDisabled={true}
+                className='text-nowrap border border-gray-200 bg-gray-200 text-[10px] !w-full h-[24px] !mr-2 !mx-0 !py-0 !rounded-[3px] text-start mx-6'
+              />
               <Input type='checkbox' className='!w-[10px] h-[10px] mr-2' />
               <p className='text-nowrap'>
                 {t('orderslipentry:OrderSlipEntry.SameAsBusinessPartner')}
@@ -565,10 +579,9 @@ export default function OrderSlipEntry() {
               <p className=' text-nowrap min-w-[100px]'>
                 {t('orderslipentry:OrderSlipEntry.OrderDate')}
               </p>
-              <DatePicker
-                selected={startDate}
-                onChange={(date: any) => setStartDate(date)}
-                dateFormat='yyyy-MM-dd'
+              <CustomDatePicker
+                startDate={startDate}
+                setStartDate={setStartDate}
               />
             </div>
           </div>
@@ -578,10 +591,9 @@ export default function OrderSlipEntry() {
               <p className=' text-nowrap min-w-[100px]'>
                 {t('orderslipentry:OrderSlipEntry.SlipIssueDate')}
               </p>
-              <DatePicker
-                selected={startDate}
-                onChange={(date: any) => setStartDate(date)}
-                dateFormat='yyyy-MM-dd'
+              <CustomDatePicker
+                startDate={startDate}
+                setStartDate={setStartDate}
               />
             </div>
           </div>
@@ -600,7 +612,7 @@ export default function OrderSlipEntry() {
 
           <div className='flex justify-between ml-[25px] mt-6'>
             <Buttom
-              className='text-[10px] h-[36px] border border-blue-200 bg-[#00b0f0] text-white'
+              className='text-[10px] h-[36px] border border-gray-200 bg-[#00b0f0] text-white'
               text={t('orderslipentry:OrderSlipEntry.AddItemLine')}
               onClick={() => addNewRow()}
             />
@@ -664,13 +676,13 @@ export default function OrderSlipEntry() {
             <p className='min-w-[100px] text-nowrap font-bold'>
               {t('orderslipentry:OrderSlipEntry.Remarks')}
             </p>
-            <textarea className='w-full h-[200px] border border-blue-200 mt-2 px-2 py-2'></textarea>
+            <textarea className='w-full h-[200px] border border-gray-200 mt-2 px-2 py-2'></textarea>
           </div>
 
           <div className=' ml-[25px] mr-[40px] mt-6 flex'>
             <Buttom
               text={t('orderslipentry:OrderSlipEntry.Keep')}
-              className='text-nowrap border bg-[#4472c4] text-white'
+              className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
             />
             <Buttom
               text={t('orderslipentry:OrderSlipEntry.Delete')}

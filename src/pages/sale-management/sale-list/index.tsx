@@ -8,13 +8,14 @@ import DataTable from '../../../components/table/table'
 import record from '../../../../data/sale-list.json'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function SaleList() {
   const navigate = useNavigate()
   const data = record.records
   const [startDate, setStartDate] = useState(new Date())
+
   const [showSearch, setShowSearch] = useState(true)
   const [t] = useTranslation()
   const columns = [
@@ -23,7 +24,7 @@ export default function SaleList() {
       key: 'invoiceNumber',
       format: (record: any) => (
         <div
-          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5`}
+          className={`hover:cursor-pointer flex justify-center text-nowrap py-3`}
         >
           {record.invoiceNumber}
         </div>
@@ -52,6 +53,20 @@ export default function SaleList() {
     },
     {
       name: t('salelist:SaleList.TotalExcludingTax'),
+      key: 'totalExcludingTax',
+      format: (record: any) => {
+        return (
+          <div className={'px-2 flex items-center justify-center'}>
+            <p className='text-nowrap'>
+              ¥{record.totalExcludingTax.toLocaleString('ja-JP')}
+            </p>
+          </div>
+        )
+      },
+      className: 'text-center text-nowrap',
+    },
+    {
+      name: t('salelist:SaleList.TotalConsumptionTax'),
       key: 'totalExcludingTax',
       format: (record: any) => {
         return (
@@ -120,11 +135,11 @@ export default function SaleList() {
           <div className='flex mr-[40px]'>
             <Buttom
               text={t('salelist:SaleList.Printing')}
-              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8'
+              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8 !w-[110px]'
             />
             <Buttom
               text={t('salelist:SaleList.NewDocument')}
-              className='text-nowrap border border-green-500 text-green-500'
+              className='text-nowrap border border-green-500 text-green-500 !w-[110px]'
               onClick={() => navigate('/sale-management/order-form')}
             />
           </div>
@@ -134,28 +149,28 @@ export default function SaleList() {
           <div>
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
-                <p className='min-w-[130px] text-nowrap '>
+                <p className='min-w-[100px] text-nowrap '>
                   {t('salelist:SaleList.CustomerCode')}
                 </p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                  <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                     <IconsSearch />
                   </div>
                 </div>
               </div>
               <div className='flex w-1/3 pl-[30px] '>
-                <p className='min-w-[130px] text-nowrap '>
+                <p className='min-w-[100px] text-nowrap '>
                   {t('salelist:SaleList.ItemCode')}
                 </p>
-                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
               <div className='flex w-1/3 pl-[30px]'>
                 <div className='flex w-full'>
-                  <p className='min-w-[130px] text-nowrap'>
+                  <p className='min-w-[50px] text-nowrap'>
                     {t('salelist:SaleList.Classification')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
@@ -165,23 +180,23 @@ export default function SaleList() {
 
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
-                <p className='min-w-[130px]'>{t('salelist:SaleList.Format')}</p>
+                <p className='min-w-[100px]'>{t('salelist:SaleList.Format')}</p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                  <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                     <IconsSearch />
                   </div>
                 </div>
               </div>
               <div className='flex w-1/3 pl-[30px]'>
-                <p className='min-w-[130px] text-nowrap '>
+                <p className='min-w-[100px] text-nowrap '>
                   {t('salelist:SaleList.ItemName')}
                 </p>
-                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+                <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
               </div>
               <div className='flex w-1/3 pl-[30px]'>
                 <div className='flex w-full'>
-                  <p className='min-w-[130px] text-nowrap'>
+                  <p className='min-w-[50px] text-nowrap'>
                     {t('salelist:SaleList.Situation')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
@@ -191,33 +206,33 @@ export default function SaleList() {
 
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-2/3'>
-                <p className='min-w-[130px] flex'>
+                <p className='min-w-[100px] flex'>
                   {t('salelist:SaleList.Subject')}
                   <p className='text-red-600'>※</p>
                 </p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
                 </div>
               </div>
             </div>
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
-              <div className='flex w-2/3'>
-                <p className='min-w-[130px]'>
+              <div className='flex w-1/3'>
+                <p className='min-w-[100px]'>
                   {t('salelist:SaleList.SaleDate')}
                 </p>
-                <div className='flex w-full pr-2'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
+                <div className='flex w-full'>
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
-                <p>~</p>
-                <div className='flex w-full pl-2'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
+              </div>
+              <div className='flex w-1/3 pl-[30px]'>
+                <p className='min-w-[100px] pl-[25px]'>~</p>
+                <div className='flex w-full'>
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
               </div>
@@ -226,7 +241,7 @@ export default function SaleList() {
             <div className='flex justify-center w-full mt-5'>
               <Buttom
                 text={t('salelist:SaleList.Search')}
-                className='text-nowrap border bg-[#4472c4] text-white'
+                className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
               />
             </div>
           </div>

@@ -6,12 +6,12 @@ import Select from '../../../components/select/select'
 import DataTable from '../../../components/table/table'
 import record from '../../../../data/list-of-accounts-payable.json'
 import { useState } from 'react'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function ListOfAccountsPayable() {
   const data = record
   const [startDate, setStartDate] = useState(new Date())
+
   const [showSearch, setShowSearch] = useState(true)
   const [t] = useTranslation()
 
@@ -21,7 +21,7 @@ export default function ListOfAccountsPayable() {
       key: 'CustomerCode',
       format: (record: any) => (
         <div
-          className={`hover:cursor-pointer flex justify-center text-nowrap py-5`}
+          className={`hover:cursor-pointer flex justify-center text-nowrap py-3`}
         >
           {record.CustomerCode}
         </div>
@@ -178,13 +178,13 @@ export default function ListOfAccountsPayable() {
           <div className='flex mr-[40px]'>
             <Buttom
               text={t('listOfAccountsPayable:ListOfAccountsPayable.CSVoutput')}
-              className='text-nowrap border border-red-500 text-red-500  mr-8'
+              className='text-nowrap border border-red-500 text-red-500  mr-8 !w-[110px]'
             />
             <Buttom
               text={t(
                 'listOfAccountsPayable:ListOfAccountsPayable.FormPrinting'
               )}
-              className='text-nowrap border border-[#4472c4] text-[#4472c4]'
+              className='text-nowrap border border-[#4472c4] text-[#4472c4] !w-[110px]'
             />
           </div>
         </div>
@@ -210,11 +210,9 @@ export default function ListOfAccountsPayable() {
                   {t('listOfAccountsPayable:ListOfAccountsPayable.Period')}
                 </p>
                 <div className='flex w-full'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM'
-                    showMonthYearPicker
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
               </div>
@@ -222,27 +220,22 @@ export default function ListOfAccountsPayable() {
 
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
-                <p className='min-w-[130px] pl-[70px]'>
-                  <p>from</p>
-                </p>
+                <p className='min-w-[130px] pl-[70px]'></p>
                 <div className='flex w-full'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
               </div>
               <div className='flex w-1/3 pl-[30px]'>
                 <p className='min-w-[100px] text-nowrap flex'>
-                  <p className=''>~</p>
-                  <p className='ml-14'>to</p>
+                  <p className='pl-[25px]'>~</p>
                 </p>
                 <div className='flex w-full'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
               </div>
@@ -251,7 +244,7 @@ export default function ListOfAccountsPayable() {
             <div className='flex justify-center w-full mt-5'>
               <Buttom
                 text={t('listOfAccountsPayable:ListOfAccountsPayable.Search')}
-                className='text-nowrap border bg-[#4472c4] text-white'
+                className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
               />
             </div>
           </div>

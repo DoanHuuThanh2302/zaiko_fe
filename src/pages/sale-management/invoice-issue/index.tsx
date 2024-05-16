@@ -7,8 +7,7 @@ import Select from '../../../components/select/select'
 import DataTable from '../../../components/table/table'
 import record from '../../../../data/billing-deadline.json'
 import { useState } from 'react'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function InvoiceIssue() {
   const data = record.records
@@ -21,7 +20,7 @@ export default function InvoiceIssue() {
       key: 'id',
       format: () => (
         <div
-          className={`hover:cursor-pointer flex justify-center text-nowrap py-5 px-2`}
+          className={`hover:cursor-pointer flex justify-center text-nowrap py-3 px-2`}
         >
           <Input type='checkbox' className='w-[11px] h-[18px]' />
         </div>
@@ -33,7 +32,7 @@ export default function InvoiceIssue() {
       key: 'CustomerCode',
       format: (record: any) => (
         <div
-          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5`}
+          className={`hover:cursor-pointer flex justify-center text-nowrap py-3`}
         >
           {record.CustomerCode}
         </div>
@@ -45,7 +44,7 @@ export default function InvoiceIssue() {
       key: 'CustomerName',
       format: (record: any) => (
         <div
-          className={`hover:cursor-pointer flex justify-center text-nowrap py-5`}
+          className={`hover:cursor-pointer flex justify-center text-nowrap py-3`}
         >
           {record.CustomerName}
         </div>
@@ -157,7 +156,7 @@ export default function InvoiceIssue() {
           <div className='flex mr-[40px]'>
             <Buttom
               text={t('invoiceissue:InvoiceIssue.InvoicePrinting')}
-              className='text-nowrap border border-green-500 text-green-500'
+              className='text-nowrap border border-green-500 text-green-500  !w-[110px]'
             />
           </div>
         </div>
@@ -170,16 +169,16 @@ export default function InvoiceIssue() {
                   {t('invoiceissue:InvoiceIssue.BillingCode')}
                 </p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                  <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                     <IconsSearch />
                   </div>
                 </div>
               </div>
               <div className='flex w-1/3 pl-[50px]'>
                 <p className='min-w-[50px]'>~</p>
-                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
@@ -196,7 +195,7 @@ export default function InvoiceIssue() {
               </div>
               <div className='flex w-1/3 pl-[50px]'>
                 <div className='flex w-full'>
-                  <p className='min-w-[130px] text-nowrap'>
+                  <p className='min-w-[50px] text-nowrap'>
                     {t('invoiceissue:InvoiceIssue.Situation')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
@@ -210,10 +209,9 @@ export default function InvoiceIssue() {
                   {t('invoiceissue:InvoiceIssue.ClosingDate')}
                 </p>
                 <div className='flex w-full'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
               </div>
@@ -225,10 +223,9 @@ export default function InvoiceIssue() {
                   {t('invoiceissue:InvoiceIssue.CreatedDate')}
                 </p>
                 <div className='flex w-full'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
               </div>
@@ -237,7 +234,7 @@ export default function InvoiceIssue() {
             <div className='flex justify-center w-full mt-5'>
               <Buttom
                 text={t('invoiceissue:InvoiceIssue.Search')}
-                className='text-nowrap border bg-[#4472c4] text-white'
+                className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
               />
             </div>
           </div>

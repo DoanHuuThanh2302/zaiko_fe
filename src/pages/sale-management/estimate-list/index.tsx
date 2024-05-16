@@ -8,8 +8,7 @@ import DataTable from '../../../components/table/table'
 import record from '../../../../data/estimate-list.json'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import CustomDatePicker from '../../../components/input/datepicker'
 
 export default function EstimateList() {
   const navigate = useNavigate()
@@ -23,7 +22,7 @@ export default function EstimateList() {
       key: 'invoiceNumber',
       format: (record: any) => (
         <div
-          className={`hover:cursor-pointer flex justify-center underline text-[#2e75b5] text-nowrap py-5`}
+          className={`hover:cursor-pointer flex justify-center text-nowrap py-3`}
         >
           {record.invoiceNumber}
         </div>
@@ -129,12 +128,12 @@ export default function EstimateList() {
           <div className='flex mr-[40px]'>
             <Buttom
               text={t('estimatelist:EstimateList.NewDocument')}
-              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8'
+              className='text-nowrap border border-[#4472c4] text-[#4472c4] mr-8 !w-[110px]'
               onClick={() => navigate('/sale-management/quotation-slip-input')}
             />
             <Buttom
               text={t('estimatelist:EstimateList.Print')}
-              className='text-nowrap border border-cyan-500 text-cyan-500'
+              className='text-nowrap border border-cyan-500 text-cyan-500 !w-[110px]'
             />
           </div>
         </div>
@@ -143,28 +142,28 @@ export default function EstimateList() {
           <div>
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
-                <p className='min-w-[130px] text-nowrap '>
+                <p className='min-w-[100px] text-nowrap '>
                   {t('estimatelist:EstimateList.CustomerCode')}
                 </p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                  <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                     <IconsSearch />
                   </div>
                 </div>
               </div>
               <div className='flex w-1/3 pl-[30px] '>
-                <p className='min-w-[130px] text-nowrap '>
+                <p className='min-w-[100px] text-nowrap '>
                   {t('estimatelist:EstimateList.ItemCode')}
                 </p>
-                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
-                <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+                <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                   <IconsSearch />
                 </div>
               </div>
               <div className='flex w-1/3 pl-[30px]'>
                 <div className='flex w-full'>
-                  <p className='min-w-[130px] text-nowrap'>
+                  <p className='min-w-[50px] text-nowrap'>
                     {t('estimatelist:EstimateList.Classification')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
@@ -174,25 +173,25 @@ export default function EstimateList() {
 
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-1/3'>
-                <p className='min-w-[130px]'>
+                <p className='min-w-[100px]'>
                   {t('estimatelist:EstimateList.Format')}
                 </p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
-                  <div className='border border border-blue-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
+                  <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <div className='border border border-gray-200 bg-gray-200-l-0 w-[30px] h-[24px] rounded-r-[3px] !border-l-none cursor-pointer flex items-center justify-center'>
                     <IconsSearch />
                   </div>
                 </div>
               </div>
               <div className='flex w-1/3 pl-[30px]'>
-                <p className='min-w-[130px] text-nowrap '>
+                <p className='min-w-[100px] text-nowrap '>
                   {t('estimatelist:EstimateList.ItemName')}
                 </p>
-                <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
+                <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px] text-start' />
               </div>
               <div className='flex w-1/3 pl-[30px]'>
                 <div className='flex w-full'>
-                  <p className='min-w-[130px] text-nowrap'>
+                  <p className='min-w-[50px] text-nowrap'>
                     {t('estimatelist:EstimateList.Situation')}
                   </p>
                   <Select options={[]} className='!w-full !bg-white' />
@@ -202,32 +201,32 @@ export default function EstimateList() {
 
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
               <div className='flex w-2/3'>
-                <p className='min-w-[130px]'>
+                <p className='min-w-[100px]'>
                   {t('estimatelist:EstimateList.Subject')}
                 </p>
                 <div className='flex w-full'>
-                  <Input className='text-nowrap border border-blue-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
+                  <Input className='text-nowrap border border-gray-200 text-[10px] !w-full h-[24px] !py-0 !rounded-[3px]' />
                 </div>
               </div>
             </div>
             <div className='flex ml-[25px] mt-3 mr-[40px]'>
-              <div className='flex w-2/3'>
-                <p className='min-w-[130px]'>
+              <div className='flex w-1/3'>
+                <p className='min-w-[100px]'>
                   {t('estimatelist:EstimateList.EstimatedDate')}
                 </p>
-                <div className='flex w-full pr-2'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
+                <div className='flex w-full'>
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
-                <p>~</p>
-                <div className='flex w-full pl-2'>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date: any) => setStartDate(date)}
-                    dateFormat='yyyy-MM-dd'
+              </div>
+              <div className='flex w-1/3 pl-[30px]'>
+                <p className='min-w-[100px] text-nowrap pl-[30px]'>~</p>
+                <div className='flex w-full'>
+                  <CustomDatePicker
+                    startDate={startDate}
+                    setStartDate={setStartDate}
                   />
                 </div>
               </div>
@@ -236,7 +235,7 @@ export default function EstimateList() {
             <div className='flex justify-center w-full mt-5'>
               <Buttom
                 text={t('estimatelist:EstimateList.Search')}
-                className='text-nowrap border bg-[#4472c4] text-white'
+                className='text-nowrap border bg-[#4472c4] text-white w-[200px]'
               />
             </div>
           </div>

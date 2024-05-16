@@ -1,6 +1,6 @@
 [
     {
-        "date": "2018-9-30",
+        "date": "2018/9/30",
         "transaction_type": "売上",
         "status": "請求済",
         "item_code": "Z0020-A",
@@ -12,7 +12,7 @@
         "total": 116800
       },
     {
-      "date": "2018-9-30",
+      "date": "2018/9/30",
       "transaction_type": "売上",
       "status": "請求済",
       "item_code": "Z0020-A",
@@ -24,7 +24,7 @@
       "total": 116800
     },
     {
-        "date": "2018-9-30",
+        "date": "2018/9/30",
         "transaction_type": "売上",
         "status": "請求済",
         "item_code": "Z0020-A",
@@ -36,7 +36,7 @@
         "total": 116800
       },
       {
-        "date": "2018-9-30",
+        "date": "2018/9/30",
         "transaction_type": "売上",
         "status": "請求済",
         "item_code": "Z0020-A",
