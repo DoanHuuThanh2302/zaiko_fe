@@ -1,0 +1,20 @@
+{
+    "ListOfAccountsPayable": {
+        "Search": "検索",
+        "CSVoutput": "CSV出力",
+        "FormPrinting": "帳票印刷",
+        "ExtractionCondition": "抽出条件",
+        "Period": "期間",
+        "ItemDetails": "品目明細",
+        "CustomerCode": "得意先コード",
+        "CustomerName": "得意先名",
+        "CarryForwardBalance": "繰越残高",
+        "PaymentAmount": "支払高",
+        "PaymentAmountExcludingTax": "税抜支払高",
+        "ConsumptionTax": "消費税",
+        "TransferFee": "振込手数料",
+        "DateOfPayment": "支払日",
+        "PurchaseAmountIncludingTax": "税込仕入高",
+        "Balance": "差引残高"
+      }      
+  }

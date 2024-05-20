@@ -1,0 +1,20 @@
+{
+    "InvoiceIssue": {
+        "Search": "検索",
+        "InvoicePrinting": "請求書印刷",
+        "BillingCode": "請求先コード",
+        "ClosingDateGroup": "締日グループ",
+        "Situation": "状態",
+        "ClosingDate": "締日",
+        "CreatedDate": "作成日",
+        "ItemDetails": "品目明細",
+        "Show": "2件中 1 ~ 2 件を表示しています。",
+        "BillingName": "請求先名",
+        "PreviousClosingDate": "前回締日",
+        "CarryoverAmount": "繰越金額",
+        "BillingAmount": "請求額",
+        "ConsumptionTax": "消費税",
+        "BilledAmount": "請求額（税込）",
+        "CollectionDate": "回収日付"
+      } 
+  }

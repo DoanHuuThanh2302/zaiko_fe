@@ -1,0 +1,40 @@
+{
+    "items": [
+      {
+        "ItemCode": "001",
+        "Model": "XJ2024",
+        "ItemName": "電子レンジ",
+        "Classification": "家電",
+        "Quantity": 10,
+        "Unit": "台",
+        "UnitPrice": 15000,
+        "Discount": 500,
+        "TaxClassification": 8,
+        "Delete": false
+      },
+      {
+        "ItemCode": "002",
+        "Model": "AC1234",
+        "ItemName": "エアコン",
+        "Classification": "家電",
+        "Quantity": 5,
+        "Unit": "台",
+        "UnitPrice": 45000,
+        "Discount": 1500,
+        "TaxClassification": 10,
+        "Delete": false
+      },
+      {
+        "ItemCode": "003",
+        "Model": "WF-1000XM4",
+        "ItemName": "ワイヤレスイヤホン",
+        "Classification": "電子機器",
+        "Quantity": 20,
+        "Unit": "個",
+        "UnitPrice": 25000,
+        "Discount": 2000,
+        "TaxClassification": 8,
+        "Delete": false
+      }
+    ]
+  }

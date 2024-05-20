@@ -1,0 +1,41 @@
+{
+    "records":[
+        {
+          "CustomerCode": "1000001231",
+          "CustomerName": "Yamazaki Glasses",
+          "LastClosingDate": "2021/1/20",
+          "CarriedOverAmount": 2,
+          "BillingAmount": 240000,
+          "ConsumptionTax": 24000,
+          "BillingAmountIncludingTax": 264000,
+          "CollectionDate": "2021/3/31",
+          "InvoiceIssueDate": "2021/3/31",
+          "ClosingStatus": "未請求"
+        },
+        {
+          "CustomerCode": "1000001432",
+          "CustomerName": "Yoshida Glasses",
+          "LastClosingDate": "2021/1/20",
+          "CarriedOverAmount": 12000,
+          "BillingAmount": 20000,
+          "ConsumptionTax": 20000,
+          "BillingAmountIncludingTax": 140000,
+          "CollectionDate": "2021/3/31",
+          "InvoiceIssueDate": "2021/3/31",
+          "ClosingStatus": "未請求"
+        },
+        {
+          "CustomerCode": "10000014323",
+          "CustomerName": "Shibuya Glasses",
+          "LastClosingDate": "2021/1/20",
+          "CarriedOverAmount": 120000,
+          "BillingAmount": 200000,
+          "ConsumptionTax": 20000,
+          "BillingAmountIncludingTax": 140000,
+          "CollectionDate": "2021/3/31",
+          "InvoiceIssueDate": "2021/3/31",
+          "ClosingStatus": "請求済"
+        }
+      ]
+      
+  }

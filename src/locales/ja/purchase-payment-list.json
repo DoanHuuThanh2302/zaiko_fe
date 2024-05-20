@@ -1,0 +1,23 @@
+{
+    "PurchasePaymentList": {
+        "Search": "検索",
+        "NewDocument": "新規伝票",
+        "Printing": "印刷",
+        "SupplierCode": "仕入先コード",
+        "ItemCode": "品目コード",
+        "Format": "形式",
+        "ItemName": "品目名",
+        "Classification": "区分",
+        "PaymentDate": "支払日付",
+        "ItemDetails": "品目明細",
+        "Show": "2件中 1 ~ 2 件を表示しています。",
+        "SlipNumber": "伝票番号",
+        "PurchaseSlipNumber": "仕入伝票番号",
+        "OrderDate": "発注日",
+        "CustomerCode": "得意先コード",
+        "CustomerName": "得意先名",
+        "TotalExcludingTax": "税抜合計",
+        "TotalConsumptionTax": "消費税合計",
+        "TotalIncludingTax": "税込合計"
+    }
+  }

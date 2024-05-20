@@ -1,0 +1,22 @@
+{
+    "PaymentDeadline": {
+        "Printing": "印刷",
+        "SupplierCode": "仕入先コード",
+        "DeadlineGroup": "締切グループ",
+        "TightenedState": "締め状態",
+        "DeadlineDate": "締切日付",
+        "ShowOnlyUncompletedCustomers": "締めが済んでない得意先のみ表示",
+        "Search": "検索",
+        "ExecuteTightening": "締め実行",
+        "CancellationOfClosing": "締め取消",
+        "ItemDetails": "品目明細",
+        "SupplierName": "仕入先名",
+        "PreviousClosingDate": "前回締日",
+        "CarryoverAmount": "繰越金額",
+        "AmountOfPayment": "支払額",
+        "ConsumptionTax": "消費税",
+        "AmountOfPaymentTaxIncluded": "支払額(税込)",
+        "PaymentDate": "支払日付",
+        "TighteningSituation": "締め状況"
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "items": [
+      {
+        "ItemCode": "40014331",
+        "Model": "Z0020-A",
+        "ItemName": "カップリング",
+        "Classification": "部品",
+        "Quantity": 10,
+        "Unit": "個",
+        "UnitPrice": 13000,
+        "Discount": 1000,
+        "TaxClassification": 5 ,
+        "status": "請求済",
+        "Date": "2023/6/23"
+      },
+      {
+        "ItemCode": "40014331",
+        "Model": "Z0020-A",
+        "ItemName": "カップリング",
+        "Classification": "部品",
+        "Quantity": 10,
+        "Unit": "個",
+        "UnitPrice": 13000,
+        "Discount": 1000,
+        "TaxClassification": 8 ,
+        "status": "未請求",
+        "Date": "2023/6/23"
+      },
+      {
+        "ItemCode": "40014331",
+        "Model": "Z0020-A",
+        "ItemName": "カップリング",
+        "Classification": "部品",
+        "Quantity": 10,
+        "Unit": "個",
+        "UnitPrice": 13000,
+        "Discount": 1000,
+        "TaxClassification": 10 ,
+        "status": "請求済",
+        "Date": "2023/6/23"
+      },
+      {
+        "ItemCode": "40014331",
+        "Model": "Z0020-A",
+        "ItemName": "カップリング",
+        "Classification": 11,
+        "Quantity": 10,
+        "Unit": "個",
+        "UnitPrice": 13000,
+        "Discount": 1000,
+        "TaxClassification": 12 ,
+        "status": "未請求",
+        "Date": "2023/6/23"
+      }
+    ]
+  }

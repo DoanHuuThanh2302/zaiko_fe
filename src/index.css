@@ -18,56 +18,132 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
   button {
     background-color: #f9f9f9;
   }
+}
+
+@font-face {
+  font-family: 'Noto-Sans-JP';
+  font-weight: 100;
+  font-display: swap;
+  src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Thin.ttf') format('woff2');
+}
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 200;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-ExtraLight.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 300;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Light.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 400;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Regular.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 500;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Medium.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 600;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-SemiBold.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 700;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Bold.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 800;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-ExtraBold.ttf') format('woff2');
+}  
+
+@font-face {
+ font-family: 'Noto-Sans-JP';
+ font-weight: 900;
+ font-display: swap;
+ src: url('./assets/fonts/Noto_Sans_JP/NotoSansJP-Black.ttf') format('woff2');
+}  
+
+body {
+  font-family: 'Noto-Sans-JP';
+  height: 100%;
+  background-color: rgb(243 244 246);
+  font-size: 14px;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #d9d9d9;
+    border-radius: 10px;
+  }
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+  height: 24px;
+}
+
+.custom-datepicker-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid  rgb(229 231 235);
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  width: 100%;
+  height: 24px;
+  padding-left: 8px;
+}
+
+.calendar-icon {
+  margin-left: 0.5rem;
+}
+
+.custom-datepicker .react-datepicker__day--holiday,
+.custom-datepicker .react-datepicker__day--sunday {
+  color: red !important;
+}
+
+.custom-datepicker .react-datepicker__day--saturday {
+  color: rgb(34 197 94) !important;
 }

@@ -1,0 +1,24 @@
+{
+    "CustomerLedger": {
+        "Printing": "印刷",
+        "CustomerCode": "得意先コード",
+        "CustomerName": "得意先名",
+        "ClosingDate": "締日",
+        "DocumentDate": "伝票日付",
+        "Search": "検索",
+        "ItemDetails": "品目明細",
+        "Show": "2件中 1 ~ 2 件を表示しています。",
+        "SlipType": "伝票種類",
+        "Situation": "状態",
+        "ItemCode": "品目コード",
+        "ItemName": "品目名",
+        "UnitPrice": "単価",
+        "Quantity": "数量",
+        "SaleAmountTaxt": "売上金額(税込)",
+        "DepositAmountTax": "入金金額(税込)",
+        "SaleAmount": "売上金額",
+        "DepositAmount": "入金金額",
+        "HighAmountOfAccountsReceivable": "売掛金額高",
+        "Total": "合計"
+      }      
+}

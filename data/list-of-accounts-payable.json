@@ -1,0 +1,38 @@
+[
+    {
+        "CustomerCode": "1000001433",
+        "CustomerName": "渋谷メガネ",
+        "CarryForwardBalance": 2000,
+        "PaymentAmount": 650,
+        "PaymentAmountExcludingTax": 500,
+        "ConsumptionTax": 50,
+        "TransferFee": 100,
+        "DateOfPayment": "11/1",
+        "PurchaseAmountIncludingTax": 650,
+        "Balance": 2000
+    },
+    {
+        "CustomerCode": "1000001433",
+        "CustomerName": "渋谷メガネ",
+        "CarryForwardBalance": 2000,
+        "PaymentAmount": 650,
+        "PaymentAmountExcludingTax": 500,
+        "ConsumptionTax": 50,
+        "TransferFee": 100,
+        "DateOfPayment": "11/1",
+        "PurchaseAmountIncludingTax": 650,
+        "Balance": 2000
+    },
+    {
+        "CustomerCode": "1000001433",
+        "CustomerName": "渋谷メガネ",
+        "CarryForwardBalance": 2000,
+        "PaymentAmount": 650,
+        "PaymentAmountExcludingTax": 500,
+        "ConsumptionTax": 50,
+        "TransferFee": 100,
+        "DateOfPayment": "11/1",
+        "PurchaseAmountIncludingTax": 650,
+        "Balance": 2000
+    }
+]

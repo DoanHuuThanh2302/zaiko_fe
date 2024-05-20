@@ -1,0 +1,28 @@
+{
+    "records": [
+      {
+        "invoiceNumber": "1231",
+        "subject": "補修部品",
+        "saleDate": "2021/1/20",
+        "customerCode": "100423",
+        "customerName": "伊丹産業",
+        "totalExcludingTax": 240000,
+        "totalTax": 24000,
+        "totalConsumptionTax":21000,
+        "totalIncludingTax": 264000,
+        "status": "請求済"
+      },
+      {
+        "invoiceNumber": "1432",
+        "subject": "新品購入",
+        "saleDate": "2021/1/20",
+        "customerCode": "100423",
+        "customerName": "伊丹産業",
+        "totalExcludingTax": 200000,
+        "totalTax": 20000,
+        "totalConsumptionTax":17000,
+        "totalIncludingTax": 220000,
+        "status": "未請求"
+      }
+    ]
+  }
